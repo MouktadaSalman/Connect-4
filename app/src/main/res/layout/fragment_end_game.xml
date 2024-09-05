@@ -35,7 +35,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:fontFamily="@font/BubblyFont"
+            android:fontFamily="@font/bubbly_font"
             android:textSize="60sp"
             android:text="End Game" />
 
@@ -45,7 +45,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:fontFamily="@font/BubblyFont"
+            android:fontFamily="@font/bubbly_font"
             android:textSize="30sp"
             android:hint="Player X Wins!" />
 

@@ -35,7 +35,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:fontFamily="@font/BubblyFont"
+            android:fontFamily="@font/bubbly_font"
             android:textSize="80sp"
             android:text="Pause" />
 
