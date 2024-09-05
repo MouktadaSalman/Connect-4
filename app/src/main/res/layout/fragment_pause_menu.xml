@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.33"
+        app:layout_constraintGuide_percent="0.5"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:fontFamily="@font/BubblyFont"
-            android:textSize="60sp"
+            android:textSize="80sp"
             android:text="Pause" />
 
     </LinearLayout>
