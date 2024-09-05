@@ -28,6 +28,7 @@ public class SelectPlayerToCustomizeFragment extends Fragment {
         Button largeGameBoardButton = view.findViewById(R.id.largeGrid);
         Button mediumGameBoardButton = view.findViewById(R.id.mediumGrid);
         Button smallGameBoardButton = view.findViewById(R.id.smallGrid);
+        Button backButton = view.findViewById(R.id.back);
 
         if(gameDataViewModel.getSelectedGameMode() == 2){
             customizePlayer2Button.setEnabled(false);
@@ -66,6 +67,20 @@ public class SelectPlayerToCustomizeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 gameDataViewModel.setDisplayedFragment(5);
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (gameDataViewModel.getDisplayedFragment() == 2){
+                    gameDataViewModel.setDisplayedFragment(1);
+                }
+                else{
+                    gameDataViewModel.setDisplayedFragment(2);
+                }
+
+
             }
         });
         return view;

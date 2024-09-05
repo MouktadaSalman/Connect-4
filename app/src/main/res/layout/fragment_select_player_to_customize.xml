@@ -24,6 +24,13 @@
         android:orientation="vertical"
         android:gravity="top|center">
 
+        <Button
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/oval_button"
+            android:layout_marginTop="30dp"/>
+
         <TextView
             android:id="@+id/selectGameMode"
             android:layout_width="wrap_content"
@@ -96,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="medium grid"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:textColor="@color/material_dynamic_neutral20"
                 android:fontFamily="@font/bubbly_font"
                 android:background="@drawable/oval_button"/>
@@ -105,7 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="large grid"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:textColor="@color/material_dynamic_neutral20"
                 android:fontFamily="@font/bubbly_font"
                 android:background="@drawable/oval_button"/>
