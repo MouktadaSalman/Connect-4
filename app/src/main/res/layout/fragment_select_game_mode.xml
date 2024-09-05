@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GameModeSelectFragment">
@@ -24,14 +23,18 @@
             android:text="@string/app_name"
             android:textSize="50sp"
             android:textColor="@color/design_default_color_secondary_variant"
-            android:fontFamily="@font/BubblyFont"/>
+            android:fontFamily="@font/bubbly_font"/>
 
         <Button
-            android:id="@+id/pVPButton"
+            android:id="@+id/pVsPButton"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
-            android:text="Player VS Player"/>
+            android:text="Player VS Player"
+            android:textColor="@color/material_dynamic_neutral20"
+            android:fontFamily="@font/bubbly_font"
+            android:background="@drawable/oval_button"
+            />
 
         <TextView
             android:id="@+id/selectGameMode"
@@ -41,15 +44,18 @@
             android:textSize="27sp"
             android:text="Select The Game Mode"
             android:textColor="@color/design_default_color_secondary_variant"
-            android:fontFamily="@font/BubblyFont"
+            android:fontFamily="@font/bubbly_font"
             android:gravity="center"/>
 
         <Button
-            android:id="@+id/whatever"
+            android:id="@+id/pVsAiButton"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
-            android:text="Player VS Ai"/>
+            android:text="Player VS Ai"
+            android:textColor="@color/material_dynamic_neutral20"
+            android:fontFamily="@font/bubbly_font"
+            android:background="@drawable/oval_button"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
