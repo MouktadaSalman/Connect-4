@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
             fm.beginTransaction().add(R.id.fragment_fill_screen_container, gameModeFragment).commit();
         }
         else{
+            if (fm.getBackStackEntryCount() > 0) {
+                fm.popBackStackImmediate();
+            }
             fm.beginTransaction().replace(R.id.fragment_fill_screen_container, gameModeFragment).commit();
         }
     }
@@ -66,9 +69,12 @@ public class MainActivity extends AppCompatActivity {
     private void loadPlayerToCustomizeFragment(){
         Fragment frag = fm.findFragmentById(R.id.fragment_fill_screen_container);
         if (frag == null){
-            fm.beginTransaction().add(R.id.fragment_fill_screen_container, playerToCustomizeFragment).commit();
+            fm.beginTransaction().add(R.id.fragment_fill_screen_container, playerToCustomizeFragment).addToBackStack(null).commit();
         }
         else{
+            if (fm.getBackStackEntryCount() > 0) {
+                fm.popBackStackImmediate();
+            }
             fm.beginTransaction().replace(R.id.fragment_fill_screen_container, playerToCustomizeFragment).commit();
         }
     }
@@ -76,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadLargeGameBoardFragment(){
         Fragment frag = fm.findFragmentById(R.id.fragment_game_board_container);
         if (frag == null){
-            fm.beginTransaction().add(R.id.fragment_game_board_container, largeGameBoardFragment).commit();
+            fm.beginTransaction().add(R.id.fragment_game_board_container, largeGameBoardFragment).addToBackStack(null).commit();
         }
         else{
             fm.beginTransaction().replace(R.id.fragment_game_board_container, largeGameBoardFragment).commit();
@@ -86,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadMediumGameBoardFragment(){
         Fragment frag = fm.findFragmentById(R.id.fragment_game_board_container);
         if (frag == null){
-            fm.beginTransaction().add(R.id.fragment_game_board_container, mediumGameBoardFragment).commit();
+            fm.beginTransaction().add(R.id.fragment_game_board_container, mediumGameBoardFragment).addToBackStack(null).commit();
         }
         else{
             fm.beginTransaction().replace(R.id.fragment_game_board_container, mediumGameBoardFragment).commit();
@@ -96,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadSmallGameBoardFragment(){
         Fragment frag = fm.findFragmentById(R.id.fragment_game_board_container);
         if (frag == null){
-            fm.beginTransaction().add(R.id.fragment_game_board_container, smallGameBoardFragment).commit();
+            fm.beginTransaction().add(R.id.fragment_game_board_container, smallGameBoardFragment).addToBackStack(null).commit();
         }
         else{
             fm.beginTransaction().replace(R.id.fragment_game_board_container, smallGameBoardFragment).commit();
