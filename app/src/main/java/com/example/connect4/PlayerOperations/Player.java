@@ -1,4 +1,4 @@
-package com.example.connect4;
+package com.example.connect4.PlayerOperations;
 
 /*---------------------------------------------*
  *  Module: PlayerData                         *
@@ -8,7 +8,7 @@ package com.example.connect4;
  *  Version: 1.0.0                             *
  *---------------------------------------------*/
 
-public class PlayerData {
+public class Player {
     /* Class Fields:
      * playerName -> the players name
      * pAvatar -> the players avatar
@@ -29,7 +29,7 @@ public class PlayerData {
      * Description: The constructor of the class    *
      * Parameters: pName (string), pAvatar (string) *
      *----------------------------------------------*/
-    public PlayerData(String pName, String pAvatar){
+    public Player(String pName, String pAvatar){
         playerName = pName;
         playerAvatar = pAvatar;
         wins = 0;

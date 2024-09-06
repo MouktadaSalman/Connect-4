@@ -1,4 +1,4 @@
-package com.example.connect4;
+package com.example.connect4.Fragments;
 
 import android.os.Bundle;
 
@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.connect4.R;
 
-public class EndGame extends Fragment {
+
+public class EndGameFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

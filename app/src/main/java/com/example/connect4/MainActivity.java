@@ -9,6 +9,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.connect4.Fragments.GameModeSelectFragment;
+import com.example.connect4.Fragments.LargeGameBoardFragment;
+import com.example.connect4.Fragments.MediumGameBoardFragment;
+import com.example.connect4.Fragments.SelectPlayerToCustomizeFragment;
+import com.example.connect4.Fragments.SmallGameBoardFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     GameModeSelectFragment gameModeFragment = new GameModeSelectFragment();

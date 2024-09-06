@@ -1,4 +1,4 @@
-package com.example.connect4;
+package com.example.connect4.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.example.connect4.GameData;
+import com.example.connect4.R;
 
 public class SelectPlayerToCustomizeFragment extends Fragment {
 

@@ -5,7 +5,7 @@
     android:id="@+id/fragment_end_game"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EndGame">
+    tools:context=".Fragments.EndGameFragment">
 
     <GridLayout
         android:id="@+id/EGHor1"
@@ -37,6 +37,7 @@
             android:gravity="center"
             android:fontFamily="@font/bubbly_font"
             android:textSize="60sp"
+            android:textColor="@color/design_default_color_secondary_variant"
             android:text="End Game" />
 
         <TextView
@@ -47,6 +48,7 @@
             android:gravity="center"
             android:fontFamily="@font/bubbly_font"
             android:textSize="30sp"
+            android:textColor="@color/design_default_color_secondary_variant"
             android:hint="Player X Wins!" />
 
     </LinearLayout>
