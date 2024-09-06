@@ -37,6 +37,7 @@
             android:gravity="center"
             android:fontFamily="@font/bubbly_font"
             android:textSize="80sp"
+            android:textColor="@color/design_default_color_secondary_variant"
             android:text="Pause" />
 
     </LinearLayout>
