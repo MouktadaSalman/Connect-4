@@ -1,4 +1,4 @@
-package com.example.connect4;
+package com.example.connect4.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,15 +10,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-public class MediumGameBoardFragment extends Fragment {
+import com.example.connect4.GameData;
+import com.example.connect4.R;
 
+public class LargeGameBoardFragment extends Fragment {
     private GameData gameDataViewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_medium_game_board, container, false);
+        View view = inflater.inflate(R.layout.fragment_large_game_board, container, false);
         gameDataViewModel = new ViewModelProvider(getActivity())
                 .get(GameData.class);
 
