@@ -11,12 +11,14 @@ public class GameData extends ViewModel {
 
     private final MutableLiveData<Integer> displayedFragment;
     private final MutableLiveData<Integer> selectedGameMode;
+    private final MutableLiveData<Integer> selectedBoardSize;
     private final MutableLiveData<Player> player1;
     private final MutableLiveData<Player> player2;
 
     public GameData(){
         displayedFragment = new MediatorLiveData<>();
         selectedGameMode = new MediatorLiveData<>();
+        selectedBoardSize = new MutableLiveData<>();
         player1 = new MediatorLiveData<>();
         player2 = new MediatorLiveData<>();
     }
@@ -28,4 +30,8 @@ public class GameData extends ViewModel {
     public LiveData<Integer> getSelectedGameMode() {return selectedGameMode;}
 
     public void setSelectedGameMode(int value) {selectedGameMode.setValue(value);}
+
+    public LiveData<Integer> getSelectedBoard() {return selectedBoardSize;}
+
+    public void setSelectedBoardSize(int value) {selectedBoardSize.setValue(value);}
 }
