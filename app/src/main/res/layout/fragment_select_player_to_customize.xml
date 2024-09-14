@@ -28,6 +28,9 @@
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Back"
+            android:textColor="@color/material_dynamic_neutral20"
+            android:fontFamily="@font/bubbly_font"
             android:background="@drawable/oval_button"
             android:layout_marginTop="30dp"/>
 

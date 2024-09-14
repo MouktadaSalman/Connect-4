@@ -9,6 +9,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.connect4.GameData;
@@ -33,10 +34,18 @@ public class SelectPlayerToCustomizeFragment extends Fragment {
         Button smallGameBoardButton = view.findViewById(R.id.smallGrid);
         Button backButton = view.findViewById(R.id.back);
 
-        if(gameDataViewModel.getSelectedGameMode() == 2){
-            customizePlayer2Button.setEnabled(false);
-            customizePlayer2Button.getBackground().setAlpha(64);
-        }
+        /* If the user chose the single-player game mode, we blur the option to customise player 2. */
+        /* ------------------------------------------------------------------------------------------------------- */
+        gameDataViewModel.getSelectedGameMode().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                if (integer == 2){
+                    customizePlayer2Button.setEnabled(false);
+                    customizePlayer2Button.getBackground().setAlpha(64);
+                }
+            }
+        });
+        /* ------------------------------------------------------------------------------------------------------- */
 
         customizePlayer1Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,15 +84,16 @@ public class SelectPlayerToCustomizeFragment extends Fragment {
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if (gameDataViewModel.getDisplayedFragment() == 2){
+            public void onClick(View view) {
+                // If the getDisplayedFragment() value = 2, it means no grids are populated.
+                // So we just go back to the menu fragment (game mode fragment).
+                if (gameDataViewModel.getDisplayedFragment().getValue() == 2) {
                     gameDataViewModel.setDisplayedFragment(1);
                 }
-                else{
+                //
+                else {
                     gameDataViewModel.setDisplayedFragment(2);
                 }
-
-
             }
         });
         return view;
