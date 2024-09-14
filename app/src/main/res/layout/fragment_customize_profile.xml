@@ -5,7 +5,8 @@
     android:id="@+id/customizeProfileFrag"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.CustomizeProfileFragment">
+    tools:context=".Fragments.CustomizeProfileFragment"
+    android:background="#6FACE0">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/CPFGrid"
@@ -13,6 +14,13 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.3"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/CPFGrid2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8"/>
 
     <EditText
         android:id="@+id/CPFNameText"
@@ -22,6 +30,7 @@
         android:hint="@string/userName"
         android:inputType="text"
         android:fontFamily="@font/bubbly_font"
+        android:textColor="@color/material_dynamic_neutral20"
         android:textSize="30sp"
         android:gravity="center"
         android:autoSizeTextType="uniform"
@@ -82,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@id/avatar1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/avatar5"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/CPFGrid2"
         app:layout_constraintDimensionRatio="1:1"/>
 
     <ImageButton
@@ -95,7 +104,7 @@
         app:layout_constraintTop_toBottomOf="@id/avatar2"
         app:layout_constraintStart_toEndOf="@id/avatar4"
         app:layout_constraintEnd_toStartOf="@id/avatar6"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/CPFGrid2"
         app:layout_constraintDimensionRatio="1:1"/>
 
     <ImageButton
@@ -108,7 +117,21 @@
         app:layout_constraintTop_toBottomOf="@id/avatar3"
         app:layout_constraintStart_toEndOf="@id/avatar5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/CPFGrid2"
         app:layout_constraintDimensionRatio="1:1"/>
+
+    <Button
+        android:id="@+id/CustomizeSaveButton"
+        android:layout_width="131dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/oval_button"
+        android:fontFamily="@font/bubbly_font"
+        android:text="Save"
+        android:textColor="@color/material_dynamic_neutral20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/CPFGrid2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
