@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         /* ------------------------------------------------------------------------------------------------------- */
-
     }
 
     /* Anything in this block of code are simply functions used to display fragments. */
@@ -161,6 +160,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadPauseMenuFragment(){
         Fragment frag = fm.findFragmentById(R.id.fragment_pause_overlay);
+
+        findViewById(R.id.fragment_pause_overlay).setVisibility(View.VISIBLE);
+
         if (frag == null){
             fm.beginTransaction().add(R.id.fragment_pause_overlay, pauseMenuFragment).addToBackStack(null).commit();
         }
