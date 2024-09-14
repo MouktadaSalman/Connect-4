@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/MainMenuFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#39245D">
 
     <!--Setting up the structure of the main menu-->
     <androidx.constraintlayout.widget.Guideline
