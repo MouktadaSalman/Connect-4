@@ -14,12 +14,18 @@
     <string name="placeRatio">Nil</string>
     <string name="placeTotGames">0</string>
 
+    <!--Normal buttons desc.-->
+    <string name="saveButton">Save</string>
+    <string name="backButton">Back</string>
+    <string name="playButton">Play</string>
+
     <!--Image buttons desc.-->
     <string name="exitButton">Exit</string>
     <string name="redoButton">Restart</string>
     <string name="continueButton">Resume</string>
     <string name="settingsButton">Settings</string>
     <string name="userProfButton">User Profile</string>
+    <string name="avatarButton">Avatar</string>
 
     <!--Images-->
     <string name="imageProf">Profile Image</string>

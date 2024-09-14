@@ -22,7 +22,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:contentDescription="@string/imageProf"
-        android:background="@drawable/circle_custom"
+        android:background="@drawable/avatar_border_white"
         android:src="@drawable/profile_button"
         android:padding="10dp"
         android:layout_marginStart="10dp"
