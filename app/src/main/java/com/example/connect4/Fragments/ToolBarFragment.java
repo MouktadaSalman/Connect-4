@@ -85,7 +85,7 @@ public class ToolBarFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                gameDataViewModel.setDisplayedFragment(2);
+                gameDataViewModel.setDisplayedFragment(4);
             }
         });
 
