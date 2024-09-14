@@ -18,7 +18,7 @@ public class Player {
      * winPercent -> the player winPercent (both against ai + other player)
      */
     private String playerName;
-    private int avaterID;
+    private int avatarID;
     private int playerAvatar;
     private int wins;
     private int loss;
@@ -32,7 +32,7 @@ public class Player {
      *----------------------------------------------*/
     public Player(String pName, int pAvatar){
         playerName = pName;
-        avaterID = pAvatar;
+        avatarID = pAvatar;
         playerAvatar = 0;
         wins = 0;
         loss = 0;
@@ -65,7 +65,7 @@ public class Player {
      * Result: avatarID (int)                       *
      *----------------------------------------------*/
     public int getAvatarID(){
-        return avaterID;
+        return avatarID;
     }
 
     /*----------------------------------------------*
@@ -74,7 +74,7 @@ public class Player {
      * Parameters: none                             *
      * Result: avatarID (int)                       *
      *----------------------------------------------*/
-    public void setAvatarID(int id) { avaterID = id; }
+    public void setAvatarID(int id) { avatarID = id; }
 
     /*----------------------------------------------*
      * Method: getPlayerAvatar                      *
