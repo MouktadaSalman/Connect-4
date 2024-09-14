@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.connect4.R;
 
-public class CellImageViewHolder extends RecyclerView.ViewHolder {
-    public ImageView cellImageView;
+public class CellDataViewHolder extends RecyclerView.ViewHolder {
+    public ImageView cellDataView;
 
-    public CellImageViewHolder(@NonNull View itemView) {
+    public CellDataViewHolder(@NonNull View itemView) {
         super(itemView);
-        cellImageView = itemView.findViewById(R.id.cellImage);
+        cellDataView = itemView.findViewById(R.id.cell);
     }
 }
