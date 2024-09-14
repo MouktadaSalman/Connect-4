@@ -17,7 +17,6 @@
         android:layout_gravity="center"
         android:src="@drawable/empty_cell"/>
 
-
 </androidx.cardview.widget.CardView>
 
 

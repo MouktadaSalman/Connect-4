@@ -8,7 +8,11 @@ import androidx.lifecycle.ViewModel;
 import com.example.connect4.DataStructures.CellData;
 import com.example.connect4.PlayerOperations.Player;
 
+import java.util.ArrayList;
+
 public class GameData extends ViewModel {
+
+    private final MutableLiveData<ArrayList<CellData>> recyclerDataArrayList;
 
     private final MutableLiveData<Integer> displayedFragment;
     private final MutableLiveData<Integer> selectedGameMode;
@@ -16,15 +20,17 @@ public class GameData extends ViewModel {
     private final MutableLiveData<Player> player1;
     private final MutableLiveData<Player> player2;
 
-
-
     private final MutableLiveData<Integer> player1Avatar;
     private final MutableLiveData<Integer> player2Avatar;
 
     private final MutableLiveData<String> player1Name;
     private final MutableLiveData<String> player2Name;
 
+    private final MutableLiveData<Integer> playerTurn;
+
     public GameData(){
+        recyclerDataArrayList = new MutableLiveData<>();
+
         displayedFragment = new MediatorLiveData<>();
         selectedGameMode = new MediatorLiveData<>();
         selectedBoard = new MutableLiveData<>();
@@ -39,12 +45,14 @@ public class GameData extends ViewModel {
         player1Name = new MutableLiveData<>();
         player2Name = new MutableLiveData<>();
 
+        playerTurn = new MutableLiveData<>();
+
         // Default avatar and name settings
         player1Avatar.setValue(R.drawable.avatar1);
         player2Avatar.setValue(R.drawable.avatar1);
         player1Name.setValue("Player 1");
         player2Name.setValue("Player 2");
-
+        playerTurn.setValue(1);
     }
 
     public LiveData<Integer> getDisplayedFragment() {return displayedFragment;}
@@ -74,5 +82,9 @@ public class GameData extends ViewModel {
     public LiveData<String> getPlayer2Name() {return player2Name;}
 
     public void setPlayer2Name(String name) {player2Name.setValue(name);}
+
+    public LiveData<Integer> getPlayerTurn() {return playerTurn;}
+
+    public void setPlayerTurn(int turn) {playerTurn.setValue(turn);}
 }
 
