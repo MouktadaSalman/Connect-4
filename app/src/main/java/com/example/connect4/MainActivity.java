@@ -5,14 +5,11 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.connect4.Fragments.GameSettingsFragment;
-import com.example.connect4.Fragments.LargeGameBoardFragment;
 import com.example.connect4.Fragments.MainMenuFragment;
-import com.example.connect4.Fragments.MediumGameBoardFragment;
 import com.example.connect4.Fragments.SelectPlayerToCustomizeFragment;
 import com.example.connect4.Fragments.GameBoardFragment;
 
@@ -23,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
     MainMenuFragment mainMenuFragment = new MainMenuFragment();
     GameSettingsFragment gameSettingsFragment = new GameSettingsFragment();
     SelectPlayerToCustomizeFragment selectPlayerToCustomizeFragment = new SelectPlayerToCustomizeFragment();
-    LargeGameBoardFragment largeGameBoardFragment = new LargeGameBoardFragment();
-    MediumGameBoardFragment mediumGameBoardFragment = new MediumGameBoardFragment();
     GameBoardFragment gameBoardFragment = new GameBoardFragment();
     /* ------------------------------------------------------------------------------------------------------- */
 

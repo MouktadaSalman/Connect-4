@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customizeProfileFrag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.CustomizeProfileFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/CPFGrid"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3"/>
+
+    <EditText
+        android:id="@+id/CPFNameText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/userName"
+        android:hint="@string/userName"
+        android:inputType="text"
+        android:fontFamily="@font/bubbly_font"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="30sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/CPFGrid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/avatar1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/oval_button"
+        android:src="@drawable/avatar1"
+        app:layout_constraintTop_toBottomOf="@id/CPFGrid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/avatar2"
+        app:layout_constraintBottom_toTopOf="@id/avatar4"
+        app:layout_constraintDimensionRatio="1:1"/>
+
+    <ImageButton
+        android:id="@+id/avatar2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/oval_button"
+        android:src="@drawable/avatar2"
+        app:layout_constraintTop_toBottomOf="@id/CPFGrid"
+        app:layout_constraintStart_toEndOf="@id/avatar1"
+        app:layout_constraintEnd_toStartOf="@id/avatar3"
+        app:layout_constraintBottom_toTopOf="@id/avatar5"
+        app:layout_constraintDimensionRatio="1:1"/>
+
+
+    <ImageButton
+        android:id="@+id/avatar3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/oval_button"
+        android:src="@drawable/avatar3"
+        app:layout_constraintTop_toBottomOf="@id/CPFGrid"
+        app:layout_constraintStart_toEndOf="@id/avatar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/avatar6"
+        app:layout_constraintDimensionRatio="1:1"/>
+
+    <ImageButton
+        android:id="@+id/avatar4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/oval_button"
+        android:src="@drawable/avatar4"
+        app:layout_constraintTop_toBottomOf="@id/avatar1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/avatar5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"/>
+
+    <ImageButton
+        android:id="@+id/avatar5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/oval_button"
+        android:src="@drawable/avatar5"
+        app:layout_constraintTop_toBottomOf="@id/avatar2"
+        app:layout_constraintStart_toEndOf="@id/avatar4"
+        app:layout_constraintEnd_toStartOf="@id/avatar6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"/>
+
+    <ImageButton
+        android:id="@+id/avatar6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/oval_button"
+        android:src="@drawable/avatar6"
+        app:layout_constraintTop_toBottomOf="@id/avatar3"
+        app:layout_constraintStart_toEndOf="@id/avatar5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
