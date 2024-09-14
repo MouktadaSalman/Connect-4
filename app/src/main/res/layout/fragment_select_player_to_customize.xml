@@ -1,63 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.SelectPlayerToCustomizeFragment">
+    tools:context=".Fragments.SelectPlayerToCustomizeFragment"
+    android:background="#90B167">
+
+    <TextView
+        android:id="@+id/selectGameMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:fontFamily="@font/bubbly_font"
+        android:gravity="center"
+        android:text="Customize Profiles"
+        android:textColor="@color/design_default_color_secondary_variant"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:id="@+id/layout1"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:weightSum="3"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:id="@+id/firstRow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selectGameMode"
+        app:layout_constraintVertical_bias="0.521">
 
-        <TextView
-            android:id="@+id/selectGameMode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:textSize="40sp"
-            android:text="Customize Profiles"
-            android:textColor="@color/design_default_color_secondary_variant"
-            android:fontFamily="@font/bubbly_font"
-            android:gravity="center"/>
 
-        <Button
-            android:id="@+id/customizePlayer1Button"
-            android:layout_width="200dp"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:text="Player 1"
-            android:textColor="@color/material_dynamic_neutral20"
-            android:fontFamily="@font/bubbly_font"
-            android:background="@drawable/oval_button"/>
-
-        <Button
-            android:id="@+id/customizePlayer2Button"
-            android:layout_width="200dp"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:layout_marginTop="40dp"
-            android:text="Player 2"
-            android:textColor="@color/material_dynamic_neutral20"
-            android:fontFamily="@font/bubbly_font"
-            android:background="@drawable/oval_button"/>
-
-        <Button
-            android:id="@+id/ProfileBackButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back"
-            android:textColor="@color/material_dynamic_neutral20"
-            android:fontFamily="@font/bubbly_font"
+        <ImageView
+            android:id="@+id/avatar1P1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
             android:background="@drawable/oval_button"
-            android:layout_marginTop="60dp"/>
+            android:src="@drawable/avatar1" />
+
+        <ImageView
+            android:id="@+id/avatar2P1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/oval_button"
+            android:src="@drawable/avatar2" />
+
+
+        <ImageView
+            android:id="@+id/avatar3P1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/oval_button"
+            android:src="@drawable/avatar3" />
+
+        <ImageView
+            android:id="@+id/avatar4P1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/oval_button"
+            android:src="@drawable/avatar4" />
+
+        <ImageView
+            android:id="@+id/avatar5P1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/oval_button"
+            android:src="@drawable/avatar5" />
+
+        <ImageView
+            android:id="@+id/avatar6P1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/oval_button"
+            android:src="@drawable/avatar6" />
+
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/player1Name"
+        android:layout_width="182dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/bubbly_font"
+        android:gravity="center"
+        android:background="@drawable/avatar_border"
+        android:text="Player 1"
+        android:textColor="@color/design_default_color_secondary_variant"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/firstRow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.319"
+        app:layout_constraintStart_toEndOf="@+id/avatarChoosen"
+        app:layout_constraintTop_toBottomOf="@+id/selectGameMode"
+        app:layout_constraintVertical_bias="0.596" />
+
+    <ImageView
+        android:id="@+id/avatarChoosen"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="5dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/avatar_border"
+        android:scaleType="centerCrop"
+        android:padding="5dp"
+        android:src="@drawable/avatar1"
+        app:layout_constraintBottom_toTopOf="@+id/firstRow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.341"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectGameMode"
+        app:layout_constraintVertical_bias="0.473" />
+
+
+    <EditText
+        android:id="@+id/player2Name"
+        android:layout_width="182dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/bubbly_font"
+        android:gravity="center"
+        android:text="Player 2"
+        android:background="@drawable/avatar_border"
+        android:textColor="@color/design_default_color_secondary_variant"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/secondRow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintStart_toEndOf="@+id/avatarChoosenP2"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:layout_constraintVertical_bias="0.725" />
+
+    <ImageView
+        android:id="@+id/avatarChoosenP2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="5dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="45dp"
+        android:background="@drawable/avatar_border"
+        android:scaleType="centerCrop"
+        android:padding="5dp"
+        android:src="@drawable/avatar1"
+        app:layout_constraintBottom_toTopOf="@+id/secondRow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:layout_constraintVertical_bias="0.695" />
+
+    <LinearLayout
+        android:id="@+id/secondRow"
+        android:layout_width="410dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="132dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/firstRow">
+
+        <ImageView
+            android:id="@+id/avatar1P2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/oval_button"
+            android:src="@drawable/avatar1" />
+
+        <ImageView
+            android:id="@+id/avatar2P2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/oval_button"
+            android:src="@drawable/avatar2" />
+
+
+        <ImageView
+            android:id="@+id/avatar3P2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/oval_button"
+            android:src="@drawable/avatar3" />
+
+        <ImageView
+            android:id="@+id/avatar4P2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/oval_button"
+            android:src="@drawable/avatar4" />
+
+        <ImageView
+            android:id="@+id/avatar5P2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/oval_button"
+            android:src="@drawable/avatar5" />
+
+        <ImageView
+            android:id="@+id/avatar6P2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/oval_button"
+            android:src="@drawable/avatar6" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/ProfileBackButton"
+        android:layout_width="131dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/oval_button"
+        android:fontFamily="@font/bubbly_font"
+        android:text="Back"
+        android:textColor="@color/material_dynamic_neutral20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/secondRow" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="344dp" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
