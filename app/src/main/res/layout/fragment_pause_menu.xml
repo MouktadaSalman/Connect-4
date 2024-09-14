@@ -5,7 +5,7 @@
     android:id="@+id/fragment_pause_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#39245D"
+    android:background = "#064C56"
     tools:context=".Fragments.PauseMenuFragment">
 
     <GridLayout
@@ -36,9 +36,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:fontFamily="@font/bubbly_font"
+            android:fontFamily="@font/pixel"
             android:textSize="80sp"
-            android:textColor="@color/design_default_color_secondary_variant"
+            android:textColor="#5BC5BA"
             android:text="Pause" />
 
     </LinearLayout>

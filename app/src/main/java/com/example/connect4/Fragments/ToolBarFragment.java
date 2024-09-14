@@ -66,6 +66,7 @@ public class ToolBarFragment extends Fragment {
             public void onChanged(Integer mode) {
                 if (mode == 2) {
                     gameDataViewModel.setPlayer2Name("AI");
+                    gameDataViewModel.setPlayer2Avatar(R.drawable.aiavatar);
                 }
             }
         });

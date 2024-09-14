@@ -1,5 +1,5 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval">
+    android:shape="oval" >
 
     <!-- Outer ring or border of the token -->
     <solid android:color="#0090FF" /> <!-- Change to yellow or any color you need, e.g., #FFFF00 for yellow -->

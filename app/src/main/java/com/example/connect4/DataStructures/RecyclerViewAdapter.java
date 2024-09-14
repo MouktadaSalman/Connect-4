@@ -68,7 +68,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                     if (cellData.getRowPosition() < 7) {
                         for (int i = 7; i >= 0; i--) {
                             if (cellData.getImageId() == R.drawable.empty_cell) {
-                                holder.cellDataView.setImageResource(R.drawable.avatar3);
+                                holder.cellDataView.setImageResource(R.drawable.logomc);
                                 gameDataViewModel.setPlayerTurn(1);
                             }
                         }
