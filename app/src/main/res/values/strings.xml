@@ -1,4 +1,27 @@
 <resources>
     <string name="app_name">Connect 4</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Text strings-->
+    <string name="userName">User Name</string>
+    <string name="userWins">Wins: </string>
+    <string name="userLoss">Loss: </string>
+    <string name="userRatio">Ratio: </string>
+    <string name="userTotGames">Total Games: </string>
+
+    <!--Placeholder strings-->
+    <string name="placeWins">0</string>
+    <string name="placeRatio">Nil</string>
+    <string name="placeTotGames">0</string>
+
+    <!--Image buttons desc.-->
+    <string name="exitButton">Exit</string>
+    <string name="redoButton">Restart</string>
+    <string name="continueButton">Resume</string>
+    <string name="settingsButton">Settings</string>
+    <string name="userProfButton">User Profile</string>
+
+    <!--Images-->
+    <string name="imageProf">Profile Image</string>
+
 </resources>
