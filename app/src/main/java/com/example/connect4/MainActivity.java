@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -12,6 +13,7 @@ import com.example.connect4.Fragments.GameSettingsFragment;
 import com.example.connect4.Fragments.MainMenuFragment;
 import com.example.connect4.Fragments.SelectPlayerToCustomizeFragment;
 import com.example.connect4.Fragments.GameBoardFragment;
+import com.example.connect4.Fragments.ToolBarFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     GameSettingsFragment gameSettingsFragment = new GameSettingsFragment();
     SelectPlayerToCustomizeFragment selectPlayerToCustomizeFragment = new SelectPlayerToCustomizeFragment();
     GameBoardFragment gameBoardFragment = new GameBoardFragment();
+    ToolBarFragment toolBarFragment = new ToolBarFragment();
     /* ------------------------------------------------------------------------------------------------------- */
 
     FragmentManager fm = getSupportFragmentManager();
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 else if (integer == 3) {
                     // Get the board selected
                     loadGameBoardFragment();
+                    loadToolBarFragment();
                 }
             }
         });
@@ -113,6 +117,17 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             fm.beginTransaction().replace(R.id.fragment_game_board_container, gameBoardFragment).commit();
+        }
+    }
+
+    private void loadToolBarFragment()
+    {
+        Fragment frag = fm.findFragmentById(R.id.fragment_tool_bar);
+        if (frag == null){
+            fm.beginTransaction().add(R.id.fragment_tool_bar, toolBarFragment).addToBackStack(null).commit();
+        }
+        else{
+            fm.beginTransaction().replace(R.id.fragment_tool_bar, toolBarFragment).commit();
         }
     }
     /* ----------------------------------------------------------------------------------------------------------- */
