@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.SelectPlayerToCustomizeFragment"
-    android:background="#502C94">
+    android:background="#90B167">
 
     <TextView
         android:id="@+id/selectGameMode"

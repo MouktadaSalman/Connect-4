@@ -56,36 +56,20 @@ public class GameData extends ViewModel {
 
     public void setSelectedBoardSize(int value) {selectedBoardSize.setValue(value);}
 
-    public LiveData<Integer> getPlayer1Avatar() {
-        return player1Avatar;
-    }
+    public LiveData<Integer> getPlayer1Avatar() {return player1Avatar;}
 
-    public void setPlayer1Avatar(int avatar) {
-        player1Avatar.setValue(avatar);
-    }
+    public void setPlayer1Avatar(int avatar) {player1Avatar.setValue(avatar);}
 
-    public LiveData<Integer> getPlayer2Avatar() {
-        return player2Avatar;
-    }
+    public LiveData<Integer> getPlayer2Avatar() {return player2Avatar;}
 
-    public void setPlayer2Avatar(int avatar) {
-        player2Avatar.setValue(avatar);
-    }
+    public void setPlayer2Avatar(int avatar) {player2Avatar.setValue(avatar);}
 
-    public LiveData<String> getPlayer1Name() {
-        return player1Name;
-    }
+    public LiveData<String> getPlayer1Name() {return player1Name;}
 
-    public void setPlayer1Name(String name) {
-        player1Name.setValue(name);
-    }
+    public void setPlayer1Name(String name) {player1Name.setValue(name);}
 
-    public LiveData<String> getPlayer2Name() {
-        return player2Name;
-    }
+    public LiveData<String> getPlayer2Name() {return player2Name;}
 
-    public void setPlayer2Name(String name) {
-        player2Name.setValue(name);
-    }
+    public void setPlayer2Name(String name) {player2Name.setValue(name);}
 }
 
