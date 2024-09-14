@@ -22,7 +22,7 @@ public class ToolBarFragment extends Fragment {
 
     private GameData gameDataViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tool_bar, container, false);
 
         gameDataViewModel = new ViewModelProvider(getActivity())
