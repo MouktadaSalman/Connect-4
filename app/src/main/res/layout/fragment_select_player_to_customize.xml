@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.SelectPlayerToCustomizeFragment"
-    android:background="#502C94">
+    android:background="#90B167">
 
     <TextView
         android:id="@+id/selectGameMode"
@@ -94,15 +94,16 @@
         android:layout_height="48dp"
         android:fontFamily="@font/bubbly_font"
         android:gravity="center"
+        android:background="@drawable/avatar_border"
         android:text="Player 1"
         android:textColor="@color/design_default_color_secondary_variant"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/firstRow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.762"
+        app:layout_constraintHorizontal_bias="0.319"
         app:layout_constraintStart_toEndOf="@+id/avatarChoosen"
         app:layout_constraintTop_toBottomOf="@+id/selectGameMode"
-        app:layout_constraintVertical_bias="0.403" />
+        app:layout_constraintVertical_bias="0.596" />
 
     <ImageView
         android:id="@+id/avatarChoosen"
@@ -110,14 +111,17 @@
         android:layout_height="60dp"
         android:layout_margin="5dp"
         android:layout_marginTop="21dp"
-
+        android:background="@drawable/avatar_border"
+        android:scaleType="centerCrop"
+        android:padding="5dp"
         android:src="@drawable/avatar1"
         app:layout_constraintBottom_toTopOf="@+id/firstRow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.185"
+        app:layout_constraintHorizontal_bias="0.341"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectGameMode"
-        app:layout_constraintVertical_bias="0.421" />
+        app:layout_constraintVertical_bias="0.473" />
+
 
     <EditText
         android:id="@+id/player2Name"
@@ -126,15 +130,15 @@
         android:fontFamily="@font/bubbly_font"
         android:gravity="center"
         android:text="Player 2"
+        android:background="@drawable/avatar_border"
         android:textColor="@color/design_default_color_secondary_variant"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/secondRow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.304"
         app:layout_constraintStart_toEndOf="@+id/avatarChoosenP2"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="0.687" />
-
+        app:layout_constraintVertical_bias="0.725" />
 
     <ImageView
         android:id="@+id/avatarChoosenP2"
@@ -143,11 +147,13 @@
         android:layout_margin="5dp"
         android:layout_marginTop="28dp"
         android:layout_marginBottom="45dp"
-        android:background="@drawable/oval_button"
+        android:background="@drawable/avatar_border"
+        android:scaleType="centerCrop"
+        android:padding="5dp"
         android:src="@drawable/avatar1"
         app:layout_constraintBottom_toTopOf="@+id/secondRow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.193"
+        app:layout_constraintHorizontal_bias="0.347"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:layout_constraintVertical_bias="0.695" />
@@ -235,7 +241,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="338dp" />
+        app:layout_constraintGuide_begin="344dp" />
 
 
 
