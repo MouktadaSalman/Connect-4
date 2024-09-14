@@ -12,10 +12,8 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import com.example.connect4.GameData;
 import com.example.connect4.PlayerOperations.Player;
@@ -24,8 +22,9 @@ import com.example.connect4.R;
 
 public class CustomizeProfileFragment extends Fragment {
     private GameData gameDataViewModel;
-    private ImageView avatarChosen;
     private EditText playerName;
+    private ImageButton a1, a2, a3, a4, a5, a6;
+    private Player checkedP;
 
     @Nullable
     @Override
@@ -35,36 +34,197 @@ public class CustomizeProfileFragment extends Fragment {
 
         playerName = view.findViewById(R.id.CPFNameText);
 
+        a1 = view.findViewById(R.id.CPFAvatar1);
+        a2 = view.findViewById(R.id.CPFAvatar2);
+        a3 = view.findViewById(R.id.CPFAvatar3);
+        a4 = view.findViewById(R.id.CPFAvatar4);
+        a5 = view.findViewById(R.id.CPFAvatar5);
+        a6 = view.findViewById(R.id.CPFAvatar6);
 
+        //Set the player name
+        checkedP.setPlayerName(playerName.getText().toString());
 
         gameDataViewModel.getSelectedPlayer().observe(getViewLifecycleOwner(),
         new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
                 if (integer == 1) {
-
-                } else if (integer == 2) {
-
-                }else {
-
+                    updatePlayer1();
+                }
+                if (integer == 2) {
+                    updatePlayer2();
                 }
             }
         });
 
+        a1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Set the selected avatar
+                checkedP.setAvatarID(R.drawable.avatar1);
+
+                //Disable the button
+                disableAvatarButton(a1);
+                enableAvatarButton(a2);
+                enableAvatarButton(a3);
+                enableAvatarButton(a4);
+                enableAvatarButton(a5);
+                enableAvatarButton(a6);
+            }
+        });
+
+        a2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Set the selected avatar
+                checkedP.setAvatarID(R.drawable.avatar2);
+
+                //Disable the button
+                disableAvatarButton(a2);
+                enableAvatarButton(a1);
+                enableAvatarButton(a3);
+                enableAvatarButton(a4);
+                enableAvatarButton(a5);
+                enableAvatarButton(a6);
+            }
+        });
+
+        a3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Set the selected avatar
+                checkedP.setAvatarID(R.drawable.avatar3);
+
+                //Disable the button
+                disableAvatarButton(a3);
+                enableAvatarButton(a2);
+                enableAvatarButton(a1);
+                enableAvatarButton(a4);
+                enableAvatarButton(a5);
+                enableAvatarButton(a6);
+            }
+        });
+
+        a4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Set the selected avatar
+                checkedP.setAvatarID(R.drawable.avatar4);
+
+                //Disable the button
+                disableAvatarButton(a4);
+                enableAvatarButton(a2);
+                enableAvatarButton(a3);
+                enableAvatarButton(a1);
+                enableAvatarButton(a5);
+                enableAvatarButton(a6);
+            }
+        });
+
+        a5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Set the selected avatar
+                checkedP.setAvatarID(R.drawable.avatar5);
+
+                //Disable the button
+                disableAvatarButton(a5);
+                enableAvatarButton(a2);
+                enableAvatarButton(a3);
+                enableAvatarButton(a4);
+                enableAvatarButton(a1);
+                enableAvatarButton(a6);
+            }
+        });
+
+        a6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Set the selected avatar
+                checkedP.setAvatarID(R.drawable.avatar6);
+
+                //Disable the button
+                disableAvatarButton(a6);
+                enableAvatarButton(a2);
+                enableAvatarButton(a3);
+                enableAvatarButton(a4);
+                enableAvatarButton(a5);
+                enableAvatarButton(a1);
+            }
+        });
 
         return view;
     }
 
     private void updatePlayer1(){
-        LiveData<Player> p1 = gameDataViewModel.getPlayer1();
-        Player checkedP1 = null;
+        LiveData<Player> p = gameDataViewModel.getPlayer1();
 
         //Null check
-        if(p1 != null){
-            checkedP1 = p1.getValue();
+        if(p != null){
+            checkedP = p.getValue();
 
-            assert checkedP1 != null;
-            playerName.setText(checkedP1.getPlayerName());
+            assert checkedP != null;
+            playerName.setText(checkedP.getPlayerName());
+
+            int avatarID = checkedP.getPlayerAvatar();
+
+            setupInitialAvState(avatarID);
         }
+    }
+
+    private void updatePlayer2(){
+        LiveData<Player> p = gameDataViewModel.getPlayer2();
+
+        //Null check
+        if(p != null){
+            checkedP = p.getValue();
+
+            assert checkedP != null;
+            playerName.setText(checkedP.getPlayerName());
+
+            int avatarID = checkedP.getPlayerAvatar();
+
+            setupInitialAvState(avatarID);
+        }
+    }
+
+    private void setupInitialAvState(int value){
+        switch (value) {
+            case 1:
+                disableAvatarButton(a1);
+                break;
+            case 2:
+                disableAvatarButton(a2);
+                break;
+            case 3:
+                disableAvatarButton(a3);
+                break;
+            case 4:
+                disableAvatarButton(a4);
+                break;
+            case 5:
+                disableAvatarButton(a5);
+                break;
+            case 6:
+                disableAvatarButton(a6);
+                break;
+            default:
+                enableAvatarButton(a1);
+                enableAvatarButton(a2);
+                enableAvatarButton(a3);
+                enableAvatarButton(a4);
+                enableAvatarButton(a5);
+                enableAvatarButton(a6);
+        }
+    }
+
+    private void disableAvatarButton(ImageButton avatar){
+        avatar.setEnabled(false);
+        avatar.setColorFilter(0x77000000);
+    }
+
+    private void enableAvatarButton(ImageButton avatar){
+        avatar.setEnabled(true);
+        avatar.clearColorFilter();
     }
 }
