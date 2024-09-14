@@ -6,11 +6,13 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.connect4.Fragments.GameModeSelectFragment;
 import com.example.connect4.Fragments.LargeGameBoardFragment;
+import com.example.connect4.Fragments.MainMenuFragment;
 import com.example.connect4.Fragments.MediumGameBoardFragment;
 import com.example.connect4.Fragments.SelectPlayerToCustomizeFragment;
 import com.example.connect4.Fragments.SmallGameBoardFragment;
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     /* This block of code is for initialising the fragments. */
     /* ------------------------------------------------------------------------------------------------------- */
+    MainMenuFragment mainMenuFragment = new MainMenuFragment();
     GameModeSelectFragment gameModeSelectFragment = new GameModeSelectFragment();
     SelectPlayerToCustomizeFragment selectPlayerToCustomizeFragment = new SelectPlayerToCustomizeFragment();
     LargeGameBoardFragment largeGameBoardFragment = new LargeGameBoardFragment();
@@ -34,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Initially we load the option to choose either single-player or two-player mode.
-        loadGameModeFragment();
+        loadMainMenuFragment();
 
         // gameDataViewModel (of type GameData) is responsible for sharing data across fragments.
         GameData gameDataViewModel = new ViewModelProvider(this)
@@ -46,20 +49,35 @@ public class MainActivity extends AppCompatActivity {
         gameDataViewModel.getDisplayedFragment().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                if (integer == 1) {
+                if (integer == 0) {
+                    loadMainMenuFragment();
+                }
+                else if (integer == 1) {
                     loadGameModeFragment();
                 }
                 else if (integer == 2) {
                     loadPlayerToCustomizeFragment();
                 }
                 else if (integer == 3) {
-                    loadLargeGameBoardFragment();
-                }
-                else if (integer == 4) {
-                    loadMediumGameBoardFragment();
-                }
-                else if (integer == 5) {
-                    loadSmallGameBoardFragment();
+                    // Get the board selected
+                    LiveData<Integer> dataB = gameDataViewModel.getSelectedBoard();
+
+                    // Initialise
+                    int board = 0;
+
+                    if(dataB.getValue() != null){
+                        board = dataB.getValue();
+                    }
+
+                    if(board == 1){
+                        loadLargeGameBoardFragment();
+                    }
+                    if(board == 2){
+                        loadMediumGameBoardFragment();
+                    }
+                    if(board == 3){
+                        loadSmallGameBoardFragment();
+                    }
                 }
             }
         });
@@ -69,6 +87,21 @@ public class MainActivity extends AppCompatActivity {
 
     /* Anything in this block of code are simply functions used to display fragments. */
     /* ----------------------------------------------------------------------------------------------------------- */
+    private void loadMainMenuFragment(){
+        Fragment frag = fm.findFragmentById(R.id.fragment_fill_screen_container);
+        if (frag == null){
+            fm.beginTransaction()
+                    .add(R.id.fragment_fill_screen_container, mainMenuFragment)
+                    .commit();
+        }
+        else{
+            if (fm.getBackStackEntryCount() > 0) {
+                fm.popBackStackImmediate();
+            }
+            fm.beginTransaction().replace(R.id.fragment_fill_screen_container, mainMenuFragment).commit();
+        }
+    }
+
     private void loadGameModeFragment(){
         Fragment frag = fm.findFragmentById(R.id.fragment_fill_screen_container);
         if (frag == null){
