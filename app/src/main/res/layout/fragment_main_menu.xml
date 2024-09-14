@@ -2,10 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/MainMenuFrameFragment"
+    android:id="@+id/MainMenuFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Fragments.MainMenuFragment">
+    android:layout_height="match_parent">
 
     <!--Setting up the structure of the main menu-->
     <androidx.constraintlayout.widget.Guideline
