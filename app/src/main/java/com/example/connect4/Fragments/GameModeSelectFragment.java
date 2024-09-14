@@ -63,19 +63,19 @@ public class GameModeSelectFragment extends Fragment {
             playerVsAiButton.getBackground().setAlpha(64);
         }
 
-//        //Disable the appropriate game mode buttons
-//        if (board == 1) {
-//            largeGameBoardButton.setEnabled(false);
-//            largeGameBoardButton.getBackground().setAlpha(64);
-//        }
-//        if (board == 2) {
-//            mediumGameBoardButton.setEnabled(false);
-//            mediumGameBoardButton.getBackground().setAlpha(64);
-//        }
-//        if (board == 3) {
-//            smallGameBoardButton.setEnabled(false);
-//            smallGameBoardButton.getBackground().setAlpha(64);
-//        }
+        //Disable the appropriate game mode buttons
+        if (board == 1) {
+            largeGameBoardButton.setEnabled(false);
+            largeGameBoardButton.getBackground().setAlpha(64);
+        }
+        if (board == 2) {
+            mediumGameBoardButton.setEnabled(false);
+            mediumGameBoardButton.getBackground().setAlpha(64);
+        }
+        if (board == 3) {
+            smallGameBoardButton.setEnabled(false);
+            smallGameBoardButton.getBackground().setAlpha(64);
+        }
 
         playerVsPlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +112,17 @@ public class GameModeSelectFragment extends Fragment {
         largeGameBoardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Disable button
+                largeGameBoardButton.setEnabled(false);
+                largeGameBoardButton.getBackground().setAlpha(64);
+
+                //Enable other buttons
+                mediumGameBoardButton.setEnabled(true);
+                mediumGameBoardButton.getBackground().setAlpha(255);
+
+                smallGameBoardButton.setEnabled(true);
+                smallGameBoardButton.getBackground().setAlpha(255);
+
                 gameDataViewModel.setSelectedBoardSize(1);
             }
         });
@@ -119,6 +130,17 @@ public class GameModeSelectFragment extends Fragment {
         mediumGameBoardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Disable button
+                mediumGameBoardButton.setEnabled(false);
+                mediumGameBoardButton.getBackground().setAlpha(64);
+
+                //Enable other buttons
+                largeGameBoardButton.setEnabled(true);
+                largeGameBoardButton.getBackground().setAlpha(255);
+
+                smallGameBoardButton.setEnabled(true);
+                smallGameBoardButton.getBackground().setAlpha(255);
+
                 gameDataViewModel.setSelectedBoardSize(2);
             }
         });
@@ -126,6 +148,18 @@ public class GameModeSelectFragment extends Fragment {
         smallGameBoardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //Disable button
+                smallGameBoardButton.setEnabled(false);
+                smallGameBoardButton.getBackground().setAlpha(64);
+
+                //Enable other buttons
+                mediumGameBoardButton.setEnabled(true);
+                mediumGameBoardButton.getBackground().setAlpha(255);
+
+                largeGameBoardButton.setEnabled(true);
+                largeGameBoardButton.getBackground().setAlpha(255);
+
                 gameDataViewModel.setSelectedBoardSize(3);
             }
         });
