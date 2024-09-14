@@ -51,8 +51,6 @@ public class SelectPlayerToCustomizeFragment extends Fragment {
         ImageView avatar5P2 = view.findViewById(R.id.avatar5P2);
         ImageView avatar6P2 = view.findViewById(R.id.avatar6P2);
 
-        ImageView[] player2Avatars = {avatar1P2, avatar2P2, avatar3P2, avatar4P2, avatar5P2, avatar6P2, avatarChoosenP2};
-        disablePlayer2Customization(player2Avatars);
 
 
         // Saving avatar selections and names from GameData
@@ -104,8 +102,8 @@ public class SelectPlayerToCustomizeFragment extends Fragment {
         gameDataViewModel.getSelectedGameMode().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer mode) {
-                if (mode == 1) { // also for the last method down, to see if it is single player mode
-                    disablePlayer2Customization(avatar1P2, avatar2P2, avatar3P2, avatar4P2, avatar5P2, avatar6P2);
+                if (mode == 2) { // also for the last method down, to see if it is single player mode
+                    disablePlayer2Customization(avatar1P2, avatar2P2, avatar3P2, avatar4P2, avatar5P2, avatar6P2, avatarChoosenP2);
                 }
             }
         });
