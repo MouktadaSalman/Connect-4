@@ -9,44 +9,81 @@
     android:layout_gravity="center">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
+        android:layout_width="410dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:weightSum="7"
+            android:layout_width="411dp"
+            android:layout_height="72dp"
             android:layout_gravity="center"
+            android:background="#39245D"
             android:orientation="horizontal"
-            android:background="#39245D">
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:paddingRight="15dp"
+            android:weightSum="7">
+
+
+            <ImageView
+                android:id="@+id/P1Avatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/avatar_border"
+                android:scaleType="centerCrop"
+                android:gravity="center"
+                android:padding="5dp"
+                android:src="@drawable/avatar1"
+                />
+
 
             <TextView
                 android:id="@+id/PlayerOneInfo"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_weight="3"/>
+                android:layout_weight="3"
+                android:fontFamily="@font/bubbly_font"
+                android:textColor="@color/design_default_color_secondary_variant"
+                android:gravity="center" />
 
             <ImageButton
                 android:id="@+id/InGamePauseButton"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:padding="12dp"
-                android:src="@drawable/pause"
-                android:background="@drawable/circle"
-                android:scaleType="centerCrop"
+                android:layout_width="10dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:contentDescription="Pause"/>
+                android:background="@drawable/circle"
+                android:contentDescription="Pause"
+                android:padding="12dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/pause" />
 
             <TextView
                 android:id="@+id/PlayerTwoInfo"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:textColor="@color/design_default_color_secondary_variant"
+                android:fontFamily="@font/bubbly_font"
+                android:gravity="center" />
+
+            <ImageView
+                android:id="@+id/P2Avatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/avatar_border"
+                android:scaleType="centerCrop"
                 android:gravity="center"
-                android:layout_weight="3"/>
+                android:padding="5dp"
+                android:src="@drawable/avatar1"
+                 />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

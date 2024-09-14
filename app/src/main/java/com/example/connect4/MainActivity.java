@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         GameData gameDataViewModel = new ViewModelProvider(this)
                 .get(GameData.class);
 
+
+
         /* gameDataViewModel checks for any integer changes set by the different fragments when clicked to determine
          * the correct fragment to load.  */
         /* ------------------------------------------------------------------------------------------------------- */
