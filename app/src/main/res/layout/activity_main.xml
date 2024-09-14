@@ -20,10 +20,11 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.36" />
 
+
     <FrameLayout
         android:id="@+id/fragment_fill_screen_container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,17 +32,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/fragment_endgame_container"
-        android:layout_width="150dp"
-        android:layout_height="250dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/fragment_tool_bar"
+        android:id="@+id/fragment_tool_bar_container"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginTop="20dp"
@@ -59,5 +50,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
     </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_endgame_container"
+        android:layout_width="150dp"
+        android:layout_height="250dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_pause_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+    </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

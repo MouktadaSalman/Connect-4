@@ -1,6 +1,7 @@
 package com.example.connect4;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.connect4.Fragments.GameSettingsFragment;
 import com.example.connect4.Fragments.MainMenuFragment;
+import com.example.connect4.Fragments.PauseMenuFragment;
 import com.example.connect4.Fragments.SelectPlayerToCustomizeFragment;
 import com.example.connect4.Fragments.GameBoardFragment;
 import com.example.connect4.Fragments.ToolBarFragment;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     SelectPlayerToCustomizeFragment selectPlayerToCustomizeFragment = new SelectPlayerToCustomizeFragment();
     GameBoardFragment gameBoardFragment = new GameBoardFragment();
     ToolBarFragment toolBarFragment = new ToolBarFragment();
+    PauseMenuFragment pauseMenuFragment = new PauseMenuFragment();
     /* ------------------------------------------------------------------------------------------------------- */
 
     FragmentManager fm = getSupportFragmentManager();
@@ -61,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
                     loadGameBoardFragment();
                     loadToolBarFragment();
                 }
+                else if (integer == 4) {
+                    loadPauseMenuFragment();
+                }
+                else if (integer == 5){
+                    findViewById(R.id.fragment_pause_overlay).setVisibility(View.INVISIBLE);
+                }
             }
         });
         /* ------------------------------------------------------------------------------------------------------- */
@@ -71,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
     /* ----------------------------------------------------------------------------------------------------------- */
     private void loadMainMenuFragment(){
         Fragment frag = fm.findFragmentById(R.id.fragment_fill_screen_container);
+
+        findViewById(R.id.fragment_game_board_container).setVisibility(View.INVISIBLE);
+        findViewById(R.id.fragment_tool_bar_container).setVisibility(View.INVISIBLE);
+
         if (frag == null){
             fm.beginTransaction()
                     .add(R.id.fragment_fill_screen_container, mainMenuFragment)
@@ -86,6 +99,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadGameModeFragment(){
         Fragment frag = fm.findFragmentById(R.id.fragment_fill_screen_container);
+
+        findViewById(R.id.fragment_game_board_container).setVisibility(View.INVISIBLE);
+        findViewById(R.id.fragment_tool_bar_container).setVisibility(View.INVISIBLE);
+
         if (frag == null){
             fm.beginTransaction().add(R.id.fragment_fill_screen_container, gameSettingsFragment).commit();
         }
@@ -99,6 +116,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadPlayerToCustomizeFragment(){
         Fragment frag = fm.findFragmentById(R.id.fragment_fill_screen_container);
+
+        findViewById(R.id.fragment_game_board_container).setVisibility(View.INVISIBLE);
+        findViewById(R.id.fragment_tool_bar_container).setVisibility(View.INVISIBLE);
+
         if (frag == null){
             fm.beginTransaction().add(R.id.fragment_fill_screen_container, selectPlayerToCustomizeFragment).addToBackStack(null).commit();
         }
@@ -112,6 +133,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadGameBoardFragment(){
         Fragment frag = fm.findFragmentById(R.id.fragment_game_board_container);
+
+        findViewById(R.id.fragment_game_board_container).setVisibility(View.VISIBLE);
+
         if (frag == null){
             fm.beginTransaction().add(R.id.fragment_game_board_container, gameBoardFragment).addToBackStack(null).commit();
         }
@@ -120,15 +144,28 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void loadToolBarFragment()
-    {
-        Fragment frag = fm.findFragmentById(R.id.fragment_tool_bar);
+    private void loadToolBarFragment() {
+        Fragment frag = fm.findFragmentById(R.id.fragment_tool_bar_container);
+
+        findViewById(R.id.fragment_tool_bar_container).setVisibility(View.VISIBLE);
+
         if (frag == null){
-            fm.beginTransaction().add(R.id.fragment_tool_bar, toolBarFragment).addToBackStack(null).commit();
+            fm.beginTransaction().add(R.id.fragment_tool_bar_container, toolBarFragment).addToBackStack(null).commit();
         }
         else{
-            fm.beginTransaction().replace(R.id.fragment_tool_bar, toolBarFragment).commit();
+            fm.beginTransaction().replace(R.id.fragment_tool_bar_container, toolBarFragment).commit();
         }
+    }
+
+    private void loadPauseMenuFragment(){
+        Fragment frag = fm.findFragmentById(R.id.fragment_pause_overlay);
+        if (frag == null){
+            fm.beginTransaction().add(R.id.fragment_pause_overlay, pauseMenuFragment).addToBackStack(null).commit();
+        }
+        else{
+            fm.beginTransaction().replace(R.id.fragment_pause_overlay, pauseMenuFragment).commit();
+        }
+        findViewById(R.id.fragment_pause_overlay).setVisibility(View.VISIBLE);
     }
     /* ----------------------------------------------------------------------------------------------------------- */
 }

@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +24,17 @@ public class ToolBarFragment extends Fragment {
 
         gameDataViewModel = new ViewModelProvider(getActivity())
                 .get(GameData.class);
+
+        ImageButton pauseButton = view.findViewById(R.id.InGamePauseButton);
+
+        pauseButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+                gameDataViewModel.setDisplayedFragment(4);
+            }
+        });
+
         return view;
     }
 }

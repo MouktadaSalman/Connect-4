@@ -1,6 +1,7 @@
 package com.example.connect4.Fragments;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,7 +46,7 @@ public class PauseMenuFragment extends Fragment {
         resumeButton.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View v) {
-
+                gameDataViewModel.setDisplayedFragment(5);
             }
         });
 
