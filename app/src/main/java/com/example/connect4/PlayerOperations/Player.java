@@ -148,7 +148,5 @@ public class Player {
      * Parameters: none                             *
      * Result: winPercent (double)                  *
      *----------------------------------------------*/
-    public double winPercentage(){
-        return winPercent;
-    }
+    public double winPercentage() {return winPercent;}
 }

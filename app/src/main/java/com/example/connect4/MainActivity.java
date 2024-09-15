@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.connect4.Fragments.CustomizeProfileFragment;
 import com.example.connect4.Fragments.GameSettingsFragment;
 import com.example.connect4.Fragments.MainMenuFragment;
 import com.example.connect4.Fragments.SelectPlayerToCustomizeFragment;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     MainMenuFragment mainMenuFragment = new MainMenuFragment();
     GameSettingsFragment gameSettingsFragment = new GameSettingsFragment();
     SelectPlayerToCustomizeFragment selectPlayerToCustomizeFragment = new SelectPlayerToCustomizeFragment();
+    CustomizeProfileFragment customizeProfileFragment = new CustomizeProfileFragment();
     GameBoardFragment gameBoardFragment = new GameBoardFragment();
     /* ------------------------------------------------------------------------------------------------------- */
 
@@ -52,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if (integer == 2) {
                     loadPlayerToCustomizeFragment();
+                    gameDataViewModel.getSelectedPlayer().observe(MainActivity.this,
+                    new Observer<Integer>() {
+                        @Override
+                        public void onChanged(Integer value) {
+                            if(value == 1 || value == 2){
+                                loadCustomizeFragment();
+                            }
+                        }
+                    });
                 }
                 else if (integer == 3) {
                     // Get the board selected
@@ -103,6 +114,19 @@ public class MainActivity extends AppCompatActivity {
                 fm.popBackStackImmediate();
             }
             fm.beginTransaction().replace(R.id.fragment_fill_screen_container, selectPlayerToCustomizeFragment).commit();
+        }
+    }
+
+    private void loadCustomizeFragment(){
+        Fragment frag = fm.findFragmentById(R.id.fragment_endgame_container);
+        if (frag == null){
+            fm.beginTransaction().add(R.id.fragment_endgame_container, customizeProfileFragment).addToBackStack(null).commit();
+        }
+        else{
+            if (fm.getBackStackEntryCount() > 0) {
+                fm.popBackStackImmediate();
+            }
+            fm.beginTransaction().replace(R.id.fragment_endgame_container, customizeProfileFragment).commit();
         }
     }
 

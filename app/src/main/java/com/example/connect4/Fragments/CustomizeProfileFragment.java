@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -33,6 +34,7 @@ public class CustomizeProfileFragment extends Fragment {
         gameDataViewModel = new ViewModelProvider(requireActivity()).get(GameData.class);
 
         playerName = view.findViewById(R.id.CPFNameText);
+        Button saveButton = view.findViewById(R.id.CustomizeSaveButton);
 
         a1 = view.findViewById(R.id.CPFAvatar1);
         a2 = view.findViewById(R.id.CPFAvatar2);
@@ -150,6 +152,17 @@ public class CustomizeProfileFragment extends Fragment {
                 enableAvatarButton(a4);
                 enableAvatarButton(a5);
                 enableAvatarButton(a1);
+            }
+        });
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Remove this fragment
+                requireActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .remove(CustomizeProfileFragment.this)
+                        .commit();
             }
         });
 
