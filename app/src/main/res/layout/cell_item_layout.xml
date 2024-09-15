@@ -8,7 +8,7 @@
     android:layout_margin="8dp"
     app:cardCornerRadius="50dp"
     android:layout_gravity="center"
-    app:cardBackgroundColor="@color/design_default_color_secondary_variant">
+    app:cardBackgroundColor="#3A445B">
 
     <ImageView
         android:id="@+id/cell"
@@ -16,7 +16,6 @@
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:src="@drawable/empty_cell"/>
-
 
 </androidx.cardview.widget.CardView>
 
