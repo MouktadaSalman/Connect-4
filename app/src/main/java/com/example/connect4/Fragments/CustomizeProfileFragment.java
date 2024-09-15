@@ -52,9 +52,11 @@ public class CustomizeProfileFragment extends Fragment {
             public void onChanged(Integer integer) {
                 if (integer == 1) {
                     updatePlayer1();
+                    gameDataViewModel.setPlayer1(checkedP);
                 }
                 if (integer == 2) {
                     updatePlayer2();
+                    gameDataViewModel.setPlayer2(checkedP);
                 }
             }
         });
@@ -64,6 +66,7 @@ public class CustomizeProfileFragment extends Fragment {
             public void onClick(View v) {
                 //Set the selected avatar
                 checkedP.setAvatarID(R.drawable.avatar1);
+                checkedP.setPlayerAvatar(1);
 
                 //Disable the button
                 disableAvatarButton(a1);
@@ -80,6 +83,7 @@ public class CustomizeProfileFragment extends Fragment {
             public void onClick(View v) {
                 //Set the selected avatar
                 checkedP.setAvatarID(R.drawable.avatar2);
+                checkedP.setPlayerAvatar(2);
 
                 //Disable the button
                 disableAvatarButton(a2);
@@ -96,6 +100,7 @@ public class CustomizeProfileFragment extends Fragment {
             public void onClick(View v) {
                 //Set the selected avatar
                 checkedP.setAvatarID(R.drawable.avatar3);
+                checkedP.setPlayerAvatar(3);
 
                 //Disable the button
                 disableAvatarButton(a3);
@@ -112,6 +117,7 @@ public class CustomizeProfileFragment extends Fragment {
             public void onClick(View v) {
                 //Set the selected avatar
                 checkedP.setAvatarID(R.drawable.avatar4);
+                checkedP.setPlayerAvatar(4);
 
                 //Disable the button
                 disableAvatarButton(a4);
@@ -128,6 +134,7 @@ public class CustomizeProfileFragment extends Fragment {
             public void onClick(View v) {
                 //Set the selected avatar
                 checkedP.setAvatarID(R.drawable.avatar5);
+                checkedP.setPlayerAvatar(5);
 
                 //Disable the button
                 disableAvatarButton(a5);
@@ -144,6 +151,7 @@ public class CustomizeProfileFragment extends Fragment {
             public void onClick(View v) {
                 //Set the selected avatar
                 checkedP.setAvatarID(R.drawable.avatar6);
+                checkedP.setPlayerAvatar(6);
 
                 //Disable the button
                 disableAvatarButton(a6);
@@ -158,7 +166,7 @@ public class CustomizeProfileFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Remove this fragment
+                //Remove this fragment
                 requireActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .remove(CustomizeProfileFragment.this)
