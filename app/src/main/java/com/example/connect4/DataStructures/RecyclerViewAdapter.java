@@ -17,6 +17,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import com.example.connect4.GameData;
+import com.example.connect4.PlayerOperations.Player;
 import com.example.connect4.R;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder> {
@@ -24,6 +25,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
     private double height;
     private GameData gameDataViewModel;
     private int numOfColumns;
+
+
 
     public RecyclerViewAdapter(ArrayList<CellData> cellDataArrayList, double inHeight, GameData gameDataViewModel) {
         this.cellDataArrayList = cellDataArrayList;
@@ -63,6 +66,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
             public void onClick(View view) {
                 int currentTurn = gameDataViewModel.getPlayerTurn().getValue();
 
+                Player currentPlayer = (currentTurn == 1) ? gameDataViewModel.getPlayer1().getValue() : gameDataViewModel.getPlayer2().getValue();
+
+                // Added: Check if the player is valid (non-null)
+                if (currentPlayer == null) {
+                    return;
+                }
+
+                // Added: Retrieve player's selected disk color
+                int playerColour = currentPlayer.getColourID();
+
+
                 /* Game logic is housed here. */
                 /* --------------------------------------------------------------------- */
                 // This is a block of code responsible for the turns.
@@ -85,13 +99,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                         Toast.makeText(view.getContext(), "Cell position: " + i, Toast.LENGTH_SHORT).show();
                         if (currentTurn == 1){
 
-                            nextCell.setImageId(R.drawable.filled_box);
+                            nextCell.setImageId(playerColour);
                             j = 2; // to set the player turn to 2 and assign to data view model after checks
                         }
                         else if (currentTurn == 2){
 
                             j = 1; // to set the player turn to 1 and assign to data view model after checks
-                            nextCell.setImageId(R.drawable.mouktada_great_circle);
+                            nextCell.setImageId(playerColour);
                         }
                         gameDataViewModel.setPlayerTurn(j);
                     }

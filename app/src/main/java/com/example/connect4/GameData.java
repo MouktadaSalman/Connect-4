@@ -45,9 +45,9 @@ public class GameData extends ViewModel {
         setSelectedPlayer(0);
 
         // Initialise basic player profiles + Ai
-        setPlayer1(new Player("Player#1", R.drawable.profile_button));
-        setPlayer2(new Player("Player#2", R.drawable.profile_button));
-        aiPlayer.setValue(new Player("AI", R.drawable.aiavatar));
+        setPlayer1(new Player("Player#1", R.drawable.profile_button, R.drawable.mouktada_great_circle));
+        setPlayer2(new Player("Player#2", R.drawable.profile_button, R.drawable.reddisk));
+        aiPlayer.setValue(new Player("AI", R.drawable.aiavatar, R.drawable.reddisk));
 
         playerTurn = new MutableLiveData<>();
         playerTurn.setValue(1);
