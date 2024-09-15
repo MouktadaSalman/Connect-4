@@ -19,6 +19,7 @@ public class GameData extends ViewModel {
     private final MutableLiveData<Integer> selectedBoard;
     private final MutableLiveData<Player> player1;
     private final MutableLiveData<Player> player2;
+    private final MutableLiveData<Player> aiPlayer;
     private final MutableLiveData<Integer> selectedPlayer;
 
     private final MutableLiveData<Integer> gridRows;
@@ -34,6 +35,7 @@ public class GameData extends ViewModel {
         selectedBoard = new MutableLiveData<>();
         player1 = new MediatorLiveData<>();
         player2 = new MediatorLiveData<>();
+        aiPlayer = new MediatorLiveData<>();
         selectedPlayer = new MutableLiveData<>();
 
         //Initially game begins with game mode selected as PvAI
@@ -42,9 +44,10 @@ public class GameData extends ViewModel {
         //Initially no player selected
         setSelectedPlayer(0);
 
-        // Initialise basic player profiles
+        // Initialise basic player profiles + Ai
         setPlayer1(new Player("Player#1", R.drawable.profile_button));
         setPlayer2(new Player("Player#2", R.drawable.profile_button));
+        aiPlayer.setValue(new Player("AI", R.drawable.aiavatar));
 
         playerTurn = new MutableLiveData<>();
         playerTurn.setValue(1);
@@ -72,6 +75,8 @@ public class GameData extends ViewModel {
     public LiveData<Player> getPlayer2() {return player2;}
 
     public void setPlayer2(Player player) {player2.setValue(player);}
+
+    public LiveData<Player> getAiPlayer() {return aiPlayer;}
 
     public LiveData<Integer> getSelectedPlayer() {return selectedPlayer;}
 
