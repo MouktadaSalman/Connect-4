@@ -34,12 +34,12 @@ public class GameData extends ViewModel {
     private final MutableLiveData<Integer> selectedPlayer;
     private final MutableLiveData<Integer> gridColumns;
     private final MutableLiveData<Integer> playerTurn;
+    private final MutableLiveData<String> winner;
 
     /* Default constructor */
     /* ------------------------------------------------------------------------- */
     public GameData(){
         recyclerDataArrayListVM = new MutableLiveData<>();
-
         displayedFragment = new MediatorLiveData<>();
         selectedGameMode = new MediatorLiveData<>();
         selectedBoard = new MutableLiveData<>();
@@ -63,6 +63,7 @@ public class GameData extends ViewModel {
         playerTurn.setValue(1);
 
         gridColumns = new MutableLiveData<>();
+        winner = new MutableLiveData<>();
     }
     /* ------------------------------------------------------------------------- */
 
@@ -105,6 +106,10 @@ public class GameData extends ViewModel {
     public MutableLiveData<Integer> getGridColumns() {return gridColumns;}
 
     public void setGridColumns(int gridColumns) {this.gridColumns.setValue(gridColumns);}
+
+    public MutableLiveData<String> getWinner() {return winner;}
+
+    public void setWinner(String winner) {this.winner.setValue(winner);}
     /* --------------------------------------------------------------------------------------------------------------- */
 
 }

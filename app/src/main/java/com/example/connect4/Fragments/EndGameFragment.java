@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.connect4.GameData;
 import com.example.connect4.R;
@@ -28,6 +29,9 @@ public class EndGameFragment extends Fragment {
 
         ImageButton exitButton = view.findViewById(R.id.EGExitButton);
         ImageButton restartButton = view.findViewById(R.id.EGRestartButton);
+        TextView winnerText = view.findViewById(R.id.EGTextWinner);
+
+        winnerText.setText(gameDataViewModel.getWinner().getValue());
 
 
         exitButton.setOnClickListener(new View.OnClickListener() {

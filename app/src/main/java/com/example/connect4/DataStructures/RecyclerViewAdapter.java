@@ -26,8 +26,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
     private double height;
     private GameData gameDataViewModel;
     private int numOfColumns;
-
-
+    Player player1;
+    Player player2;
 
     /* Constructor for the RecyclerViewAdapter */
     /* -------------------------------------------------------------------------------------------------------------- */
@@ -36,6 +36,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
         this.height = inHeight;
         this.gameDataViewModel = gameDataViewModel;
         this.numOfColumns = gameDataViewModel.getGridColumns().getValue();
+        player1 = gameDataViewModel.getPlayer1().getValue();
+        player2 = gameDataViewModel.getPlayer2().getValue();
 
         /* Each cellData is intialised to a valid value. */
         /* --------------------------------------- */
@@ -187,70 +189,77 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                             /* ------------------------------------------------------------------------------------ */
                         }
 
-
                         // Notify the adapter that the item has changed so the view can be updated
-
                         if (checkForWin(i, currentTurn)) {
                             Toast.makeText(view.getContext(), "Player " + currentTurn + " wins!", Toast.LENGTH_SHORT).show();
-                            gameDataViewModel.setDisplayedFragment(6);
-                        }
 
+                            if (currentTurn == 1) {
+                                player1.addWin();
+                                player2.addLoss();
+                                gameDataViewModel.setWinner(player1.getPlayerName());
+                            } else {
+                                player2.addWin();
+                                player1.addLoss();
+                                gameDataViewModel.setWinner(player2.getPlayerName());
+                            }
+                            gameDataViewModel.setDisplayedFragment(6);
+                            return;
+                        }
                         gameDataViewModel.setPlayerTurn(currentTurn == 1 ? 2 : 1);
 
                         notifyItemChanged(i);
                     }
-                    /* --------------------------------------------------------------------- */
                 }
             }
-
+            /* --------------------------------------------------------------------- */
+        });
+    }
 
             // Method to check if a player has won
-            private boolean checkForWin(int position, int player) {
+    private boolean checkForWin(int position, int player) {
 
-                return checkDirection(position, player, 1, 0)  // Horizontal (left to right)
-                        || checkDirection(position, player, 0, 1)  // Vertical (top to bottom)
-                        || checkDirection(position, player, 1, 1)  // Diagonal (top-left to bottom-right)
-                        || checkDirection(position, player, 1, -1); // Diagonal (bottom-left to top-right)
+        return checkDirection(position, player, 1, 0)  // Horizontal (left to right)
+                || checkDirection(position, player, 0, 1)  // Vertical (top to bottom)
+                || checkDirection(position, player, 1, 1)  // Diagonal (top-left to bottom-right)
+                || checkDirection(position, player, 1, -1); // Diagonal (bottom-left to top-right)
+    }
+
+
+    private boolean checkDirection(int position, int player, int deltaX, int deltaY) {
+        int count = 1;  // Including the current piece
+
+        count += countConsecutive(position, player, deltaX, deltaY);
+        count += countConsecutive(position, player, -deltaX, -deltaY);
+
+        return count >= 4;  // Return true if 4 consecutive pieces found
+    }
+
+    // for scenarios to count consecutive pieces in one direction
+    private int countConsecutive(int position, int player, int deltaX, int deltaY) {
+        int count = 0;
+
+        int row = position / numOfColumns;
+        int col = position % numOfColumns;
+
+        while (true) {
+            row += deltaY;
+            col += deltaX;
+
+            // Check bounds
+            if (row < 0 || row >= cellDataArrayList.size() / numOfColumns || col < 0 || col >= numOfColumns) {
+                break;
             }
 
+            int nextPosition = row * numOfColumns + col;
 
-            private boolean checkDirection(int position, int player, int deltaX, int deltaY) {
-                int count = 1;  // Including the current piece
-
-                count += countConsecutive(position, player, deltaX, deltaY);
-                count += countConsecutive(position, player, -deltaX, -deltaY);
-
-                return count >= 4;  // Return true if 4 consecutive pieces found
+            if (cellDataArrayList.get(nextPosition).getImageId() == (player == 1 ? R.drawable.filled_box : R.drawable.mouktada_great_circle)) {
+                count++;
+            } else {
+                // If a different player's piece is found, stop counting in any of the directions
+                break;
             }
-
-            // for scenarios to count consecutive pieces in one direction
-            private int countConsecutive(int position, int player, int deltaX, int deltaY) {
-                int count = 0;
-
-                int row = position / numOfColumns;
-                int col = position % numOfColumns;
-
-                while (true) {
-                    row += deltaY;
-                    col += deltaX;
-
-                    // Check bounds
-                    if (row < 0 || row >= cellDataArrayList.size() / numOfColumns || col < 0 || col >= numOfColumns) {
-                        break;
-                    }
-
-                    int nextPosition = row * numOfColumns + col;
-
-                    if (cellDataArrayList.get(nextPosition).getImageId() == (player == 1 ? R.drawable.filled_box : R.drawable.mouktada_great_circle)) {
-                        count++;
-                    } else {
-                        // If a different player's piece is found, stop counting in any of the directions
-                        break;
-                    }
-                }
-                return count;
-            }
-        });
+        }
+        return count;
     }
 
     @Override

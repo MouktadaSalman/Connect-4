@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.fragment_game_board_container).setVisibility(View.INVISIBLE);
         findViewById(R.id.fragment_tool_bar_container).setVisibility(View.INVISIBLE);
-        findViewById(R.id.fragment_pause_overlay).setVisibility(View.GONE);
+        findViewById(R.id.fragment_pause_overlay).setVisibility(View.INVISIBLE);
 
         if (frag == null){
             fm.beginTransaction()
@@ -212,12 +212,18 @@ public class MainActivity extends AppCompatActivity {
         // for some reason, the method used in the previous method doesn't work here.
         // it only worked when i changed the to find by Tag method.
         Fragment existingFragment = fm.findFragmentByTag("EndGameFragmentTag");
+        findViewById(R.id.fragment_pause_overlay).setVisibility(View.VISIBLE);
 
         if (existingFragment != null && existingFragment.isAdded()) {
             // Fragment is already added, no need to add it again
             return;
         }
-        findViewById(R.id.fragment_pause_overlay).setVisibility(View.VISIBLE);
+        else{
+            fm.beginTransaction()
+                    .add(R.id.fragment_pause_overlay, endGameFragment, "EndGameFragmentTag")
+                    .addToBackStack(null)
+                    .commit();
+        }
 
         fm.beginTransaction()
                 .replace(R.id.fragment_pause_overlay, endGameFragment, "EndGameFragmentTag")
