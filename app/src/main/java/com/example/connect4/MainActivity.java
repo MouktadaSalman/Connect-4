@@ -165,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadGameBoardFragment(){
         Fragment frag = fm.findFragmentById(R.id.fragment_game_board_container);
 
+        findViewById(R.id.fragment_pause_overlay).setVisibility(View.GONE);
         findViewById(R.id.fragment_game_board_container).setVisibility(View.VISIBLE);
 
         if (frag == null){
@@ -178,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadToolBarFragment() {
         Fragment frag = fm.findFragmentById(R.id.fragment_tool_bar_container);
 
+        findViewById(R.id.fragment_pause_overlay).setVisibility(View.GONE);
         findViewById(R.id.fragment_tool_bar_container).setVisibility(View.VISIBLE);
 
         if (frag == null){
@@ -199,7 +201,6 @@ public class MainActivity extends AppCompatActivity {
         else{
             fm.beginTransaction().replace(R.id.fragment_pause_overlay, pauseMenuFragment).commit();
         }
-        findViewById(R.id.fragment_pause_overlay).setVisibility(View.VISIBLE);
     }
     /* ----------------------------------------------------------------------------------------------------------- */
 }
