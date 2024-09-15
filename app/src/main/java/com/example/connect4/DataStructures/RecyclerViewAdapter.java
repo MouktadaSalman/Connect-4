@@ -82,7 +82,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                             cellDataArrayList.get(i-numOfColumns).setIsValid(true);
                         }
 
-                        Toast.makeText(view.getContext(), "Cell position: " + i, Toast.LENGTH_SHORT).show();
                         if (currentTurn == 1){
 
                             nextCell.setImageId(R.drawable.filled_box);
@@ -99,6 +98,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
 
                     if (checkForWin(i, currentTurn)) {
                         Toast.makeText(view.getContext(), "Player " + currentTurn + " wins!", Toast.LENGTH_SHORT).show();
+                        gameDataViewModel.setDisplayedFragment(6);
                     }
 
                     gameDataViewModel.setPlayerTurn(currentTurn == 1 ? 2 : 1);
@@ -123,10 +123,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
     private boolean checkDirection(int position, int player, int deltaX, int deltaY) {
         int count = 1;  // Including the current piece
 
-
         count += countConsecutive(position, player, deltaX, deltaY);
-
-
         count += countConsecutive(position, player, -deltaX, -deltaY);
 
         return count >= 4;  // Return true if 4 consecutive pieces found
@@ -141,18 +138,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
 
         while (true) {
             row += deltaY;
-
             col += deltaX;
-
 
             // Check bounds
             if (row < 0 || row >= cellDataArrayList.size() / numOfColumns || col < 0 || col >= numOfColumns) {
                 break;
             }
 
-
             int nextPosition = row * numOfColumns + col;
-
 
             if (cellDataArrayList.get(nextPosition).getImageId() == (player == 1 ? R.drawable.filled_box : R.drawable.mouktada_great_circle)) {
                 count++;
@@ -163,7 +156,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
         }
         return count;
     }
-
 
     @Override
     public int getItemCount() {
