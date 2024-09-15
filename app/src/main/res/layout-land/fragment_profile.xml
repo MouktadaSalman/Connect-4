@@ -9,41 +9,45 @@
 
     <!-- User Profiles in a horizontal LinearLayout -->
 
-    <!-- Heading TextView positioned below the profile buttons -->
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/PFGuide1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
-        android:gravity="center"
         android:orientation="horizontal"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintGuide_percent="0.3"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/PFGuide2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75"/>
+
+    <!-- Player 1 Button -->
+    <include
+        android:id="@+id/player1button"
+        layout="@layout/custom_player_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="9:5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@id/PFGuide1"
+        app:layout_constraintBottom_toBottomOf="@id/PFGuide2"
+        app:layout_constraintEnd_toStartOf="@id/player2button"/>
 
-        <!-- Player 1 Button -->
-        <include
-            android:id="@+id/player1button"
-            layout="@layout/custom_player_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1" />
+    <!-- Back Button centered between player buttons -->
 
-        <!-- Back Button centered between player buttons -->
-
-        <!-- Player 2 Button -->
-        <include
-            android:id="@+id/player2button"
-            layout="@layout/custom_player_button2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1" />
-
-    </LinearLayout>
+    <!-- Player 2 Button -->
+    <include
+        android:id="@+id/player2button"
+        layout="@layout/custom_player_button2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="9:5"
+        app:layout_constraintStart_toEndOf="@id/player1button"
+        app:layout_constraintTop_toTopOf="@id/PFGuide1"
+        app:layout_constraintBottom_toBottomOf="@id/PFGuide2"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/selectGameMode"
@@ -54,7 +58,7 @@
         android:text="Customize Profiles"
         android:textColor="@color/design_default_color_secondary_variant"
         android:textSize="35sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/PFGuide1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -63,14 +67,12 @@
         android:id="@+id/ProfileBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="32dp"
         android:background="@drawable/oval_button"
         android:fontFamily="@font/pixel"
-        android:text="Back"
+        android:text="@string/backButton"
         android:textColor="@color/material_dynamic_neutral20"
+        app:layout_constraintTop_toBottomOf="@id/PFGuide2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
