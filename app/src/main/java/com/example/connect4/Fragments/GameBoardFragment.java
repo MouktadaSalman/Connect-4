@@ -63,7 +63,6 @@ public class GameBoardFragment extends Fragment {
                 numberOfCells = 56;
                 numberOfColumns = 7;
                 rowHeight = screenHeight / 8.3;
-                gameDataViewModel.setGridRows(8);
                 gameDataViewModel.setGridColumns(numberOfColumns);
                 break;
 
@@ -72,7 +71,6 @@ public class GameBoardFragment extends Fragment {
                 numberOfCells = 42;
                 numberOfColumns = 6;
                 rowHeight = screenHeight / 7.0;
-                gameDataViewModel.setGridRows(7);
                 gameDataViewModel.setGridColumns(numberOfColumns);
                 break;
 
@@ -81,7 +79,6 @@ public class GameBoardFragment extends Fragment {
                 numberOfCells = 30;
                 numberOfColumns = 5;
                 rowHeight = screenHeight / 5.8;
-                gameDataViewModel.setGridRows(5);
                 gameDataViewModel.setGridColumns(numberOfColumns);
                 break;
         }

@@ -23,7 +23,6 @@ public class GameData extends ViewModel {
     private final MutableLiveData<Player> aiPlayer;
     private final MutableLiveData<Integer> selectedPlayer;
 
-    private final MutableLiveData<Integer> gridRows;
     private final MutableLiveData<Integer> gridColumns;
 
     private final MutableLiveData<Integer> playerTurn;
@@ -53,7 +52,6 @@ public class GameData extends ViewModel {
         playerTurn = new MutableLiveData<>();
         playerTurn.setValue(1);
 
-        gridRows = new MutableLiveData<>();
         gridColumns = new MutableLiveData<>();
     }
 
@@ -97,9 +95,5 @@ public class GameData extends ViewModel {
     public MutableLiveData<Integer> getGridColumns() {return gridColumns;}
 
     public void setGridColumns(int gridColumns) {this.gridColumns.setValue(gridColumns);}
-
-    public MutableLiveData<Integer> getGridRows() {return gridRows;}
-
-    public void setGridRows(int inGridRows) {this.gridRows.setValue(inGridRows);}
 }
 

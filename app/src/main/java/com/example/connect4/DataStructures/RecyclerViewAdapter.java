@@ -30,6 +30,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
         this.height = inHeight;
         this.gameDataViewModel = gameDataViewModel;
         this.numOfColumns = gameDataViewModel.getGridColumns().getValue();
+
+        CellData cellData;
+        int arraySize = cellDataArrayList.size();
+        for(int i = 0; i < arraySize; i++){
+            cellData = cellDataArrayList.get(i);
+            if (i >= arraySize-numOfColumns){
+                cellData.setIsValid(true);
+            }
+        }
     }
 
     @NonNull
@@ -42,35 +51,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull CellDataViewHolder holder, int position) {
-
         CellData cellData = cellDataArrayList.get(position);
-        cellData.setPositionInArray(position);
-
-        int columnsInGrid = gameDataViewModel.getGridColumns().getValue();
-//        int rowsInGrid = gameDataViewModel.getGridRows().getValue();
-        int arraySize = cellDataArrayList.size();
-
-        if (position >= arraySize-columnsInGrid){
-            cellData.setIsValid(true);
-        }
-
-        if (cellData.getIsValid()) {
-            // Enable the ImageView
-            holder.itemView.setClickable(true);
-        } else {
-            // Disable the ImageView for valid cells
-            holder.itemView.setClickable(false);
-        }
-
-//        for (int i = 0; i < arraySize/rowsInGrid; i++){
-//            // Create a new ArrayList for each row
-//            ArrayList<CellData> rowsArrayList = new ArrayList<>();
-//
-//            for (int j = 0; j < arraySize/columnsInGrid; j++){
-//                rowsArrayList.add(cellData);
-//            }
-//            arrayListTracker.add(rowsArrayList);
-//        }
 
         holder.cellDataView.setImageResource(cellData.getImageId());
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
@@ -87,6 +68,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                 // This is a block of code responsible for the turns.
                 int cellPosition = holder.getBindingAdapterPosition();
                 CellData nextCell;
+                int j = 1;
                 for (int i = cellPosition; i < cellDataArrayList.size(); i+=numOfColumns){
 
                     nextCell = cellDataArrayList.get(i);
@@ -100,45 +82,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                             cellDataArrayList.get(i-numOfColumns).setIsValid(true);
                         }
 
+                        Toast.makeText(view.getContext(), "Cell position: " + i, Toast.LENGTH_SHORT).show();
                         if (currentTurn == 1){
 
                             nextCell.setImageId(R.drawable.filled_box);
-                            gameDataViewModel.setPlayerTurn(2);
+                            j = 2; // to set the player turn to 2 and assign to data view model after checks
                         }
                         else if (currentTurn == 2){
 
+                            j = 1; // to set the player turn to 1 and assign to data view model after checks
                             nextCell.setImageId(R.drawable.mouktada_great_circle);
-                            gameDataViewModel.setPlayerTurn(1);
                         }
-
-                        notifyItemChanged(i);
+                        gameDataViewModel.setPlayerTurn(j);
                     }
+                    notifyItemChanged(i);
                 }
                 /* --------------------------------------------------------------------- */
-
-                //holder.cellDataView.setImageResource(R.drawable.filled_box);
             }
         });
-    }
-
-    public static void setClickable(View view, boolean clickable){
-        if (view != null){
-            if (view instanceof ViewGroup){
-                ViewGroup viewGroup = (ViewGroup) view;
-                for (int i = 0; i < viewGroup.getChildCount(); i++){
-                    setClickable(viewGroup.getChildAt(i), false);
-                }
-            }
-            view.setClickable(clickable);
-        }
-    }
-
-
-
-    public void resetCellImage(ArrayList<CellData> newData) {
-        cellDataArrayList = newData;
-
-
     }
 
     @Override
