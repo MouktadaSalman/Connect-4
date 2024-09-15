@@ -17,64 +17,58 @@ import com.example.connect4.R;
 
 public class GameSettingsFragment extends Fragment {
 
+    // ViewModel that stores and manages the game data
     private GameData gameDataViewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_game_settings, container, false);
+
+        // Initialize ViewModel for game data, shared across activities/fragments
         gameDataViewModel = new ViewModelProvider(requireActivity())
                 .get(GameData.class);
 
-        Button playerVsPlayerButton = view.findViewById(R.id.pVsPButton);
-        Button playerVsAiButton = view.findViewById(R.id.pVsAiButton);
-        Button largeGameBoardButton = view.findViewById(R.id.largeGrid);
-        Button mediumGameBoardButton = view.findViewById(R.id.mediumGrid);
-        Button smallGameBoardButton = view.findViewById(R.id.smallGrid);
+        // Initialize the buttons for game settings (game modes, board sizes, back button)
+        Button playerVsPlayerButton = view.findViewById(R.id.pVsPButton); // Player vs Player mode
+        Button playerVsAiButton = view.findViewById(R.id.pVsAiButton);     // Player vs AI mode
+        Button largeGameBoardButton = view.findViewById(R.id.largeGrid);   // Large game board selection
+        Button mediumGameBoardButton = view.findViewById(R.id.mediumGrid); // Medium game board selection
+        Button smallGameBoardButton = view.findViewById(R.id.smallGrid);   // Small game board selection
+        Button backButton = view.findViewById(R.id.SettingsBackButton);    // Back button to return to the previous screen
 
-        Button backButton = view.findViewById(R.id.SettingsBackButton);
-
+        // Observe changes in the selected board size (1: large, 2: medium, 3: small)
         gameDataViewModel.getSelectedBoard().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
-            public void onChanged(Integer integer) {
-                switch (integer) {
+            public void onChanged(Integer boardSize) {
+                switch (boardSize) {
                     case 1:
-                        //Disable button
+                        // Large board selected, disable the large board button and enable others
                         largeGameBoardButton.setEnabled(false);
-                        largeGameBoardButton.getBackground().setAlpha(64);
-
-                        //Enable other button
+                        largeGameBoardButton.getBackground().setAlpha(64); // Semi-transparent to indicate disabled
                         mediumGameBoardButton.setEnabled(true);
-                        mediumGameBoardButton.getBackground().setAlpha(255);
-
+                        mediumGameBoardButton.getBackground().setAlpha(255); // Fully opaque
                         smallGameBoardButton.setEnabled(true);
                         smallGameBoardButton.getBackground().setAlpha(255);
                         break;
 
                     case 2:
-
-                        //Disable button
+                        // Medium board selected, disable the medium board button and enable others
                         mediumGameBoardButton.setEnabled(false);
                         mediumGameBoardButton.getBackground().setAlpha(64);
-
-                        //Enable other button
                         largeGameBoardButton.setEnabled(true);
                         largeGameBoardButton.getBackground().setAlpha(255);
-
                         smallGameBoardButton.setEnabled(true);
                         smallGameBoardButton.getBackground().setAlpha(255);
                         break;
 
                     case 3:
-                        //Disable button
+                        // Small board selected, disable the small board button and enable others
                         smallGameBoardButton.setEnabled(false);
                         smallGameBoardButton.getBackground().setAlpha(64);
-
-                        //Enable other button
                         mediumGameBoardButton.setEnabled(true);
                         mediumGameBoardButton.getBackground().setAlpha(255);
-
                         largeGameBoardButton.setEnabled(true);
                         largeGameBoardButton.getBackground().setAlpha(255);
                         break;
@@ -82,38 +76,35 @@ public class GameSettingsFragment extends Fragment {
             }
         });
 
+        // Observe changes in the selected game mode (1: Player vs Player, 2: Player vs AI)
         gameDataViewModel.getSelectedGameMode().observe(getViewLifecycleOwner(), new Observer<Integer>() {
-        @Override
-        public void onChanged(Integer integer) {
-            switch (integer) {
-                case 1:
-                    //Disable button
-                    playerVsPlayerButton.setEnabled(false);
-                    playerVsPlayerButton.getBackground().setAlpha(64);
+            @Override
+            public void onChanged(Integer gameMode) {
+                switch (gameMode) {
+                    case 1:
+                        // Player vs Player selected, disable this button and enable the Player vs AI button
+                        playerVsPlayerButton.setEnabled(false);
+                        playerVsPlayerButton.getBackground().setAlpha(64);
+                        playerVsAiButton.setEnabled(true);
+                        playerVsAiButton.getBackground().setAlpha(255);
+                        break;
 
-                    //Enable other button
-                    playerVsAiButton.setEnabled(true);
-                    playerVsAiButton.getBackground().setAlpha(255);
-                    break;
-
-                case 2:
-                    //Disable button
-                    playerVsAiButton.setEnabled(false);
-                    playerVsAiButton.getBackground().setAlpha(64);
-
-                    //Enable other button
-                    playerVsPlayerButton.setEnabled(true);
-                    playerVsPlayerButton.getBackground().setAlpha(255);
-                    break;
+                    case 2:
+                        // Player vs AI selected, disable this button and enable the Player vs Player button
+                        playerVsAiButton.setEnabled(false);
+                        playerVsAiButton.getBackground().setAlpha(64);
+                        playerVsPlayerButton.setEnabled(true);
+                        playerVsPlayerButton.getBackground().setAlpha(255);
+                        break;
+                }
             }
-        }
-    });
+        });
 
+        // Set click listeners for the game mode buttons
         playerVsPlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //Update data
+                // Update the selected game mode to Player vs Player (1)
                 gameDataViewModel.setSelectedGameMode(1);
             }
         });
@@ -121,15 +112,16 @@ public class GameSettingsFragment extends Fragment {
         playerVsAiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //Update data
+                // Update the selected game mode to Player vs AI (2)
                 gameDataViewModel.setSelectedGameMode(2);
             }
         });
 
+        // Set click listeners for the board size buttons
         largeGameBoardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Update the selected board size to Large (1)
                 gameDataViewModel.setSelectedBoard(1);
             }
         });
@@ -137,6 +129,7 @@ public class GameSettingsFragment extends Fragment {
         mediumGameBoardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Update the selected board size to Medium (2)
                 gameDataViewModel.setSelectedBoard(2);
             }
         });
@@ -144,19 +137,20 @@ public class GameSettingsFragment extends Fragment {
         smallGameBoardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Update the selected board size to Small (3)
                 gameDataViewModel.setSelectedBoard(3);
             }
         });
 
-        // Return to main menu
+        // Set click listener for the back button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Return back to the main menu
+                // Return back to the main menu by setting the displayed fragment to 0 (main menu fragment)
                 gameDataViewModel.setDisplayedFragment(0);
             }
         });
-        return view;
 
+        return view;
     }
 }

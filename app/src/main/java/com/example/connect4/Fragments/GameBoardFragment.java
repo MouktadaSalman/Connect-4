@@ -86,7 +86,7 @@ public class GameBoardFragment extends Fragment {
         // create items views for the recycler view based on the number of cells for the grid size selected
         for (int r = 0; r < (numberOfCells / numberOfColumns); r++) {
             for (int c = 0; c < numberOfColumns; c++) {
-                recyclerDataArrayList.add(new CellData(R.drawable.empty_cell, r, c, "W"));
+                recyclerDataArrayList.add(new CellData(R.drawable.empty_cell));
             }
         }
 
