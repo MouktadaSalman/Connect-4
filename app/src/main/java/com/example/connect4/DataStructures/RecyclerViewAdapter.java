@@ -141,6 +141,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                                 j = 1; // Set the next turn to player 1
                             }
 
+                            notifyItemChanged(i);
                             // Update the game data model with the new player turn
                             gameDataViewModel.setPlayerTurn(j);
                         }
@@ -189,12 +190,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                         }
                         /* ------------------------------------------------------------------------------------ */
                     }
-                    notifyItemChanged(i);
 
                     if (finalPosition != -1) {
                         // Notify the adapter that the item has changed so the view can be updated
                         if (checkForWin(i, currentTurn)) {
-                            Toast.makeText(view.getContext(), "Player " + currentTurn + " wins!", Toast.LENGTH_SHORT).show();
 
                             if (currentTurn == 1) {
                                 player1.addWin();
@@ -209,7 +208,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                             return;
                         }
                         gameDataViewModel.setPlayerTurn(currentTurn == 1 ? 2 : 1);
-
                         notifyItemChanged(i);
                     }
                 }
