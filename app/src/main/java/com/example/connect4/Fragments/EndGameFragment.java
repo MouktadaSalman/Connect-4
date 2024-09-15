@@ -24,11 +24,10 @@ public class EndGameFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_end_game, container, false);
         gameDataViewModel = new ViewModelProvider(requireActivity()).get(GameData.class);
 
-
         ImageButton exitButton = view.findViewById(R.id.EGExitButton);
         ImageButton restartButton = view.findViewById(R.id.EGRestartButton);
 
-
+        // When exit button is clicked we display fragment 0 (Main Menu)
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,6 +35,7 @@ public class EndGameFragment extends Fragment {
             }
         });
 
+        // When restart button is clicked we display fragment 1 (Game Mode)
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

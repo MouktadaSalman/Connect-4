@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.connect4.R;
 
+// This class acts as the ViewHolder for each CellData item.
 public class CellDataViewHolder extends RecyclerView.ViewHolder {
     public ImageView cellDataView;
 
