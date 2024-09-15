@@ -81,7 +81,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                 // Get the current player's turn from the game data model
                 int currentTurn = gameDataViewModel.getPlayerTurn().getValue();
 
-                Player currentPlayer = (currentTurn == 1) ? gameDataViewModel.getPlayer1().getValue() : gameDataViewModel.getPlayer2().getValue();
+                Player currentPlayer = (currentTurn == 1) ? player1 : player2;
 
                 // Added: Check if the player is valid (non-null)
                 if (currentPlayer == null) {
@@ -91,20 +91,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                 // Added: Retrieve player's selected disk color
                 int playerColour = currentPlayer.getColourID();
 
-
                 /* Game logic is housed here. */
                 /* --------------------------------------------------------------------- */
                 // Retrieve the clicked cell's position in the list
                 int cellPosition = holder.getBindingAdapterPosition();
-                CellData nextCell;
-                int j = 1; // Variable to store the next player's turn (default is 1)
                 int finalPosition = -1; // Variable to store the final position of the disk.
 
                 // Loop through cells in the column of the selected cell, moving down by 'numOfColumns'
                 for (int i = cellPosition; i < cellDataArrayList.size(); i += numOfColumns) {
-
                     // Get the next cell in the column
-                    nextCell = cellDataArrayList.get(i);
+                    CellData nextCell = cellDataArrayList.get(i);
 
                     // Check if the cell is valid (can be modified)
                     if (nextCell.getIsValid()) {
@@ -118,119 +114,98 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
 
                         nextCell.setImageId(playerColour);
                         notifyItemChanged(i);
+                        break;  // Exit the loop after placing the piece
+                    }
+                }
 
+                if (finalPosition != -1) {
+                    // Notify the adapter that the item has changed so the view can be updated
+                    if (checkForWin(finalPosition, currentTurn)) {
+                        Toast.makeText(view.getContext(), "Player " + currentTurn + " wins!", Toast.LENGTH_SHORT).show();
 
                         if (currentTurn == 1) {
-
-                            nextCell.setImageId(playerColour);
-                            j = 2; // to set the player turn to 2 and assign to data view model after checks
-                        } else if (currentTurn == 2) {
-
-                            j = 1; // to set the player turn to 1 and assign to data view model after checks
-                            nextCell.setImageId(playerColour);
+                            player1.addWin();
+                            player2.addLoss();
+                            gameDataViewModel.setWinner(player1.getPlayerName());
+                        } else {
+                            player2.addWin();
+                            player1.addLoss();
+                            gameDataViewModel.setWinner(player2.getPlayerName());
                         }
-
-                        int gameMode = gameDataViewModel.getSelectedGameMode().getValue();
-
-                        /* This is for two-player game mode. */
-                        /* ------------------------------------------------------------------------------------ */
-                        if (gameMode == 1) {
-                            // Check the current player's turn and update the cell's image accordingly
-                            if (currentTurn == 1) {
-                                // Player 1's turn: set the image to 'filled_box'
-                                nextCell.setImageId(playerColour);
-                                j = 2; // Set the next turn to player 2
-                            } else if (currentTurn == 2) {
-                                // Player 2's turn: set the image to 'mouktada_great_circle'
-                                nextCell.setImageId(playerColour);
-                                j = 1; // Set the next turn to player 1
-                            }
-
-                            // Update the game data model with the new player turn
-                            gameDataViewModel.setPlayerTurn(j);
-                        }
-                        /* ------------------------------------------------------------------------------------ */
-
-
-                        /* This is single player game mode. */
-                        /* ------------------------------------------------------------------------------------ */
-                        // When player vs AI, there is no such thing as turns.
-                        // AI immediately places circle after player does.
-                        if (gameMode == 2) {
-                            // Player makes their move (this logic should be placed before the AI move)
-                            nextCell.setImageId(R.drawable.filled_box);
-
-                            // AI Move - Random column selection
-                            Random random = new Random();
-                            int randomColumn = random.nextInt(numOfColumns);
-
-                            // Start from the bottom row in the selected column and move up
-                            for (int row = (cellDataArrayList.size() / numOfColumns) - 1; row >= 0; row--) {
-                                int position = row * numOfColumns + randomColumn;  // Get the position in the array
-
-                                // Check if the cell is empty
-                                if (cellDataArrayList.get(position).getImageId() == R.drawable.empty_cell) {
-                                    // Place the AI's piece
-                                    cellDataArrayList.get(position).setImageId(R.drawable.mouktada_great_circle);
-
-                                    // Mark the cell as no longer valid (cannot place more pieces here)
-                                    cellDataArrayList.get(position).setIsValid(false);
-
-                                    // Mark the cell above as valid if it exists
-                                    if (row > 0) {
-                                        cellDataArrayList.get((row - 1) * numOfColumns + randomColumn).setIsValid(true);
-                                    }
-
-                                    // Log the position for testing purposes
-                                    Log.d("Testing", "AI placed in position: " + position);
-
-                                    // Notify the adapter to refresh the UI for this position
-                                    notifyItemChanged(position);
-
-                                    break;  // AI has made its move, exit the loop
-                                }
-                            }
-                        }
-                        /* ------------------------------------------------------------------------------------ */
+                        gameDataViewModel.setDisplayedFragment(6);
+                        return;
                     }
-                    notifyItemChanged(i);
 
-                    if (finalPosition != -1) {
-                        // Notify the adapter that the item has changed so the view can be updated
-                        if (checkForWin(i, currentTurn)) {
-                            Toast.makeText(view.getContext(), "Player " + currentTurn + " wins!", Toast.LENGTH_SHORT).show();
+                    int nextTurn = (currentTurn == 1) ? 2 : 1;
+                    gameDataViewModel.setPlayerTurn(nextTurn);
 
-                            if (currentTurn == 1) {
-                                player1.addWin();
-                                player2.addLoss();
-                                gameDataViewModel.setWinner(player1.getPlayerName());
-                            } else {
-                                player2.addWin();
-                                player1.addLoss();
-                                gameDataViewModel.setWinner(player2.getPlayerName());
-                            }
-                            gameDataViewModel.setDisplayedFragment(6);
-                            return;
-                        }
-                        gameDataViewModel.setPlayerTurn(currentTurn == 1 ? 2 : 1);
-
-                        notifyItemChanged(i);
+                    int gameMode = gameDataViewModel.getSelectedGameMode().getValue();
+                    /* This is single player game mode. */
+                    /* ------------------------------------------------------------------------------------ */
+                    // When player vs AI, there is no such thing as turns.
+                    // AI immediately places circle after player does.
+                    if (gameMode == 2 && nextTurn == 2) {
+                        makeAIMove();
                     }
+                    /* ------------------------------------------------------------------------------------ */
                 }
-                }
-
+            }
             /* --------------------------------------------------------------------- */
         });
     }
 
-            // Method to check if a player has won
-            private boolean checkForWin(int position, int player) {
-                int playerColor = (player == 1) ? R.drawable.filled_box : R.drawable.mouktada_great_circle;
-                return checkDirection(position, playerColor, 1, 0)  // Horizontal
-                        || checkDirection(position, playerColor, 0, 1)  // Vertical
-                        || checkDirection(position, playerColor, 1, 1)  // Diagonal (top-left to bottom-right)
-                        || checkDirection(position, playerColor, 1, -1); // Diagonal (bottom-left to top-right)
+    private void makeAIMove() {
+        // AI Move - Random column selection
+        Random random = new Random();
+        int randomColumn;
+        int finalPosition = -1;
+
+        do {
+            randomColumn = random.nextInt(numOfColumns);
+            // Start from the bottom row in the selected column and move up
+            for (int row = (cellDataArrayList.size() / numOfColumns) - 1; row >= 0; row--) {
+                int position = row * numOfColumns + randomColumn;  // Get the position in the array
+
+                // Check if the cell is empty
+                if (cellDataArrayList.get(position).getImageId() == R.drawable.empty_cell) {
+                    finalPosition = position;
+                    break;
+                }
             }
+        } while (finalPosition == -1);
+
+        CellData aiCell = cellDataArrayList.get(finalPosition);
+        aiCell.setImageId(player2.getColourID());
+        aiCell.setIsValid(false);
+        if (finalPosition - numOfColumns >= 0) {
+            cellDataArrayList.get(finalPosition - numOfColumns).setIsValid(true);
+        }
+
+        // Log the position for testing purposes
+        Log.d("Testing", "AI placed in position: " + finalPosition);
+
+        // Notify the adapter to refresh the UI for this position
+        notifyItemChanged(finalPosition);
+
+        if (checkForWin(finalPosition, 2)) {
+            Toast.makeText(itemView.getContext(), "AI wins!", Toast.LENGTH_SHORT).show();
+            player2.addWin();
+            player1.addLoss();
+            gameDataViewModel.setWinner("AI");
+            gameDataViewModel.setDisplayedFragment(6);
+        } else {
+            gameDataViewModel.setPlayerTurn(1);
+        }
+    }
+
+    // Method to check if a player has won
+    private boolean checkForWin(int position, int player) {
+        int playerColor = (player == 1) ? player1.getColourID() : player2.getColourID();
+        return checkDirection(position, playerColor, 1, 0)  // Horizontal
+                || checkDirection(position, playerColor, 0, 1)  // Vertical
+                || checkDirection(position, playerColor, 1, 1)  // Diagonal (top-left to bottom-right)
+                || checkDirection(position, playerColor, 1, -1); // Diagonal (bottom-left to top-right)
+    }
 
     private boolean checkDirection(int position, int playerColor, int deltaX, int deltaY) {
         int count = 1;  // Start with 1 to include the current piece
