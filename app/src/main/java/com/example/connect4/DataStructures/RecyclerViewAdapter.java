@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.example.connect4.GameData;
+import com.example.connect4.PlayerOperations.Player;
 import com.example.connect4.R;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder> {
@@ -25,6 +26,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
     private double height;
     private GameData gameDataViewModel;
     private int numOfColumns;
+
+
 
     /* Constructor for the RecyclerViewAdapter */
     /* -------------------------------------------------------------------------------------------------------------- */
@@ -76,6 +79,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                 // Get the current player's turn from the game data model
                 int currentTurn = gameDataViewModel.getPlayerTurn().getValue();
 
+                Player currentPlayer = (currentTurn == 1) ? gameDataViewModel.getPlayer1().getValue() : gameDataViewModel.getPlayer2().getValue();
+
+                // Added: Check if the player is valid (non-null)
+                if (currentPlayer == null) {
+                    return;
+                }
+
+                // Added: Retrieve player's selected disk color
+                int playerColour = currentPlayer.getColourID();
+
+
                 /* Game logic is housed here. */
                 /* --------------------------------------------------------------------- */
                 // Retrieve the clicked cell's position in the list
@@ -92,7 +106,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                     // Check if the cell is valid (can be modified)
                     if (nextCell.getIsValid()) {
 
-                        // Mark the cell as no longer valid (cannot be selected again)
                         nextCell.setIsValid(false);
 
                         // If the cell above exists, mark it as valid (can now be selected)
@@ -100,8 +113,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                             cellDataArrayList.get(i - numOfColumns).setIsValid(true);
                         }
 
-                        // Display a message showing the cell's position
-                        Toast.makeText(view.getContext(), "Cell position: " + i, Toast.LENGTH_SHORT).show();
+                        if (currentTurn == 1){
+
+                            nextCell.setImageId(playerColour);
+                            j = 2; // to set the player turn to 2 and assign to data view model after checks
+                        }
+                        else if (currentTurn == 2){
+
+                            j = 1; // to set the player turn to 1 and assign to data view model after checks
+                            nextCell.setImageId(playerColour);
+
 
                         int gameMode = gameDataViewModel.getSelectedGameMode().getValue();
 
@@ -172,10 +193,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
 
                     if (checkForWin(i, currentTurn)) {
                         Toast.makeText(view.getContext(), "Player " + currentTurn + " wins!", Toast.LENGTH_SHORT).show();
+                        gameDataViewModel.setDisplayedFragment(6);
                     }
 
                     gameDataViewModel.setPlayerTurn(currentTurn == 1 ? 2 : 1);
-                  
+
                     notifyItemChanged(i);
                 }
                 /* --------------------------------------------------------------------- */
@@ -196,10 +218,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
     private boolean checkDirection(int position, int player, int deltaX, int deltaY) {
         int count = 1;  // Including the current piece
 
-
         count += countConsecutive(position, player, deltaX, deltaY);
-
-
         count += countConsecutive(position, player, -deltaX, -deltaY);
 
         return count >= 4;  // Return true if 4 consecutive pieces found
@@ -214,18 +233,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
 
         while (true) {
             row += deltaY;
-
             col += deltaX;
-
 
             // Check bounds
             if (row < 0 || row >= cellDataArrayList.size() / numOfColumns || col < 0 || col >= numOfColumns) {
                 break;
             }
 
-
             int nextPosition = row * numOfColumns + col;
-
 
             if (cellDataArrayList.get(nextPosition).getImageId() == (player == 1 ? R.drawable.filled_box : R.drawable.mouktada_great_circle)) {
                 count++;

@@ -20,6 +20,7 @@ public class Player {
     private String playerName;
     private int avatarID;
     private int playerAvatar;
+    private int playerColour;
     private int wins;
     private int loss;
     private int totalGames;
@@ -30,10 +31,11 @@ public class Player {
      * Description: The constructor of the class    *
      * Parameters: pName (string), pAvatar (string) *
      *----------------------------------------------*/
-    public Player(String pName, int pAvatar){
+    public Player(String pName, int pAvatar, int pColour){
         playerName = pName;
         avatarID = pAvatar;
         playerAvatar = 0;
+        playerColour = pColour;
         wins = 0;
         loss = 0;
         totalGames = 0;
@@ -93,6 +95,26 @@ public class Player {
      * Result: playerAvatar (int)                   *
      *----------------------------------------------*/
     public void setPlayerAvatar(int id) { playerAvatar = id; }
+
+    /*----------------------------------------------*
+     * Method: getColourID                          *
+     * Description: Get player's disk Colour             *
+     * Parameters: none                             *
+     * Result: playerColour (int)
+     *----------------------------------------------*/
+    public int getColourID(){
+        return playerColour;
+    }
+
+    /*----------------------------------------------*
+     * Method: setColourID                          *
+     * Description: Set player's disk colour             *
+     * Parameters: none                             *
+     * Result: playerColour (int)                       *
+     *----------------------------------------------*/
+    public void setColourID(int id) { playerColour = id; }
+
+
 
     /*----------------------------------------------*
      * Method: addWin                               *

@@ -1,149 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/customizeProfileFrag"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.CustomizeProfileFragment"
     android:background="@drawable/customize_profile_bg"
-    android:padding="5dp">
+    android:padding="5dp"
+    tools:context=".Fragments.CustomizeProfileFragment">
 
+    <!-- Guidelines to manage layout -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/CPFGrid"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3"/>
+        app:layout_constraintGuide_percent="0.09" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/CPFGrid2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8"/>
+        app:layout_constraintGuide_percent="0.56" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/CPFGrid3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.72" />
+
+    <!-- Name Input Field -->
     <EditText
         android:id="@+id/CPFNameText"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeMinTextSize="5sp"
+        android:autoSizeTextType="uniform"
         android:autofillHints="username"
-        android:text="@string/userName"
+        android:fontFamily="@font/pixel"
+        android:gravity="center"
         android:hint="@string/userName"
         android:inputType="text"
-        android:fontFamily="@font/pixel"
         android:textColor="@color/material_dynamic_neutral20"
-        android:gravity="center"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="5sp"
-        android:autoSizeMaxTextSize="30sp"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/CPFGrid"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
+    <!-- Row 1: Avatar Image Buttons 1-3 -->
     <ImageButton
         android:id="@+id/CPFAvatar1"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/oval_button"
         android:contentDescription="@string/avatarButton"
         android:scaleType="centerCrop"
-        android:background="@drawable/oval_button"
         android:src="@drawable/avatar1"
-        app:layout_constraintTop_toBottomOf="@id/CPFGrid"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/CPFAvatar2"
         app:layout_constraintBottom_toTopOf="@id/CPFAvatar4"
-        app:layout_constraintDimensionRatio="1:1"/>
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/CPFAvatar2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/CPFGrid" />
 
     <ImageButton
         android:id="@+id/CPFAvatar2"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/oval_button"
         android:contentDescription="@string/avatarButton"
         android:scaleType="centerCrop"
-        android:background="@drawable/oval_button"
         android:src="@drawable/avatar2"
-        app:layout_constraintTop_toBottomOf="@id/CPFGrid"
-        app:layout_constraintStart_toEndOf="@id/CPFAvatar1"
-        app:layout_constraintEnd_toStartOf="@id/CPFAvatar3"
         app:layout_constraintBottom_toTopOf="@id/CPFAvatar5"
-        app:layout_constraintDimensionRatio="1:1"/>
-
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/CPFAvatar3"
+        app:layout_constraintStart_toEndOf="@id/CPFAvatar1"
+        app:layout_constraintTop_toBottomOf="@id/CPFGrid" />
 
     <ImageButton
         android:id="@+id/CPFAvatar3"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/oval_button"
         android:contentDescription="@string/avatarButton"
         android:scaleType="centerCrop"
-        android:background="@drawable/oval_button"
         android:src="@drawable/avatar3"
-        app:layout_constraintTop_toBottomOf="@id/CPFGrid"
-        app:layout_constraintStart_toEndOf="@id/CPFAvatar2"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/CPFAvatar6"
-        app:layout_constraintDimensionRatio="1:1"/>
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/CPFAvatar2"
+        app:layout_constraintTop_toBottomOf="@id/CPFGrid" />
 
+    <!-- Row 2: Avatar Image Buttons 4-6 -->
     <ImageButton
         android:id="@+id/CPFAvatar4"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/oval_button"
         android:contentDescription="@string/avatarButton"
         android:scaleType="centerCrop"
-        android:background="@drawable/oval_button"
         android:src="@drawable/avatar4"
-        app:layout_constraintTop_toBottomOf="@id/CPFAvatar1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/CPFAvatar5"
         app:layout_constraintBottom_toBottomOf="@id/CPFGrid2"
-        app:layout_constraintDimensionRatio="1:1"/>
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/CPFAvatar5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/CPFAvatar1" />
 
     <ImageButton
         android:id="@+id/CPFAvatar5"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/oval_button"
         android:contentDescription="@string/avatarButton"
         android:scaleType="centerCrop"
-        android:background="@drawable/oval_button"
         android:src="@drawable/avatar5"
-        app:layout_constraintTop_toBottomOf="@id/CPFAvatar2"
-        app:layout_constraintStart_toEndOf="@id/CPFAvatar4"
+        app:layout_constraintBottom_toBottomOf="@id/CPFGrid2"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@id/CPFAvatar6"
-        app:layout_constraintBottom_toTopOf="@id/CPFGrid2"
-        app:layout_constraintDimensionRatio="1:1"/>
+        app:layout_constraintStart_toEndOf="@id/CPFAvatar4"
+        app:layout_constraintTop_toBottomOf="@id/CPFAvatar2" />
 
     <ImageButton
         android:id="@+id/CPFAvatar6"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/oval_button"
         android:contentDescription="@string/avatarButton"
         android:scaleType="centerCrop"
-        android:background="@drawable/oval_button"
         android:src="@drawable/avatar6"
-        app:layout_constraintTop_toBottomOf="@id/CPFAvatar3"
-        app:layout_constraintStart_toEndOf="@id/CPFAvatar5"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/CPFGrid2"
-        app:layout_constraintDimensionRatio="1:1"/>
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/CPFAvatar5"
+        app:layout_constraintTop_toBottomOf="@id/CPFAvatar3" />
 
+    <!-- Row 3: Disk Image Buttons 1-3 -->
+    <ImageButton
+        android:id="@+id/diskButton1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/circle"
+        android:contentDescription="Disk Button 1"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mouktada_great_circle"
+        app:layout_constraintBottom_toTopOf="@id/diskButton4"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/diskButton2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/CPFGrid2" />
+
+    <ImageButton
+        android:id="@+id/diskButton2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/circle"
+        android:contentDescription="Disk Button 2"
+        android:scaleType="centerCrop"
+        android:src="@drawable/reddisk"
+        app:layout_constraintBottom_toTopOf="@id/diskButton5"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/diskButton3"
+        app:layout_constraintStart_toEndOf="@id/diskButton1"
+        app:layout_constraintTop_toBottomOf="@id/CPFGrid2" />
+
+    <ImageButton
+        android:id="@+id/diskButton3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/circle"
+        android:contentDescription="Disk Button 3"
+        android:scaleType="centerCrop"
+        android:src="@drawable/yellowdisk"
+        app:layout_constraintBottom_toTopOf="@id/diskButton6"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/diskButton2"
+        app:layout_constraintTop_toBottomOf="@id/CPFGrid2" />
+
+    <!-- Row 4: Disk Image Buttons 4-6 -->
+    <ImageButton
+        android:id="@+id/diskButton4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/circle"
+        android:contentDescription="Disk Button 4"
+        android:scaleType="centerCrop"
+        android:src="@drawable/orangedisk"
+        app:layout_constraintBottom_toBottomOf="@id/CPFGrid3"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/diskButton5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/diskButton1" />
+
+    <ImageButton
+        android:id="@+id/diskButton5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/circle"
+        android:contentDescription="Disk Button 5"
+        android:scaleType="centerCrop"
+        android:src="@drawable/purpledisk"
+        app:layout_constraintBottom_toBottomOf="@id/CPFGrid3"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/diskButton6"
+        app:layout_constraintStart_toEndOf="@id/diskButton4"
+        app:layout_constraintTop_toBottomOf="@id/diskButton2" />
+
+    <ImageButton
+        android:id="@+id/diskButton6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/circle"
+        android:contentDescription="Disk Button 6"
+        android:scaleType="centerCrop"
+        android:src="@drawable/greendisk"
+        app:layout_constraintBottom_toBottomOf="@id/CPFGrid3"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/diskButton5"
+        app:layout_constraintTop_toBottomOf="@id/diskButton3" />
+
+    <!-- Save Button -->
     <Button
-        android:id="@+id/CustomizeSaveButton"
+        android:id="@+id/customizeSaveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeMinTextSize="5sp"
+        android:autoSizeTextType="uniform"
         android:background="@drawable/oval_button"
         android:fontFamily="@font/pixel"
-        android:text="@string/saveButton"
         android:gravity="center"
         android:padding="5dp"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="5sp"
-        android:autoSizeMaxTextSize="30sp"
+        android:text="@string/saveButton"
         android:textColor="@color/material_dynamic_neutral20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/CPFGrid2"
-        app:layout_constraintDimensionRatio="3:1"/>
+        app:layout_constraintTop_toBottomOf="@id/CPFGrid3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,8 +25,8 @@ public class CustomizeProfileFragment extends Fragment {
     private GameData gameDataViewModel;
     // EditText for inputting the player's name
     private EditText playerName;
-    // ImageButtons representing the avatar choices
-    private ImageButton a1, a2, a3, a4, a5, a6;
+    private ImageButton a1, a2, a3, a4, a5, a6, c1, c2, c3, c4, c5, c6;
+    // ImageButtons representing the avatar choice
     // The currently selected player object
     private Player checkedP;
 
@@ -38,7 +38,7 @@ public class CustomizeProfileFragment extends Fragment {
 
         // Initialize UI components
         playerName = view.findViewById(R.id.CPFNameText);
-        Button saveButton = view.findViewById(R.id.CustomizeSaveButton);
+        Button saveButton = view.findViewById(R.id.customizeSaveButton);
 
         // Avatar selection buttons
         a1 = view.findViewById(R.id.CPFAvatar1);
@@ -47,6 +47,13 @@ public class CustomizeProfileFragment extends Fragment {
         a4 = view.findViewById(R.id.CPFAvatar4);
         a5 = view.findViewById(R.id.CPFAvatar5);
         a6 = view.findViewById(R.id.CPFAvatar6);
+
+        c1 = view.findViewById(R.id.diskButton1);
+        c2 = view.findViewById(R.id.diskButton2);
+        c3 = view.findViewById(R.id.diskButton3);
+        c4 = view.findViewById(R.id.diskButton4);
+        c5 = view.findViewById(R.id.diskButton5);
+        c6 = view.findViewById(R.id.diskButton6);
 
         // Observe changes in the selected player (1 or 2)
         gameDataViewModel.getSelectedPlayer().observe(getViewLifecycleOwner(),
@@ -74,6 +81,9 @@ public class CustomizeProfileFragment extends Fragment {
                 // Set the selected avatar to avatar 1 and disable this button
                 checkedP.setAvatarID(R.drawable.avatar1);
                 checkedP.setPlayerAvatar(1);
+
+
+                //Disable the button
                 disableAvatarButton(a1);
                 enableAvatarButtonsExcept(a1);
             }
@@ -136,6 +146,87 @@ public class CustomizeProfileFragment extends Fragment {
         /* --------------------------------------------------------------------- */
 
         // Save button to update the player's name
+
+
+        // Color Selection Listeners
+        c1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkedP.setColourID(R.drawable.mouktada_great_circle);  // Assuming disk1 represents a color
+                disableColourButton(c1);
+                enableColourButton(c2);
+                enableColourButton(c3);
+                enableColourButton(c4);
+                enableColourButton(c5);
+                enableColourButton(c6);
+            }
+        });
+
+        c2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkedP.setColourID(R.drawable.reddisk);  // Assuming disk2 represents a color
+                disableColourButton(c2);
+                enableColourButton(c1);
+                enableColourButton(c3);
+                enableColourButton(c4);
+                enableColourButton(c5);
+                enableColourButton(c6);
+            }
+        });
+
+        c3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkedP.setColourID(R.drawable.yellowdisk);  // Assuming disk3 represents a color
+                disableColourButton(c3);
+                enableColourButton(c1);
+                enableColourButton(c2);
+                enableColourButton(c4);
+                enableColourButton(c5);
+                enableColourButton(c6);
+            }
+        });
+
+        c4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkedP.setColourID(R.drawable.orangedisk);  // Assuming disk4 represents a color
+                disableColourButton(c4);
+                enableColourButton(c1);
+                enableColourButton(c2);
+                enableColourButton(c3);
+                enableColourButton(c5);
+                enableColourButton(c6);
+            }
+        });
+
+        c5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkedP.setColourID(R.drawable.purpledisk);  // Assuming disk5 represents a color
+                disableColourButton(c5);
+                enableColourButton(c1);
+                enableColourButton(c2);
+                enableColourButton(c3);
+                enableColourButton(c4);
+                enableColourButton(c6);
+            }
+        });
+
+        c6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkedP.setColourID(R.drawable.greendisk);  // Assuming disk6 represents a color
+                disableColourButton(c6);
+                enableColourButton(c1);
+                enableColourButton(c2);
+                enableColourButton(c3);
+                enableColourButton(c4);
+                enableColourButton(c5);
+            }
+        });
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -236,5 +327,16 @@ public class CustomizeProfileFragment extends Fragment {
         if (disabledAvatar != a4) enableAvatarButton(a4);
         if (disabledAvatar != a5) enableAvatarButton(a5);
         if (disabledAvatar != a6) enableAvatarButton(a6);
+    }
+
+
+    private void disableColourButton(ImageButton diskColour){
+        diskColour.setEnabled(false);
+        diskColour.setColorFilter(0x77000000);
+    }
+
+    private void enableColourButton(ImageButton diskColour){
+        diskColour.setEnabled(true);
+        diskColour.clearColorFilter();
     }
 }
