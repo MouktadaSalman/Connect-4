@@ -29,7 +29,7 @@ public class PauseMenuFragment extends Fragment {
         ImageButton restartButton = view.findViewById(R.id.PMRestartButton);
         ImageButton resumeButton = view.findViewById(R.id.PMResumeButton);
 
-
+        // When exit button is clicked we display fragment 0. (Main Menu)
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +48,7 @@ public class PauseMenuFragment extends Fragment {
             }
         });
 
+        // When restart button is clicked we display fragment 1. (Game Mode)
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,6 +67,7 @@ public class PauseMenuFragment extends Fragment {
             }
         });
 
+        // When resume button is clicked we remove the pause button overlay.
         resumeButton.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View v) {

@@ -83,12 +83,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-    /* ------------------------------------------------------------------------------------------------------- */
-    /* Anything in this block of code are simply functions used to display fragments. */
-    /* ----------------------------------------------------------------------------------------------------------- */
-
     }
 
+
+    /* Anything in this block of code are simply functions used to display fragments. */
+    /* ----------------------------------------------------------------------------------------------------------- */
     private void loadMainMenuFragment(){
         Fragment frag = fm.findFragmentById(R.id.fragment_fill_screen_container);
 

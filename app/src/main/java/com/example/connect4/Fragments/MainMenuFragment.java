@@ -62,11 +62,13 @@ public class MainMenuFragment extends Fragment {
             playButton.getBackground().setAlpha(64);
         }
 
+        // When play button is clicked we display fragment 3 (GameBoard and Tool bar)
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {gameDataViewModel.setDisplayedFragment(3); }
         });
 
+        // When settings button is clicked we display fragment 1 (Game Mode)
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +76,7 @@ public class MainMenuFragment extends Fragment {
             }
         });
 
+        // When profiles button is clicked we display fragment 2 (Player customisation)
         profilesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
