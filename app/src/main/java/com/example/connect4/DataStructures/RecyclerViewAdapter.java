@@ -28,6 +28,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
     private int numOfColumns;
     Player player1;
     Player player2;
+    private int leftTurns;
+    private Toast curToast = null;
 
     /* Constructor for the RecyclerViewAdapter */
     /* -------------------------------------------------------------------------------------------------------------- */
@@ -38,6 +40,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
         this.numOfColumns = gameDataViewModel.getGridColumns().getValue();
         player1 = gameDataViewModel.getPlayer1().getValue();
         player2 = gameDataViewModel.getPlayer2().getValue();
+        leftTurns = cellDataArrayList.size();
 
         /* Each cellData is intialised to a valid value. */
         /* --------------------------------------- */
@@ -81,6 +84,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                 // Get the current player's turn from the game data model
                 int currentTurn = gameDataViewModel.getPlayerTurn().getValue();
 
+
                 Player currentPlayer = (currentTurn == 1) ? gameDataViewModel.getPlayer1().getValue() : gameDataViewModel.getPlayer2().getValue();
 
                 // Added: Check if the player is valid (non-null)
@@ -119,17 +123,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                         nextCell.setImageId(playerColour);
                         notifyItemChanged(i);
 
-
-                        if (currentTurn == 1) {
-
-                            nextCell.setImageId(playerColour);
-                            j = 2; // to set the player turn to 2 and assign to data view model after checks
-                        } else if (currentTurn == 2) {
-
-                            j = 1; // to set the player turn to 1 and assign to data view model after checks
-                            nextCell.setImageId(playerColour);
-                        }
-
                         int gameMode = gameDataViewModel.getSelectedGameMode().getValue();
 
                         /* This is for two-player game mode. */
@@ -137,10 +130,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                         if (gameMode == 1) {
                             // Check the current player's turn and update the cell's image accordingly
                             if (currentTurn == 1) {
+                                leftTurns--;
                                 // Player 1's turn: set the image to 'filled_box'
                                 nextCell.setImageId(playerColour);
                                 j = 2; // Set the next turn to player 2
                             } else if (currentTurn == 2) {
+                                leftTurns--;
                                 // Player 2's turn: set the image to 'mouktada_great_circle'
                                 nextCell.setImageId(playerColour);
                                 j = 1; // Set the next turn to player 1
@@ -157,6 +152,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                         // When player vs AI, there is no such thing as turns.
                         // AI immediately places circle after player does.
                         if (gameMode == 2) {
+                            leftTurns-=2;
                             // Player makes their move (this logic should be placed before the AI move)
                             nextCell.setImageId(R.drawable.filled_box);
 
@@ -217,7 +213,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                         notifyItemChanged(i);
                     }
                 }
+
+                if (curToast != null) {
+                    curToast.cancel();
                 }
+
+                curToast = Toast.makeText(view.getContext(), leftTurns + " Turns Left!", Toast.LENGTH_SHORT);
+                curToast.show();
+            }
 
             /* --------------------------------------------------------------------- */
         });
