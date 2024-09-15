@@ -57,10 +57,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                     if (cellData.getRowPosition() < 7) {
                         for (int r = 7; r >= 0; r--) {
                             if (cellData.getRowPosition() == r)
-                            if (cellData.getImageId() == R.drawable.empty_cell) {
-                                holder.cellDataView.setImageResource(R.drawable.filled_box);
-                                gameDataViewModel.setPlayerTurn(2);
-                            }
+                                if (cellData.getImageId() == R.drawable.empty_cell) {
+                                    holder.cellDataView.setImageResource(R.drawable.filled_box);
+                                    gameDataViewModel.setPlayerTurn(2);
+                                }
                         }
                     }
                     /* ------------------------------------------------------------------------ */

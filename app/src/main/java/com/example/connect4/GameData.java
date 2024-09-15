@@ -8,11 +8,12 @@ import androidx.lifecycle.ViewModel;
 import com.example.connect4.DataStructures.CellData;
 import com.example.connect4.PlayerOperations.Player;
 
+import java.sql.Array;
 import java.util.ArrayList;
 
 public class GameData extends ViewModel {
 
-    private final MutableLiveData<ArrayList<CellData>> recyclerDataArrayList;
+    private final MutableLiveData<ArrayList<CellData>> recyclerDataArrayListVM;
 
     private final MutableLiveData<Integer> displayedFragment;
     private final MutableLiveData<Integer> selectedGameMode;
@@ -32,7 +33,7 @@ public class GameData extends ViewModel {
     private final MutableLiveData<Integer> playerTurn;
 
     public GameData(){
-        recyclerDataArrayList = new MutableLiveData<>();
+        recyclerDataArrayListVM = new MutableLiveData<>();
 
         displayedFragment = new MediatorLiveData<>();
         selectedGameMode = new MediatorLiveData<>();
@@ -59,6 +60,13 @@ public class GameData extends ViewModel {
 
         gridRows = new MutableLiveData<>();
         gridColumns = new MutableLiveData<>();
+    }
+
+    public LiveData<ArrayList<CellData>> getRecyclerDataArrayListVM() {
+        return recyclerDataArrayListVM;
+    }
+    public void setRecyclerDataArrayListVM(ArrayList<CellData> value) {
+        recyclerDataArrayListVM.setValue(value);
     }
 
     public LiveData<Integer> getDisplayedFragment() {return displayedFragment;}

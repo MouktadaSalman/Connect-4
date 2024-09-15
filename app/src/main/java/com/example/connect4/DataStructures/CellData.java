@@ -4,19 +4,20 @@ import com.example.connect4.R;
 
 public class CellData {
     // Fields or attributes.
-//    private String colour;
+    private String colour;
     private int rowPosition;
     private int colPosition;
     private int imageId;
     private boolean isEmpty;
 
     // Constructor
-    public CellData(int inImageId, int rowPosition, int colPosition) {
+    public CellData(int inImageid, int rowPosition, int colPosition, String colour) {
 //        this.colour = colour;
         this.rowPosition = rowPosition;
         this.colPosition = colPosition;
-        this.imageId = inImageId;
+        this.imageId = inImageid;
         this.isEmpty = true;
+        this.colour = colour;
     }
 
     // Accessor
@@ -60,5 +61,12 @@ public class CellData {
     public boolean isEmpty() { return isEmpty; }
 
     public void setEmpty(boolean empty) { isEmpty = empty; }
+
+    public String getColour() {
+        return colour;
+    }
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
 
 }
