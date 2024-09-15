@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.example.connect4.GameData;
 import com.example.connect4.R;
@@ -102,19 +103,68 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                         // Display a message showing the cell's position
                         Toast.makeText(view.getContext(), "Cell position: " + i, Toast.LENGTH_SHORT).show();
 
-                        // Check the current player's turn and update the cell's image accordingly
-                        if (currentTurn == 1) {
-                            // Player 1's turn: set the image to 'filled_box'
-                            nextCell.setImageId(R.drawable.filled_box);
-                            j = 2; // Set the next turn to player 2
-                        } else if (currentTurn == 2) {
-                            // Player 2's turn: set the image to 'mouktada_great_circle'
-                            nextCell.setImageId(R.drawable.mouktada_great_circle);
-                            j = 1; // Set the next turn to player 1
-                        }
+                        int gameMode = gameDataViewModel.getSelectedGameMode().getValue();
 
-                        // Update the game data model with the new player turn
-                        gameDataViewModel.setPlayerTurn(j);
+                        /* This is for two-player game mode. */
+                        /* ------------------------------------------------------------------------------------ */
+                        if (gameMode == 1) {
+                            // Check the current player's turn and update the cell's image accordingly
+                            if (currentTurn == 1) {
+                                // Player 1's turn: set the image to 'filled_box'
+                                nextCell.setImageId(R.drawable.filled_box);
+                                j = 2; // Set the next turn to player 2
+                            } else if (currentTurn == 2) {
+                                // Player 2's turn: set the image to 'mouktada_great_circle'
+                                nextCell.setImageId(R.drawable.mouktada_great_circle);
+                                j = 1; // Set the next turn to player 1
+                            }
+
+                            // Update the game data model with the new player turn
+                            gameDataViewModel.setPlayerTurn(j);
+                        }
+                        /* ------------------------------------------------------------------------------------ */
+
+
+                        /* This is single player game mode. */
+                        /* ------------------------------------------------------------------------------------ */
+                        // When player vs AI, there is no such thing as turns.
+                        // AI immediately places circle after player does.
+                        if (gameMode == 2) {
+                            // Player makes their move (this logic should be placed before the AI move)
+                            nextCell.setImageId(R.drawable.filled_box);
+
+                            // AI Move - Random column selection
+                            Random random = new Random();
+                            int randomColumn = random.nextInt(numOfColumns);
+
+                            // Start from the bottom row in the selected column and move up
+                            for (int row = (cellDataArrayList.size() / numOfColumns) - 1; row >= 0; row--) {
+                                int position = row * numOfColumns + randomColumn;  // Get the position in the array
+
+                                // Check if the cell is empty
+                                if (cellDataArrayList.get(position).getImageId() == R.drawable.empty_cell) {
+                                    // Place the AI's piece
+                                    cellDataArrayList.get(position).setImageId(R.drawable.mouktada_great_circle);
+
+                                    // Mark the cell as no longer valid (cannot place more pieces here)
+                                    cellDataArrayList.get(position).setIsValid(false);
+
+                                    // Mark the cell above as valid if it exists
+                                    if (row > 0) {
+                                        cellDataArrayList.get((row - 1) * numOfColumns + randomColumn).setIsValid(true);
+                                    }
+
+                                    // Log the position for testing purposes
+                                    Log.d("Testing", "AI placed in position: " + position);
+
+                                    // Notify the adapter to refresh the UI for this position
+                                    notifyItemChanged(position);
+
+                                    break;  // AI has made its move, exit the loop
+                                }
+                            }
+                        }
+                        /* ------------------------------------------------------------------------------------ */
                     }
 
 
