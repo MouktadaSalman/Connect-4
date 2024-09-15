@@ -31,9 +31,12 @@ public class GameData extends ViewModel {
         player2 = new MediatorLiveData<>();
         selectedPlayer = new MutableLiveData<>();
 
+        //Initially no player selected
+        setSelectedPlayer(0);
+
         // Initialise basic player profiles
-        player1.setValue(new Player("player1", R.drawable.profile_button));
-        player2.setValue(new Player("player2", R.drawable.profile_button));
+        setPlayer1(new Player("Player#1", R.drawable.profile_button));
+        setPlayer2(new Player("Player#2", R.drawable.profile_button));
 
         player1Avatar = new MutableLiveData<>();
         player2Avatar = new MutableLiveData<>();

@@ -32,10 +32,9 @@
         android:inputType="text"
         android:fontFamily="@font/bubbly_font"
         android:textColor="@color/material_dynamic_neutral20"
-        android:textSize="30sp"
         android:gravity="center"
         android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMinTextSize="5sp"
         android:autoSizeMaxTextSize="30sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/CPFGrid"
@@ -129,16 +128,21 @@
 
     <Button
         android:id="@+id/CustomizeSaveButton"
-        android:layout_width="131dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/oval_button"
         android:fontFamily="@font/bubbly_font"
         android:text="@string/saveButton"
+        android:gravity="center"
+        android:padding="5dp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="5sp"
+        android:autoSizeMaxTextSize="30sp"
         android:textColor="@color/material_dynamic_neutral20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/CPFGrid2" />
+        app:layout_constraintTop_toBottomOf="@id/CPFGrid2"
+        app:layout_constraintDimensionRatio="3:1"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

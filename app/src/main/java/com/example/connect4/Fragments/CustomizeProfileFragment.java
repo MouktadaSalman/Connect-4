@@ -43,9 +43,6 @@ public class CustomizeProfileFragment extends Fragment {
         a5 = view.findViewById(R.id.CPFAvatar5);
         a6 = view.findViewById(R.id.CPFAvatar6);
 
-        //Set the player name
-        checkedP.setPlayerName(playerName.getText().toString());
-
         gameDataViewModel.getSelectedPlayer().observe(getViewLifecycleOwner(),
         new Observer<Integer>() {
             @Override
@@ -166,6 +163,12 @@ public class CustomizeProfileFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Set the player name
+                checkedP.setPlayerName(playerName.getText().toString());
+
+                //Reset selected player
+                gameDataViewModel.setSelectedPlayer(0);
+
                 //Remove this fragment
                 requireActivity().getSupportFragmentManager()
                         .beginTransaction()
@@ -184,7 +187,6 @@ public class CustomizeProfileFragment extends Fragment {
         if(p != null){
             checkedP = p.getValue();
 
-            assert checkedP != null;
             playerName.setText(checkedP.getPlayerName());
 
             int avatarID = checkedP.getPlayerAvatar();
@@ -200,7 +202,6 @@ public class CustomizeProfileFragment extends Fragment {
         if(p != null){
             checkedP = p.getValue();
 
-            assert checkedP != null;
             playerName.setText(checkedP.getPlayerName());
 
             int avatarID = checkedP.getPlayerAvatar();
