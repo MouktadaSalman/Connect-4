@@ -28,6 +28,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
     private int numOfColumns;
     Player player1;
     Player player2;
+    private int leftTurns;
+    private Toast curToast = null;
 
     /* Constructor for the RecyclerViewAdapter */
     /* -------------------------------------------------------------------------------------------------------------- */
@@ -38,6 +40,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
         this.numOfColumns = gameDataViewModel.getGridColumns().getValue();
         player1 = gameDataViewModel.getPlayer1().getValue();
         player2 = gameDataViewModel.getPlayer2().getValue();
+        leftTurns = cellDataArrayList.size();
 
         /* Each cellData is intialised to a valid value. */
         /* --------------------------------------- */
@@ -81,8 +84,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                 // Get the current player's turn from the game data model
                 int currentTurn = gameDataViewModel.getPlayerTurn().getValue();
 
-                Player currentPlayer = (currentTurn == 1) ? player1 : player2;
 
+                Player currentPlayer = (currentTurn == 1) ? gameDataViewModel.getPlayer1().getValue() : gameDataViewModel.getPlayer2().getValue();
+               
                 // Added: Check if the player is valid (non-null)
                 if (currentPlayer == null) {
                     return;
@@ -124,10 +128,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                         Toast.makeText(view.getContext(), "Player " + currentTurn + " wins!", Toast.LENGTH_SHORT).show();
 
                         if (currentTurn == 1) {
+                            leftTurns--;
                             player1.addWin();
                             player2.addLoss();
                             gameDataViewModel.setWinner(player1.getPlayerName());
                         } else {
+                            leftTurns--;
                             player2.addWin();
                             player1.addLoss();
                             gameDataViewModel.setWinner(player2.getPlayerName());
@@ -145,8 +151,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                     // When player vs AI, there is no such thing as turns.
                     // AI immediately places circle after player does.
                     if (gameMode == 2 && nextTurn == 2) {
+                        leftTurns-=2;
                         makeAIMove();
                     }
+
+                    if (curToast != null) {
+                        curToast.cancel();
+                    }
+
+                    curToast = Toast.makeText(view.getContext(), leftTurns + " Turns Left!", Toast.LENGTH_SHORT);
+                    curToast.show();
+
                     /* ------------------------------------------------------------------------------------ */
                 }
             }

@@ -218,17 +218,18 @@ public class MainActivity extends AppCompatActivity {
             // Fragment is already added, no need to add it again
             return;
         }
-        else{
+        else if(existingFragment == null){
             fm.beginTransaction()
                     .add(R.id.fragment_pause_overlay, endGameFragment, "EndGameFragmentTag")
                     .addToBackStack(null)
                     .commit();
+        }else{
+            fm.beginTransaction()
+                    .replace(R.id.fragment_pause_overlay, endGameFragment, "EndGameFragmentTag")
+                    .addToBackStack(null)
+                    .commit();
         }
 
-        fm.beginTransaction()
-                .replace(R.id.fragment_pause_overlay, endGameFragment, "EndGameFragmentTag")
-                .addToBackStack(null)
-                .commit();
     }
     /* ----------------------------------------------------------------------------------------------------------- */
 }
