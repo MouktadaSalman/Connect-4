@@ -2,12 +2,12 @@
     android:shape="oval" >
 
     <!-- Outer ring or border of the token -->
-    <solid android:color="#F4DD15" /> <!-- Change to yellow or any color you need, e.g., #FFFF00 for yellow -->
+    <solid android:color="#262525" /> <!-- Change to yellow or any color you need, e.g., #FFFF00 for yellow -->
 
     <!-- Optional stroke for border -->
     <stroke
         android:width="4dp"
-        android:color="#A09216" /> <!-- Darker shade for the border (optional) -->
+        android:color="#9B1010" /> <!-- Darker shade for the border (optional) -->
 
     <!-- Size of the token -->
     <size

@@ -178,7 +178,7 @@ public class CustomizeProfileFragment extends Fragment {
         c3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkedP.setColourID(R.drawable.yellowdisk);  // Assuming disk3 represents a color
+                checkedP.setColourID(R.drawable.redblackdisk);  // Assuming disk3 represents a color
                 disableColourButton(c3);
                 enableColourButton(c1);
                 enableColourButton(c2);
@@ -217,7 +217,7 @@ public class CustomizeProfileFragment extends Fragment {
         c6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkedP.setColourID(R.drawable.greendisk);  // Assuming disk6 represents a color
+                checkedP.setColourID(R.drawable.pinkdisk);  // Assuming disk6 represents a color
                 disableColourButton(c6);
                 enableColourButton(c1);
                 enableColourButton(c2);

@@ -23,14 +23,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.56" />
+        app:layout_constraintGuide_percent="0.6" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/CPFGrid3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.72" />
+        app:layout_constraintGuide_percent="0.8" />
 
     <!-- Name Input Field -->
     <EditText
@@ -147,7 +147,7 @@
         android:background="@drawable/circle"
         android:contentDescription="Disk Button 1"
         android:scaleType="centerCrop"
-        android:src="@drawable/mouktada_great_circle"
+        android:src="@drawable/pinkdisk"
         app:layout_constraintBottom_toTopOf="@id/diskButton4"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@id/diskButton2"
@@ -175,7 +175,7 @@
         android:background="@drawable/circle"
         android:contentDescription="Disk Button 3"
         android:scaleType="centerCrop"
-        android:src="@drawable/yellowdisk"
+        android:src="@drawable/mouktada_great_circle"
         app:layout_constraintBottom_toTopOf="@id/diskButton6"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -206,7 +206,7 @@
         android:background="@drawable/circle"
         android:contentDescription="Disk Button 5"
         android:scaleType="centerCrop"
-        android:src="@drawable/purpledisk"
+        android:src="@drawable/redblackdisk"
         app:layout_constraintBottom_toBottomOf="@id/CPFGrid3"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@id/diskButton6"
@@ -221,7 +221,7 @@
         android:background="@drawable/circle"
         android:contentDescription="Disk Button 6"
         android:scaleType="centerCrop"
-        android:src="@drawable/greendisk"
+        android:src="@drawable/purpledisk"
         app:layout_constraintBottom_toBottomOf="@id/CPFGrid3"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
