@@ -82,6 +82,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
         });
     }
 
+    public void resetCellImage(ArrayList<CellData> newData) {
+        cellDataArrayList = newData;
+
+
+    }
+
     @Override
     public int getItemCount() {
         return cellDataArrayList.size();

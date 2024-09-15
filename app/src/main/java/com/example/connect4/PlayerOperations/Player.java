@@ -18,7 +18,7 @@ public class Player {
      * winPercent -> the player winPercent (both against ai + other player)
      */
     private final String playerName;
-    private final String playerAvatar;
+    private final int playerAvatar;
     private int wins;
     private int loss;
     private int totalGames;
@@ -29,7 +29,7 @@ public class Player {
      * Description: The constructor of the class    *
      * Parameters: pName (string), pAvatar (string) *
      *----------------------------------------------*/
-    public Player(String pName, String pAvatar){
+    public Player(String pName, int pAvatar){
         playerName = pName;
         playerAvatar = pAvatar;
         wins = 0;
@@ -54,7 +54,7 @@ public class Player {
      * Parameters: none                             *
      * Result: playerAvatar (String)                *
      *----------------------------------------------*/
-    public String getPlayerAvatar(){
+    public int getPlayerAvatar(){
         return playerAvatar;
     }
 
