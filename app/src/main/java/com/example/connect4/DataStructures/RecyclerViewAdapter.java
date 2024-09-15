@@ -203,7 +203,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
         notifyItemChanged(finalPosition);
 
         if (checkForWin(finalPosition, 2)) {
-            Toast.makeText(view.getContext(), "AI wins!", Toast.LENGTH_SHORT).show();
             player2.addWin();
             player1.addLoss();
             gameDataViewModel.setWinner("AI");
