@@ -9,8 +9,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import com.example.connect4.GameData;
@@ -20,11 +23,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
     private ArrayList<CellData> cellDataArrayList;
     private double height;
     private GameData gameDataViewModel;
+    private int numOfColumns;
 
     public RecyclerViewAdapter(ArrayList<CellData> cellDataArrayList, double inHeight, GameData gameDataViewModel) {
         this.cellDataArrayList = cellDataArrayList;
         this.height = inHeight;
         this.gameDataViewModel = gameDataViewModel;
+        this.numOfColumns = gameDataViewModel.getGridColumns().getValue();
+
+        CellData cellData;
+        int arraySize = cellDataArrayList.size();
+        for(int i = 0; i < arraySize; i++){
+            cellData = cellDataArrayList.get(i);
+            if (i >= arraySize-numOfColumns){
+                cellData.setIsValid(true);
+            }
+        }
     }
 
     @NonNull
@@ -38,6 +52,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
     @Override
     public void onBindViewHolder(@NonNull CellDataViewHolder holder, int position) {
         CellData cellData = cellDataArrayList.get(position);
+
         holder.cellDataView.setImageResource(cellData.getImageId());
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         layoutParams.height = (int) height;  // Set the row height dynamically
@@ -51,41 +66,40 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                 /* Game logic is housed here. */
                 /* --------------------------------------------------------------------- */
                 // This is a block of code responsible for the turns.
-                if (currentTurn == 1) {
-                    /* This block is responsible for 'dropping' the balls to the bottom-most position. */
-                    /* ------------------------------------------------------------------------ */
-                    if (cellData.getRowPosition() < 7) {
-                        for (int r = 7; r >= 0; r--) {
-                            if (cellData.getRowPosition() == r)
-                                if (cellData.getImageId() == R.drawable.empty_cell) {
-                                    holder.cellDataView.setImageResource(R.drawable.filled_box);
-                                    gameDataViewModel.setPlayerTurn(2);
-                                }
+                int cellPosition = holder.getBindingAdapterPosition();
+                CellData nextCell;
+                int j = 1;
+                for (int i = cellPosition; i < cellDataArrayList.size(); i+=numOfColumns){
+
+                    nextCell = cellDataArrayList.get(i);
+
+                    if (nextCell.getIsValid()){
+
+                        nextCell.setIsValid(false);
+
+                        if(i-numOfColumns >= 0) {
+
+                            cellDataArrayList.get(i-numOfColumns).setIsValid(true);
                         }
-                    }
-                    /* ------------------------------------------------------------------------ */
-                } else if (currentTurn == 2) {
-                    if (cellData.getRowPosition() < 7) {
-                        for (int i = 7; i >= 0; i--) {
-                            if (cellData.getImageId() == R.drawable.empty_cell) {
-                                holder.cellDataView.setImageResource(R.drawable.logomc);
-                                gameDataViewModel.setPlayerTurn(1);
-                            }
+
+                        Toast.makeText(view.getContext(), "Cell position: " + i, Toast.LENGTH_SHORT).show();
+                        if (currentTurn == 1){
+
+                            nextCell.setImageId(R.drawable.filled_box);
+                            j = 2; // to set the player turn to 2 and assign to data view model after checks
                         }
+                        else if (currentTurn == 2){
+
+                            j = 1; // to set the player turn to 1 and assign to data view model after checks
+                            nextCell.setImageId(R.drawable.mouktada_great_circle);
+                        }
+                        gameDataViewModel.setPlayerTurn(j);
                     }
+                    notifyItemChanged(i);
                 }
                 /* --------------------------------------------------------------------- */
-
-                //holder.cellDataView.setImageResource(R.drawable.filled_box);
-                Toast.makeText(view.getContext(), "Cell clicked:  " + cellData.getRowPosition() + ", " + cellData.getColPosition(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    public void resetCellImage(ArrayList<CellData> newData) {
-        cellDataArrayList = newData;
-
-
     }
 
     @Override
