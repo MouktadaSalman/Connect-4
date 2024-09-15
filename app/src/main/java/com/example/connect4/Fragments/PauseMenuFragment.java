@@ -6,6 +6,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -32,6 +33,17 @@ public class PauseMenuFragment extends Fragment {
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Removing the GameBoardFragment
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                Fragment gameBoardFragment = fragmentManager.findFragmentById(R.id.fragment_game_board_container);
+                Fragment toolBoardFragment = fragmentManager.findFragmentById(R.id.fragment_tool_bar_container);
+
+                if (gameBoardFragment != null && toolBoardFragment != null) {
+                    fragmentManager.beginTransaction()
+                            .remove(gameBoardFragment)
+                            .remove(toolBoardFragment)
+                            .commit();
+                }
                 gameDataViewModel.setDisplayedFragment(0);
             }
         });
@@ -40,7 +52,18 @@ public class PauseMenuFragment extends Fragment {
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameDataViewModel.setDisplayedFragment(1);
+                //Removing the GameBoardFragment
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                Fragment gameBoardFragment = fragmentManager.findFragmentById(R.id.fragment_game_board_container);
+                Fragment toolBoardFragment = fragmentManager.findFragmentById(R.id.fragment_tool_bar_container);
+
+                if (gameBoardFragment != null && toolBoardFragment != null) {
+                    fragmentManager.beginTransaction()
+                            .remove(gameBoardFragment)
+                            .remove(toolBoardFragment)
+                            .commit();
+                }
+                gameDataViewModel.setDisplayedFragment(3);
             }
         });
 

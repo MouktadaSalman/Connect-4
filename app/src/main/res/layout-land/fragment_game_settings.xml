@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/GameSettings"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#064C56"
+    tools:context=".MainActivity">
+
+    <!-- Adjusted horizontal guideline for landscape mode -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/SettingsMenuGrid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/selectGameMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pixel"
+        android:gravity="center"
+        android:text="Select The Game Mode"
+        android:textColor="#5BC5BA"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/pVsPButton" />
+
+    <Button
+        android:id="@+id/pVsPButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/oval_button"
+        android:fontFamily="@font/pixel"
+        android:text="Player VS Player"
+        android:textColor="#5BC5BA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selectGameMode"
+        app:layout_constraintBottom_toTopOf="@id/pVsAiButton" />
+
+    <!-- TextView to select grid size adjusted for landscape mode -->
+    <Button
+        android:id="@+id/pVsAiButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/oval_button"
+        android:fontFamily="@font/pixel"
+        android:text="Player VS Ai"
+        android:textColor="#5BC5BA"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pVsPButton" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pixel"
+        android:gravity="center"
+        android:text="Select grid size of game"
+        android:textColor="#5BC5BA"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@id/SettingsMenuGrid" />
+
+    <!-- Buttons for grid size, horizontally aligned -->
+
+    <!-- Back button adjusted for landscape -->
+
+    <Button
+        android:id="@+id/smallGrid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/oval_button"
+        android:fontFamily="@font/pixel"
+        android:padding="5dp"
+        android:text="small grid"
+        android:textColor="#5BC5BA"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <Button
+        android:id="@+id/mediumGrid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/oval_button"
+        android:fontFamily="@font/pixel"
+        android:padding="5dp"
+        android:text="medium grid"
+        android:textColor="#5BC5BA"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@id/smallGrid"
+        app:layout_constraintTop_toTopOf="@id/guideline" />
+
+    <Button
+        android:id="@+id/largeGrid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/oval_button"
+        android:fontFamily="@font/pixel"
+        android:padding="5dp"
+        android:text="large grid"
+        android:textColor="#5BC5BA"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintStart_toEndOf="@id/mediumGrid"
+        app:layout_constraintTop_toTopOf="@id/guideline" />
+
+    <Button
+        android:id="@+id/SettingsBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/oval_button"
+        android:fontFamily="@font/pixel"
+        android:text="Back"
+        android:textColor="#5BC5BA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mediumGrid"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="36dp" />
+
+    <!-- Horizontal guideline adjusted for landscape -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.58" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
