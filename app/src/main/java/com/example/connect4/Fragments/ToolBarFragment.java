@@ -76,7 +76,6 @@ public class ToolBarFragment extends Fragment {
             @Override
             public void onChanged(String name) {
 
-
                 PlayerTwoInfo.setText(name);
             }
         });

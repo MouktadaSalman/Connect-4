@@ -51,8 +51,6 @@ public class SelectPlayerToCustomizeFragment extends Fragment {
         ImageView avatar5P2 = view.findViewById(R.id.avatar5P2);
         ImageView avatar6P2 = view.findViewById(R.id.avatar6P2);
 
-
-
         // Saving avatar selections and names from GameData
         gameDataViewModel.getPlayer1Avatar().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
