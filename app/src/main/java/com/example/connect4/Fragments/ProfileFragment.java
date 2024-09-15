@@ -5,13 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -21,23 +19,26 @@ import com.example.connect4.GameData;
 import com.example.connect4.PlayerOperations.Player;
 import com.example.connect4.R;
 
-public class SelectPlayerToCustomizeFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
     private GameData gameDataViewModel;
     private ImageView avatarP1, avatarP2;
     private TextView p1NameEditText, p1Ratio, p1TotGames, p1Wins, p1Loss;
     private TextView p2NameEditText, p2Ratio, p2TotGames, p2Wins, p2Loss;
     private Player updatingPlayer1, updatingPlayer2;
+    private View p2CustomButton, overlayView2;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_select_player_to_customize, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
         gameDataViewModel = new ViewModelProvider(requireActivity()).get(GameData.class);
 
         View p1CustomButton = view.findViewById(R.id.player1button);
-        View p2CustomButton = view.findViewById(R.id.player2button);
+        p2CustomButton = view.findViewById(R.id.player2button);
         Button backButton = view.findViewById(R.id.ProfileBackButton);
+
+        overlayView2 = p2CustomButton.findViewById(R.id.overlay_view);
 
         //Get access to modify custom button details
         avatarP1 = p1CustomButton.findViewById(R.id.CPBAvatar);
@@ -55,15 +56,34 @@ public class SelectPlayerToCustomizeFragment extends Fragment {
         p2Loss = p2CustomButton.findViewById(R.id.CPBLossRes2);
 
         gameDataViewModel.getSelectedPlayer().observe(getViewLifecycleOwner(),
-                new Observer<Integer>() {
-                    @Override
-                    public void onChanged(Integer integer) {
-                        //If user finish customise
-                        if (integer == 0){
-                            getInitialPlayerDetails();
-                        }
-                    }
-                });
+        new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                //If user finish customise
+                if (integer == 0){
+                    getInitialPlayerDetails();
+                }
+            }
+        });
+
+        gameDataViewModel.getSelectedGameMode().observe(getViewLifecycleOwner(),
+        new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                //Check if the game mode is PvP or PvAi
+                if(integer == 2){
+                    //Disable 2nd player customization
+                    p2CustomButton.setEnabled(false);
+                    overlayView2.setVisibility(View.VISIBLE);
+                    avatarP2.setColorFilter(0x77000000);
+                }
+                else {
+                    p2CustomButton.setEnabled(true);
+                    overlayView2.setVisibility(View.GONE);
+                    avatarP2.clearColorFilter();
+                }
+            }
+        });
 
         p1CustomButton.setOnClickListener(new View.OnClickListener() {
             @Override

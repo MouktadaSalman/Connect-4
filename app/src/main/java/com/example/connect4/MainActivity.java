@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.connect4.Fragments.CustomizeProfileFragment;
 import com.example.connect4.Fragments.GameSettingsFragment;
 import com.example.connect4.Fragments.MainMenuFragment;
-import com.example.connect4.Fragments.SelectPlayerToCustomizeFragment;
+import com.example.connect4.Fragments.ProfileFragment;
 import com.example.connect4.Fragments.GameBoardFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     /* ------------------------------------------------------------------------------------------------------- */
     MainMenuFragment mainMenuFragment = new MainMenuFragment();
     GameSettingsFragment gameSettingsFragment = new GameSettingsFragment();
-    SelectPlayerToCustomizeFragment selectPlayerToCustomizeFragment = new SelectPlayerToCustomizeFragment();
+    ProfileFragment selectPlayerToCustomizeFragment = new ProfileFragment();
     CustomizeProfileFragment customizeProfileFragment = new CustomizeProfileFragment();
     GameBoardFragment gameBoardFragment = new GameBoardFragment();
     /* ------------------------------------------------------------------------------------------------------- */
@@ -54,15 +54,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if (integer == 2) {
                     loadPlayerToCustomizeFragment();
-                    gameDataViewModel.getSelectedPlayer().observe(MainActivity.this,
-                    new Observer<Integer>() {
-                        @Override
-                        public void onChanged(Integer value) {
-                            if(value == 1 || value == 2){
-                                loadCustomizeFragment();
-                            }
-                        }
-                    });
                 }
                 else if (integer == 3) {
                     // Get the board selected
@@ -70,6 +61,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        gameDataViewModel.getSelectedPlayer().observe(MainActivity.this,
+                new Observer<Integer>() {
+                    @Override
+                    public void onChanged(Integer value) {
+                        if(value == 1 || value == 2){
+                            loadCustomizeFragment();
+                        }
+                    }
+                });
         /* ------------------------------------------------------------------------------------------------------- */
 
     }
@@ -107,7 +108,9 @@ public class MainActivity extends AppCompatActivity {
     private void loadPlayerToCustomizeFragment(){
         Fragment frag = fm.findFragmentById(R.id.fragment_fill_screen_container);
         if (frag == null){
-            fm.beginTransaction().add(R.id.fragment_fill_screen_container, selectPlayerToCustomizeFragment).addToBackStack(null).commit();
+            fm.beginTransaction()
+                    .add(R.id.fragment_fill_screen_container, selectPlayerToCustomizeFragment)
+                    .addToBackStack(null).commit();
         }
         else{
             if (fm.getBackStackEntryCount() > 0) {
@@ -120,13 +123,18 @@ public class MainActivity extends AppCompatActivity {
     private void loadCustomizeFragment(){
         Fragment frag = fm.findFragmentById(R.id.fragment_endgame_container);
         if (frag == null){
-            fm.beginTransaction().add(R.id.fragment_endgame_container, customizeProfileFragment).addToBackStack(null).commit();
+            fm.beginTransaction()
+                    .add(R.id.fragment_endgame_container, customizeProfileFragment)
+                    .addToBackStack(null)
+                    .commit();
         }
         else{
             if (fm.getBackStackEntryCount() > 0) {
                 fm.popBackStackImmediate();
             }
-            fm.beginTransaction().replace(R.id.fragment_endgame_container, customizeProfileFragment).commit();
+            fm.beginTransaction()
+                    .replace(R.id.fragment_endgame_container, customizeProfileFragment)
+                    .commit();
         }
     }
 

@@ -16,6 +16,14 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.3"/>
 
+    <!-- Semi-transparent overlay -->
+    <View
+        android:id="@+id/overlay_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/overlay"
+        android:visibility="gone" />
+
     <ImageView
         android:id="@+id/CPBAvatar2"
         android:layout_width="0dp"
