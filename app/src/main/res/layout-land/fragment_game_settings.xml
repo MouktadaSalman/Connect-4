@@ -54,7 +54,6 @@
         android:textColor="#5BC5BA"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pVsPButton" />
 
@@ -78,8 +77,6 @@
         android:id="@+id/smallGrid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="20dp"
         android:background="@drawable/oval_button"
         android:fontFamily="@font/pixel"
         android:padding="5dp"
@@ -87,14 +84,14 @@
         android:textColor="#5BC5BA"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@id/mediumGrid"
+        app:layout_constraintBottom_toTopOf="@id/SettingsBackButton"/>
 
     <Button
         android:id="@+id/mediumGrid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="20dp"
         android:background="@drawable/oval_button"
         android:fontFamily="@font/pixel"
         android:padding="5dp"
@@ -102,14 +99,14 @@
         android:textColor="#5BC5BA"
         android:textSize="16dp"
         app:layout_constraintStart_toEndOf="@id/smallGrid"
-        app:layout_constraintTop_toTopOf="@id/guideline" />
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        app:layout_constraintBottom_toTopOf="@id/SettingsBackButton"
+        app:layout_constraintEnd_toStartOf="@id/largeGrid"/>
 
     <Button
         android:id="@+id/largeGrid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="20dp"
         android:background="@drawable/oval_button"
         android:fontFamily="@font/pixel"
         android:padding="5dp"
@@ -117,9 +114,9 @@
         android:textColor="#5BC5BA"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.088"
         app:layout_constraintStart_toEndOf="@id/mediumGrid"
-        app:layout_constraintTop_toTopOf="@id/guideline" />
+        app:layout_constraintTop_toTopOf="@id/guideline"
+        app:layout_constraintBottom_toTopOf="@id/SettingsBackButton"/>
 
     <Button
         android:id="@+id/SettingsBackButton"
@@ -132,8 +129,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mediumGrid"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="36dp" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <!-- Horizontal guideline adjusted for landscape -->
     <androidx.constraintlayout.widget.Guideline
