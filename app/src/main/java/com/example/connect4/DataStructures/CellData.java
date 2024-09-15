@@ -1,54 +1,54 @@
 package com.example.connect4.DataStructures;
 
-import com.example.connect4.R;
-
 public class CellData {
-    // Fields or attributes.
-    private String colour;
-    private int rowPosition;
-    private int colPosition;
+    /* Class Fields:
+     * imageId -> Stores the image (Example: R.drawable.image).
+     * isValid -> Used to check if a grid is valid to determine if circle can be placed.
+     */
     private int imageId;
     private boolean isValid;
-    private int positionInArray;
 
-    // Constructor
-    public CellData(int inImageid, int rowPosition, int colPosition, String colour) {
-        this.rowPosition = rowPosition;
-        this.colPosition = colPosition;
-        this.imageId = inImageid;
+    /*----------------------------------------------*
+     * Constructor: CellData                        *
+     * Description: The constructor of the class    *
+     * Parameters: inImageId (int)                  *
+     *----------------------------------------------*/
+    public CellData(int inImageId) {
+        this.imageId = inImageId;
         this.isValid = false;
     }
 
-    public void resetImage(){
-        imageId = R.drawable.empty_cell;
-        isValid = false;
-    }
-
-    // Accessor
-    public int getRowPosition() {
-        return rowPosition;
-    }
-    // Mutator
-    public void setRowPosition(int rowPosition) {
-        this.rowPosition = rowPosition;
-    }
-
-    // Accessor
-    public int getColPosition() {
-        return colPosition;
-    }
-    // Mutator
-    public void setColPosition(int colPosition) {
-        this.colPosition = colPosition;
-    }
-
+    /*----------------------------------------------*
+     * Method: getImageId                           *
+     * Description: Gets image ID                   *
+     * Parameters: none                             *
+     * Result: imageId (int)                        *
+     *----------------------------------------------*/
     public int getImageId() {
         return imageId;
     }
 
+    /*----------------------------------------------*
+     * Method: setImageId                           *
+     * Description: Sets image ID                   *
+     * Parameters: imageId (int)                    *
+     * Result: none                                 *
+     *----------------------------------------------*/
     public void setImageId(int imageId) { this.imageId = imageId; }
 
+    /*----------------------------------------------*
+     * Method: setIsValid                           *
+     * Description: Sets validity of a grid.        *
+     * Parameters: validity (boolean)               *
+     * Result: none                                 *
+     *----------------------------------------------*/
     public void setIsValid(boolean validity) { isValid = validity; }
 
+    /*----------------------------------------------*
+     * Method: getIsValid                           *
+     * Description: Gets validity of a grid.        *
+     * Parameters: none                             *
+     * Result: isValid (boolean)                    *
+     *----------------------------------------------*/
     public boolean getIsValid() { return isValid; }
 }

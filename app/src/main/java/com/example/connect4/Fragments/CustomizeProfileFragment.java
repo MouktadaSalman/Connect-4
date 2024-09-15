@@ -20,11 +20,14 @@ import com.example.connect4.GameData;
 import com.example.connect4.PlayerOperations.Player;
 import com.example.connect4.R;
 
-
 public class CustomizeProfileFragment extends Fragment {
+    // ViewModel that stores the game data
     private GameData gameDataViewModel;
+    // EditText for inputting the player's name
     private EditText playerName;
     private ImageButton a1, a2, a3, a4, a5, a6, c1, c2, c3, c4, c5, c6;
+    // ImageButtons representing the avatar choice
+    // The currently selected player object
     private Player checkedP;
 
     @Nullable
@@ -33,9 +36,11 @@ public class CustomizeProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_customize_profile, container, false);
         gameDataViewModel = new ViewModelProvider(requireActivity()).get(GameData.class);
 
+        // Initialize UI components
         playerName = view.findViewById(R.id.CPFNameText);
         Button saveButton = view.findViewById(R.id.customizeSaveButton);
 
+        // Avatar selection buttons
         a1 = view.findViewById(R.id.CPFAvatar1);
         a2 = view.findViewById(R.id.CPFAvatar2);
         a3 = view.findViewById(R.id.CPFAvatar3);
@@ -50,124 +55,97 @@ public class CustomizeProfileFragment extends Fragment {
         c5 = view.findViewById(R.id.diskButton5);
         c6 = view.findViewById(R.id.diskButton6);
 
+        // Observe changes in the selected player (1 or 2)
         gameDataViewModel.getSelectedPlayer().observe(getViewLifecycleOwner(),
-        new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer integer) {
-                if (integer == 1) {
-                    updatePlayer1();
-                    gameDataViewModel.setPlayer1(checkedP);
-                }
-                if (integer == 2) {
-                    updatePlayer2();
-                    gameDataViewModel.setPlayer2(checkedP);
-                }
-            }
-        });
+                new Observer<Integer>() {
+                    @Override
+                    public void onChanged(Integer integer) {
+                        // When player 1 is selected, load player 1's data
+                        if (integer == 1) {
+                            updatePlayer1();
+                            gameDataViewModel.setPlayer1(checkedP);
+                        }
+                        // When player 2 is selected, load player 2's data
+                        if (integer == 2) {
+                            updatePlayer2();
+                            gameDataViewModel.setPlayer2(checkedP);
+                        }
+                    }
+                });
 
+        /* Set listeners for avatar buttons to update the selected avatar */
+        /* --------------------------------------------------------------------- */
         a1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Set the selected avatar
+                // Set the selected avatar to avatar 1 and disable this button
                 checkedP.setAvatarID(R.drawable.avatar1);
                 checkedP.setPlayerAvatar(1);
 
 
                 //Disable the button
                 disableAvatarButton(a1);
-                enableAvatarButton(a2);
-                enableAvatarButton(a3);
-                enableAvatarButton(a4);
-                enableAvatarButton(a5);
-                enableAvatarButton(a6);
+                enableAvatarButtonsExcept(a1);
             }
         });
 
         a2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Set the selected avatar
+                // Set the selected avatar to avatar 2 and disable this button
                 checkedP.setAvatarID(R.drawable.avatar2);
                 checkedP.setPlayerAvatar(2);
-
-                //Disable the button
                 disableAvatarButton(a2);
-                enableAvatarButton(a1);
-                enableAvatarButton(a3);
-                enableAvatarButton(a4);
-                enableAvatarButton(a5);
-                enableAvatarButton(a6);
+                enableAvatarButtonsExcept(a2);
             }
         });
 
         a3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Set the selected avatar
+                // Set the selected avatar to avatar 3 and disable this button
                 checkedP.setAvatarID(R.drawable.avatar3);
                 checkedP.setPlayerAvatar(3);
-
-                //Disable the button
                 disableAvatarButton(a3);
-                enableAvatarButton(a2);
-                enableAvatarButton(a1);
-                enableAvatarButton(a4);
-                enableAvatarButton(a5);
-                enableAvatarButton(a6);
+                enableAvatarButtonsExcept(a3);
             }
         });
 
         a4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Set the selected avatar
+                // Set the selected avatar to avatar 4 and disable this button
                 checkedP.setAvatarID(R.drawable.avatar4);
                 checkedP.setPlayerAvatar(4);
-
-                //Disable the button
                 disableAvatarButton(a4);
-                enableAvatarButton(a2);
-                enableAvatarButton(a3);
-                enableAvatarButton(a1);
-                enableAvatarButton(a5);
-                enableAvatarButton(a6);
+                enableAvatarButtonsExcept(a4);
             }
         });
 
         a5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Set the selected avatar
+                // Set the selected avatar to avatar 5 and disable this button
                 checkedP.setAvatarID(R.drawable.avatar5);
                 checkedP.setPlayerAvatar(5);
-
-                //Disable the button
                 disableAvatarButton(a5);
-                enableAvatarButton(a2);
-                enableAvatarButton(a3);
-                enableAvatarButton(a4);
-                enableAvatarButton(a1);
-                enableAvatarButton(a6);
+                enableAvatarButtonsExcept(a5);
             }
         });
 
         a6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Set the selected avatar
+                // Set the selected avatar to avatar 6 and disable this button
                 checkedP.setAvatarID(R.drawable.avatar6);
                 checkedP.setPlayerAvatar(6);
-
-                //Disable the button
                 disableAvatarButton(a6);
-                enableAvatarButton(a2);
-                enableAvatarButton(a3);
-                enableAvatarButton(a4);
-                enableAvatarButton(a5);
-                enableAvatarButton(a1);
+                enableAvatarButtonsExcept(a6);
             }
         });
+        /* --------------------------------------------------------------------- */
 
+        // Save button to update the player's name
 
 
         // Color Selection Listeners
@@ -252,13 +230,13 @@ public class CustomizeProfileFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Set the player name
+                // Set the player's name to the text entered in the EditText
                 checkedP.setPlayerName(playerName.getText().toString());
 
-                //Reset selected player
+                // Reset the selected player
                 gameDataViewModel.setSelectedPlayer(0);
 
-                //Remove this fragment
+                // Remove this fragment after saving the data
                 requireActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .remove(CustomizeProfileFragment.this)
@@ -269,38 +247,32 @@ public class CustomizeProfileFragment extends Fragment {
         return view;
     }
 
-    private void updatePlayer1(){
+    // Update UI with player 1's data
+    private void updatePlayer1() {
         LiveData<Player> p = gameDataViewModel.getPlayer1();
 
-        //Null check
-        if(p != null){
+        if (p != null) {
             checkedP = p.getValue();
-
             playerName.setText(checkedP.getPlayerName());
-
-            int avatarID = checkedP.getPlayerAvatar();
-
-            setupInitialAvState(avatarID);
+            setupInitialAvState(checkedP.getPlayerAvatar());
         }
     }
 
-    private void updatePlayer2(){
+    // Update UI with player 2's data
+    private void updatePlayer2() {
         LiveData<Player> p = gameDataViewModel.getPlayer2();
 
-        //Null check
-        if(p != null){
+        if (p != null) {
             checkedP = p.getValue();
-
             playerName.setText(checkedP.getPlayerName());
-
-            int avatarID = checkedP.getPlayerAvatar();
-
-            setupInitialAvState(avatarID);
+            setupInitialAvState(checkedP.getPlayerAvatar());
         }
     }
 
-    private void setupInitialAvState(int value){
-        switch (value) {
+    /* Set up the initial state of avatar buttons based on the selected avatar */
+    /* -------------------------------------------------------------- */
+    private void setupInitialAvState(int avatarID) {
+        switch (avatarID) {
             case 1:
                 disableAvatarButton(a1);
                 break;
@@ -320,23 +292,41 @@ public class CustomizeProfileFragment extends Fragment {
                 disableAvatarButton(a6);
                 break;
             default:
-                enableAvatarButton(a1);
-                enableAvatarButton(a2);
-                enableAvatarButton(a3);
-                enableAvatarButton(a4);
-                enableAvatarButton(a5);
-                enableAvatarButton(a6);
+                enableAllAvatarButtons();
         }
     }
+    /* -------------------------------------------------------------- */
 
-    private void disableAvatarButton(ImageButton avatar){
+    // Disable a specific avatar button and visually indicate it's been selected
+    private void disableAvatarButton(ImageButton avatar) {
         avatar.setEnabled(false);
-        avatar.setColorFilter(0x77000000);
+        avatar.setColorFilter(0x77000000); // Apply a dark filter to show it's disabled
     }
 
-    private void enableAvatarButton(ImageButton avatar){
+    // Enable a specific avatar button and remove any visual filter
+    private void enableAvatarButton(ImageButton avatar) {
         avatar.setEnabled(true);
         avatar.clearColorFilter();
+    }
+
+    // Enable all avatar buttons
+    private void enableAllAvatarButtons() {
+        enableAvatarButton(a1);
+        enableAvatarButton(a2);
+        enableAvatarButton(a3);
+        enableAvatarButton(a4);
+        enableAvatarButton(a5);
+        enableAvatarButton(a6);
+    }
+
+    // Enable all buttons except the one that was disabled (already selected)
+    private void enableAvatarButtonsExcept(ImageButton disabledAvatar) {
+        if (disabledAvatar != a1) enableAvatarButton(a1);
+        if (disabledAvatar != a2) enableAvatarButton(a2);
+        if (disabledAvatar != a3) enableAvatarButton(a3);
+        if (disabledAvatar != a4) enableAvatarButton(a4);
+        if (disabledAvatar != a5) enableAvatarButton(a5);
+        if (disabledAvatar != a6) enableAvatarButton(a6);
     }
 
 

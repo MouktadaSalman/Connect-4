@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.connect4.Fragments.CustomizeProfileFragment;
+import com.example.connect4.Fragments.EndGameFragment;
 import com.example.connect4.Fragments.GameSettingsFragment;
 import com.example.connect4.Fragments.MainMenuFragment;
 import com.example.connect4.Fragments.ProfileFragment;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     GameBoardFragment gameBoardFragment = new GameBoardFragment();
     ToolBarFragment toolBarFragment = new ToolBarFragment();
     PauseMenuFragment pauseMenuFragment = new PauseMenuFragment();
+    EndGameFragment endGameFragment = new EndGameFragment();
     /* ------------------------------------------------------------------------------------------------------- */
 
     FragmentManager fm = getSupportFragmentManager();
@@ -70,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if (integer == 5){
                     findViewById(R.id.fragment_pause_overlay).setVisibility(View.INVISIBLE);
+                } else if (integer == 6) {
+                    loadEndGameFragment();
                 }
             }
         });
@@ -83,17 +87,17 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-    /* ------------------------------------------------------------------------------------------------------- */
-    /* Anything in this block of code are simply functions used to display fragments. */
-    /* ----------------------------------------------------------------------------------------------------------- */
-
     }
 
+
+    /* Anything in this block of code are simply functions used to display fragments. */
+    /* ----------------------------------------------------------------------------------------------------------- */
     private void loadMainMenuFragment(){
         Fragment frag = fm.findFragmentById(R.id.fragment_fill_screen_container);
 
         findViewById(R.id.fragment_game_board_container).setVisibility(View.INVISIBLE);
         findViewById(R.id.fragment_tool_bar_container).setVisibility(View.INVISIBLE);
+        findViewById(R.id.fragment_pause_overlay).setVisibility(View.GONE);
 
         if (frag == null){
             fm.beginTransaction()
@@ -165,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadGameBoardFragment(){
         Fragment frag = fm.findFragmentById(R.id.fragment_game_board_container);
 
+        findViewById(R.id.fragment_pause_overlay).setVisibility(View.GONE);
         findViewById(R.id.fragment_game_board_container).setVisibility(View.VISIBLE);
 
         if (frag == null){
@@ -178,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadToolBarFragment() {
         Fragment frag = fm.findFragmentById(R.id.fragment_tool_bar_container);
 
+        findViewById(R.id.fragment_pause_overlay).setVisibility(View.GONE);
         findViewById(R.id.fragment_tool_bar_container).setVisibility(View.VISIBLE);
 
         if (frag == null){
@@ -199,7 +205,24 @@ public class MainActivity extends AppCompatActivity {
         else{
             fm.beginTransaction().replace(R.id.fragment_pause_overlay, pauseMenuFragment).commit();
         }
+    }
+
+    private void loadEndGameFragment(){
+
+        // for some reason, the method used in the previous method doesn't work here.
+        // it only worked when i changed the to find by Tag method.
+        Fragment existingFragment = fm.findFragmentByTag("EndGameFragmentTag");
+
+        if (existingFragment != null && existingFragment.isAdded()) {
+            // Fragment is already added, no need to add it again
+            return;
+        }
         findViewById(R.id.fragment_pause_overlay).setVisibility(View.VISIBLE);
+
+        fm.beginTransaction()
+                .replace(R.id.fragment_pause_overlay, endGameFragment, "EndGameFragmentTag")
+                .addToBackStack(null)
+                .commit();
     }
     /* ----------------------------------------------------------------------------------------------------------- */
 }

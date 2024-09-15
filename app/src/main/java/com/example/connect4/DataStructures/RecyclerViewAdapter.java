@@ -28,12 +28,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
 
 
 
+    /* Constructor for the RecyclerViewAdapter */
+    /* -------------------------------------------------------------------------------------------------------------- */
     public RecyclerViewAdapter(ArrayList<CellData> cellDataArrayList, double inHeight, GameData gameDataViewModel) {
         this.cellDataArrayList = cellDataArrayList;
         this.height = inHeight;
         this.gameDataViewModel = gameDataViewModel;
         this.numOfColumns = gameDataViewModel.getGridColumns().getValue();
 
+        /* Each cellData is intialised to a valid value. */
+        /* --------------------------------------- */
         CellData cellData;
         int arraySize = cellDataArrayList.size();
         for(int i = 0; i < arraySize; i++){
@@ -42,7 +46,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
                 cellData.setIsValid(true);
             }
         }
+        /* --------------------------------------- */
     }
+    /* -------------------------------------------------------------------------------------------------------------- */
 
     @NonNull
     @Override
@@ -54,16 +60,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull CellDataViewHolder holder, int position) {
+        // Retrieve the cell data for the current position in the list
         CellData cellData = cellDataArrayList.get(position);
 
+        // Set the image resource of the cell using the image ID from the cell data
         holder.cellDataView.setImageResource(cellData.getImageId());
+
+        // Dynamically set the row height for each cell
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
-        layoutParams.height = (int) height;  // Set the row height dynamically
+        layoutParams.height = (int) height;  // Set the row height based on the 'height' variable
         holder.itemView.setLayoutParams(layoutParams);
 
+        // Set an OnClickListener for the cell view
         holder.cellDataView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Get the current player's turn from the game data model
                 int currentTurn = gameDataViewModel.getPlayerTurn().getValue();
 
                 Player currentPlayer = (currentTurn == 1) ? gameDataViewModel.getPlayer1().getValue() : gameDataViewModel.getPlayer2().getValue();
@@ -79,24 +91,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
 
                 /* Game logic is housed here. */
                 /* --------------------------------------------------------------------- */
-                // This is a block of code responsible for the turns.
+                // Retrieve the clicked cell's position in the list
                 int cellPosition = holder.getBindingAdapterPosition();
                 CellData nextCell;
-                int j = 1;
-                for (int i = cellPosition; i < cellDataArrayList.size(); i+=numOfColumns){
+                int j = 1; // Variable to store the next player's turn (default is 1)
 
+                // Loop through cells in the column of the selected cell, moving down by 'numOfColumns'
+                for (int i = cellPosition; i < cellDataArrayList.size(); i += numOfColumns) {
+
+                    // Get the next cell in the column
                     nextCell = cellDataArrayList.get(i);
 
-                    if (nextCell.getIsValid()){
+                    // Check if the cell is valid (can be modified)
+                    if (nextCell.getIsValid()) {
 
                         nextCell.setIsValid(false);
 
-                        if(i-numOfColumns >= 0) {
-
-                            cellDataArrayList.get(i-numOfColumns).setIsValid(true);
+                        // If the cell above exists, mark it as valid (can now be selected)
+                        if (i - numOfColumns >= 0) {
+                            cellDataArrayList.get(i - numOfColumns).setIsValid(true);
                         }
 
-                        Toast.makeText(view.getContext(), "Cell position: " + i, Toast.LENGTH_SHORT).show();
                         if (currentTurn == 1){
 
                             nextCell.setImageId(playerColour);
@@ -106,23 +121,34 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
 
                             j = 1; // to set the player turn to 1 and assign to data view model after checks
                             nextCell.setImageId(playerColour);
+                            nextCell.setImageId(R.drawable.filled_box);
+                            j = 2; // Set the next turn to player 2
+                        } else if (currentTurn == 2) {
+                            // Player 2's turn: set the image to 'mouktada_great_circle'
+                            nextCell.setImageId(R.drawable.mouktada_great_circle);
+                            j = 1; // Set the next turn to player 1
                         }
+
+                        // Update the game data model with the new player turn
                         gameDataViewModel.setPlayerTurn(j);
                     }
 
 
+                    // Notify the adapter that the item has changed so the view can be updated
+
                     if (checkForWin(i, currentTurn)) {
                         Toast.makeText(view.getContext(), "Player " + currentTurn + " wins!", Toast.LENGTH_SHORT).show();
+                        gameDataViewModel.setDisplayedFragment(6);
                     }
 
                     gameDataViewModel.setPlayerTurn(currentTurn == 1 ? 2 : 1);
+
                     notifyItemChanged(i);
                 }
                 /* --------------------------------------------------------------------- */
             }
         });
     }
-
 
     // Method to check if a player has won
     private boolean checkForWin(int position, int player) {
@@ -137,10 +163,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
     private boolean checkDirection(int position, int player, int deltaX, int deltaY) {
         int count = 1;  // Including the current piece
 
-
         count += countConsecutive(position, player, deltaX, deltaY);
-
-
         count += countConsecutive(position, player, -deltaX, -deltaY);
 
         return count >= 4;  // Return true if 4 consecutive pieces found
@@ -155,18 +178,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
 
         while (true) {
             row += deltaY;
-
             col += deltaX;
-
 
             // Check bounds
             if (row < 0 || row >= cellDataArrayList.size() / numOfColumns || col < 0 || col >= numOfColumns) {
                 break;
             }
 
-
             int nextPosition = row * numOfColumns + col;
-
 
             if (cellDataArrayList.get(nextPosition).getImageId() == (player == 1 ? R.drawable.filled_box : R.drawable.mouktada_great_circle)) {
                 count++;
@@ -177,7 +196,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
         }
         return count;
     }
-
 
     @Override
     public int getItemCount() {

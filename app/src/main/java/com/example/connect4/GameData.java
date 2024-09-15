@@ -12,9 +12,19 @@ import java.sql.Array;
 import java.util.ArrayList;
 
 public class GameData extends ViewModel {
-
+    /* Class Fields:
+     * recyclerDataArrayListVM -> Used to store recyclerDataArrayList
+     * displayedFragment -> Integer used to signify which fragments to load.
+     * selectedGameMode -> Game mode selected.
+     * selectedBoard -> Size of the board selected.
+     * player1 -> Used to store player 1 data.
+     * player2 -> Used to store player 2 data.
+     * aiPlayer -> Used to store the ai player.
+     * selectedPlayer -> Used to check which player is selected.
+     * gridColumns -> Store the number of columns in a grid.
+     * playerTurn -> Variable used to store which player's turn it is.
+     */
     private final MutableLiveData<ArrayList<CellData>> recyclerDataArrayListVM;
-
     private final MutableLiveData<Integer> displayedFragment;
     private final MutableLiveData<Integer> selectedGameMode;
     private final MutableLiveData<Integer> selectedBoard;
@@ -22,11 +32,11 @@ public class GameData extends ViewModel {
     private final MutableLiveData<Player> player2;
     private final MutableLiveData<Player> aiPlayer;
     private final MutableLiveData<Integer> selectedPlayer;
-
     private final MutableLiveData<Integer> gridColumns;
-
     private final MutableLiveData<Integer> playerTurn;
 
+    /* Default constructor */
+    /* ------------------------------------------------------------------------- */
     public GameData(){
         recyclerDataArrayListVM = new MutableLiveData<>();
 
@@ -54,13 +64,13 @@ public class GameData extends ViewModel {
 
         gridColumns = new MutableLiveData<>();
     }
+    /* ------------------------------------------------------------------------- */
 
-    public LiveData<ArrayList<CellData>> getRecyclerDataArrayListVM() {
-        return recyclerDataArrayListVM;
-    }
-    public void setRecyclerDataArrayListVM(ArrayList<CellData> value) {
-        recyclerDataArrayListVM.setValue(value);
-    }
+    /* Accessors and Mutators are stored here. */
+    /* --------------------------------------------------------------------------------------------------------------- */
+    public LiveData<ArrayList<CellData>> getRecyclerDataArrayListVM() {return recyclerDataArrayListVM;}
+
+    public void setRecyclerDataArrayListVM(ArrayList<CellData> value) {recyclerDataArrayListVM.setValue(value);}
 
     public LiveData<Integer> getDisplayedFragment() {return displayedFragment;}
 
@@ -95,5 +105,7 @@ public class GameData extends ViewModel {
     public MutableLiveData<Integer> getGridColumns() {return gridColumns;}
 
     public void setGridColumns(int gridColumns) {this.gridColumns.setValue(gridColumns);}
+    /* --------------------------------------------------------------------------------------------------------------- */
+
 }
 

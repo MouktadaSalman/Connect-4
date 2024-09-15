@@ -6,6 +6,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -28,21 +29,45 @@ public class PauseMenuFragment extends Fragment {
         ImageButton restartButton = view.findViewById(R.id.PMRestartButton);
         ImageButton resumeButton = view.findViewById(R.id.PMResumeButton);
 
-
+        // When exit button is clicked we display fragment 0. (Main Menu)
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Removing the GameBoardFragment
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                Fragment gameBoardFragment = fragmentManager.findFragmentById(R.id.fragment_game_board_container);
+                Fragment toolBoardFragment = fragmentManager.findFragmentById(R.id.fragment_tool_bar_container);
+
+                if (gameBoardFragment != null && toolBoardFragment != null) {
+                    fragmentManager.beginTransaction()
+                            .remove(gameBoardFragment)
+                            .remove(toolBoardFragment)
+                            .commit();
+                }
                 gameDataViewModel.setDisplayedFragment(0);
             }
         });
 
+        // When restart button is clicked we display fragment 1. (Game Mode)
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameDataViewModel.setDisplayedFragment(1);
+                //Removing the GameBoardFragment
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                Fragment gameBoardFragment = fragmentManager.findFragmentById(R.id.fragment_game_board_container);
+                Fragment toolBoardFragment = fragmentManager.findFragmentById(R.id.fragment_tool_bar_container);
+
+                if (gameBoardFragment != null && toolBoardFragment != null) {
+                    fragmentManager.beginTransaction()
+                            .remove(gameBoardFragment)
+                            .remove(toolBoardFragment)
+                            .commit();
+                }
+                gameDataViewModel.setDisplayedFragment(3);
             }
         });
 
+        // When resume button is clicked we remove the pause button overlay.
         resumeButton.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View v) {

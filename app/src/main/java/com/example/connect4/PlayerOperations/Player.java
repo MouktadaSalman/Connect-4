@@ -82,7 +82,7 @@ public class Player {
      * Method: getPlayerAvatar                      *
      * Description: Get player's avatar             *
      * Parameters: none                             *
-     * Result: playerAvatar (int)                *
+     * Result: playerAvatar (int)                   *
      *----------------------------------------------*/
     public int getPlayerAvatar(){
         return playerAvatar;
@@ -92,7 +92,7 @@ public class Player {
      * Method: setPlayerAvatar                      *
      * Description: Set player's avatar             *
      * Parameters: none                             *
-     * Result: playerAvatar (int)                *
+     * Result: playerAvatar (int)                   *
      *----------------------------------------------*/
     public void setPlayerAvatar(int id) { playerAvatar = id; }
 
