@@ -76,11 +76,13 @@ public class ProfileFragment extends Fragment {
                     p2CustomButton.setEnabled(false);
                     overlayView2.setVisibility(View.VISIBLE);
                     avatarP2.setColorFilter(0x77000000);
+                    avatarP2.setBackgroundResource(R.drawable.overlay);
                 }
                 else {
                     p2CustomButton.setEnabled(true);
                     overlayView2.setVisibility(View.GONE);
                     avatarP2.clearColorFilter();
+                    avatarP2.setBackgroundResource(R.drawable.avatar_border_white);
                 }
             }
         });
