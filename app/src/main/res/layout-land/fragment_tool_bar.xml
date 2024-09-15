@@ -10,17 +10,16 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="match_parent"
         android:padding="5dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp"
-        android:background = "#064C56">
+        android:background = "#10B9E4">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="10dp"
-            android:background="#064C56">
+            android:background = "#10B9E4">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/TBGrid1"
@@ -56,26 +55,26 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:fontFamily="@font/pixel"
-                android:textColor="#5BC5BA"
+                android:textColor="#062A26"
                 android:gravity="center"
                 app:layout_constraintStart_toEndOf="@id/P1Avatar"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/TBGrid1"
-                app:layout_constraintDimensionRatio="3:2"/>
+                app:layout_constraintDimensionRatio="2:1"/>
 
             <TextView
                 android:id="@+id/PlayerTwoInfo"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:textColor="#5BC5BA"
+                android:textColor="#062A26"
                 android:fontFamily="@font/pixel"
                 android:gravity="center"
                 app:layout_constraintStart_toEndOf="@id/TBGrid2"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/P2Avatar"
-                app:layout_constraintDimensionRatio="3:2"/>
+                app:layout_constraintDimensionRatio="2:1"/>
 
             <ImageView
                 android:id="@+id/P2Avatar"
