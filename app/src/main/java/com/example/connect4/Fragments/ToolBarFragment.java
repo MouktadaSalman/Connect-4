@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -25,6 +26,7 @@ public class ToolBarFragment extends Fragment {
     private GameData gameDataViewModel;
     private ImageView P1Avatar, P2Avatar;
     private TextView PlayerOneInfo, PlayerTwoInfo;
+    private View overlayP1, overlayP2;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tool_bar, container, false);
@@ -37,6 +39,8 @@ public class ToolBarFragment extends Fragment {
         P2Avatar = view.findViewById(R.id.P2Avatar);
         PlayerOneInfo = view.findViewById(R.id.PlayerOneInfo);
         PlayerTwoInfo = view.findViewById(R.id.PlayerTwoInfo);
+        overlayP1 = view.findViewById(R.id.TBOverlay1);
+        overlayP2 = view.findViewById(R.id.TBOverlay2);
 
         // Handle the game mode change so if the game mode is against AI, player 2 name will be set to "AI"
         gameDataViewModel.getSelectedGameMode().observe(getViewLifecycleOwner(), new Observer<Integer>() {
@@ -50,6 +54,23 @@ public class ToolBarFragment extends Fragment {
                 if (mode == 2) {
                     setPlayerDetails(gameDataViewModel.getPlayer1(),
                                      gameDataViewModel.getAiPlayer());
+                }
+            }
+        });
+
+        // Check whose player turn it is
+        gameDataViewModel.getPlayerTurn().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer turn) {
+                if (turn == 1){
+                    overlayP1.setVisibility(View.INVISIBLE);
+                    //Hide the other player
+                    overlayP2.setVisibility(View.VISIBLE);
+                }
+                if (turn == 2){
+                    overlayP2.setVisibility(View.INVISIBLE);
+                    //Hide the other player
+                    overlayP1.setVisibility(View.VISIBLE);
                 }
             }
         });
