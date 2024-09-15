@@ -121,12 +121,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<CellDataViewHolder
 
                             j = 1; // to set the player turn to 1 and assign to data view model after checks
                             nextCell.setImageId(playerColour);
-                            nextCell.setImageId(R.drawable.filled_box);
+
                             j = 2; // Set the next turn to player 2
-                        } else if (currentTurn == 2) {
-                            // Player 2's turn: set the image to 'mouktada_great_circle'
-                            nextCell.setImageId(R.drawable.mouktada_great_circle);
-                            j = 1; // Set the next turn to player 1
                         }
 
                         // Update the game data model with the new player turn
