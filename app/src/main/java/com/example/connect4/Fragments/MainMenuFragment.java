@@ -16,8 +16,13 @@ import android.widget.ImageButton;
 
 import com.example.connect4.GameData;
 import com.example.connect4.R;
-
-
+/*--------------------------------------------------------*
+ * Module: MainMenuFragment                               *
+ * Description: The module responsible for handling the   *
+ *              functions of the main menu fragment       *
+ * Author: Jauhar                                         *
+ * ID: 21494299                                           *
+ *--------------------------------------------------------*/
 public class MainMenuFragment extends Fragment {
 
     private GameData gameDataViewModel;

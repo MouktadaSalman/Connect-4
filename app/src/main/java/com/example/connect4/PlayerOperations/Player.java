@@ -17,8 +17,9 @@ public class Player {
      * totalGames -> the player games played (both against ai + other player)
      * winPercent -> the player winPercent (both against ai + other player)
      */
-    private final String playerName;
-    private final int playerAvatar;
+    private String playerName;
+    private int avatarID;
+    private int playerAvatar;
     private int wins;
     private int loss;
     private int totalGames;
@@ -31,7 +32,8 @@ public class Player {
      *----------------------------------------------*/
     public Player(String pName, int pAvatar){
         playerName = pName;
-        playerAvatar = pAvatar;
+        avatarID = pAvatar;
+        playerAvatar = 0;
         wins = 0;
         loss = 0;
         totalGames = 0;
@@ -49,14 +51,48 @@ public class Player {
     }
 
     /*----------------------------------------------*
+     * Method: setPlayerName                        *
+     * Description: Set player's username           *
+     * Parameters: none                             *
+     * Result: playerName (String)                  *
+     *----------------------------------------------*/
+    public void setPlayerName(String name) { playerName = name; }
+
+    /*----------------------------------------------*
+     * Method: getAvatarID                          *
+     * Description: Get player's avatar             *
+     * Parameters: none                             *
+     * Result: avatarID (int)                       *
+     *----------------------------------------------*/
+    public int getAvatarID(){
+        return avatarID;
+    }
+
+    /*----------------------------------------------*
+     * Method: setAvatarID                          *
+     * Description: Set player's avatar             *
+     * Parameters: none                             *
+     * Result: avatarID (int)                       *
+     *----------------------------------------------*/
+    public void setAvatarID(int id) { avatarID = id; }
+
+    /*----------------------------------------------*
      * Method: getPlayerAvatar                      *
      * Description: Get player's avatar             *
      * Parameters: none                             *
-     * Result: playerAvatar (String)                *
+     * Result: playerAvatar (int)                *
      *----------------------------------------------*/
     public int getPlayerAvatar(){
         return playerAvatar;
     }
+
+    /*----------------------------------------------*
+     * Method: setPlayerAvatar                      *
+     * Description: Set player's avatar             *
+     * Parameters: none                             *
+     * Result: playerAvatar (int)                *
+     *----------------------------------------------*/
+    public void setPlayerAvatar(int id) { playerAvatar = id; }
 
     /*----------------------------------------------*
      * Method: addWin                               *
@@ -112,7 +148,5 @@ public class Player {
      * Parameters: none                             *
      * Result: winPercent (double)                  *
      *----------------------------------------------*/
-    public double winPercentage(){
-        return winPercent;
-    }
+    public double winPercentage() {return winPercent;}
 }

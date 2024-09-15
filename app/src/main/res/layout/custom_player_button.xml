@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/custom_player_button"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/oval_button"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Icon inside the button -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/CPBGrid"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3"/>
+
+    <ImageView
+        android:id="@+id/CPBAvatar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/imageProf"
+        android:background="@drawable/avatar_border_white"
+        android:src="@drawable/profile_button"
+        android:padding="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/CPBGrid"
+        app:layout_constraintDimensionRatio="1:1"/>
+
+    <!--Player username-->
+    <TextView
+        android:id="@+id/CPBPlayerName"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/userName"
+        android:fontFamily="@font/bubbly_font"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="30sp"
+        app:layout_constraintDimensionRatio="6:1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/CPBLinearStats"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/CPBGrid"/>
+
+    <!--Player stats-->
+    <LinearLayout
+        android:id="@+id/CPBLinearStats"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintTop_toBottomOf="@id/CPBPlayerName"
+        app:layout_constraintStart_toEndOf="@id/CPBGrid"
+        app:layout_constraintBottom_toTopOf="@id/CPBLinearMoreStats"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/CPBWinRatio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/userRatio"
+            android:fontFamily="@font/bubbly_font"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeMaxTextSize="15sp"
+            android:gravity="center|bottom"/>
+
+        <TextView
+            android:id="@+id/CPBWinRatioRes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/placeRatio"
+            android:fontFamily="@font/bubbly_font"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeMaxTextSize="15sp"
+            android:gravity="start|bottom"/>
+
+        <TextView
+            android:id="@+id/CPBTotGames"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/userTotGames"
+            android:fontFamily="@font/bubbly_font"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeMaxTextSize="15sp"
+            android:gravity="center|bottom"/>
+
+        <TextView
+            android:id="@+id/CPBTotGamesRes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/placeTotGames"
+            android:fontFamily="@font/bubbly_font"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeMaxTextSize="15sp"
+            android:gravity="start|bottom"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/CPBLinearMoreStats"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintTop_toBottomOf="@id/CPBLinearStats"
+        app:layout_constraintStart_toEndOf="@id/CPBGrid"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/CPBWins"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/userWins"
+            android:fontFamily="@font/bubbly_font"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeMaxTextSize="15sp"
+            android:gravity="center|bottom"/>
+
+        <TextView
+            android:id="@+id/CPBWinRes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/placeWins"
+            android:fontFamily="@font/bubbly_font"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeMaxTextSize="15sp"
+            android:gravity="start|bottom"/>
+
+        <TextView
+            android:id="@+id/CPBLoss"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/userLoss"
+            android:fontFamily="@font/bubbly_font"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeMaxTextSize="15sp"
+            android:gravity="center|bottom"/>
+
+        <TextView
+            android:id="@+id/CPBLossRes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/placeWins"
+            android:fontFamily="@font/bubbly_font"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeMaxTextSize="15sp"
+            android:gravity="start|bottom"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

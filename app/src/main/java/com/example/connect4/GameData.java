@@ -19,12 +19,7 @@ public class GameData extends ViewModel {
     private final MutableLiveData<Integer> selectedBoard;
     private final MutableLiveData<Player> player1;
     private final MutableLiveData<Player> player2;
-
-    private final MutableLiveData<Integer> player1Avatar;
-    private final MutableLiveData<Integer> player2Avatar;
-
-    private final MutableLiveData<String> player1Name;
-    private final MutableLiveData<String> player2Name;
+    private final MutableLiveData<Integer> selectedPlayer;
 
     private final MutableLiveData<Integer> gridRows;
     private final MutableLiveData<Integer> gridColumns;
@@ -39,22 +34,19 @@ public class GameData extends ViewModel {
         selectedBoard = new MutableLiveData<>();
         player1 = new MediatorLiveData<>();
         player2 = new MediatorLiveData<>();
+        selectedPlayer = new MutableLiveData<>();
 
+        //Initially game begins with game mode selected as PvAI
+        setSelectedGameMode(2);
 
-        player1Avatar = new MutableLiveData<>();
-        player2Avatar = new MutableLiveData<>();
+        //Initially no player selected
+        setSelectedPlayer(0);
 
-
-        player1Name = new MutableLiveData<>();
-        player2Name = new MutableLiveData<>();
+        // Initialise basic player profiles
+        setPlayer1(new Player("Player#1", R.drawable.profile_button));
+        setPlayer2(new Player("Player#2", R.drawable.profile_button));
 
         playerTurn = new MutableLiveData<>();
-
-        // Default avatar and name settings
-        player1Avatar.setValue(R.drawable.avatar1);
-        player2Avatar.setValue(R.drawable.avatar1);
-        player1Name.setValue("Player 1");
-        player2Name.setValue("Player 2");
         playerTurn.setValue(1);
 
         gridRows = new MutableLiveData<>();
@@ -73,21 +65,17 @@ public class GameData extends ViewModel {
 
     public void setSelectedBoard(int value) {selectedBoard.setValue(value);}
 
-    public LiveData<Integer> getPlayer1Avatar() {return player1Avatar;}
+    public LiveData<Player> getPlayer1() {return player1;}
 
-    public void setPlayer1Avatar(int avatar) {player1Avatar.setValue(avatar);}
+    public void setPlayer1(Player player) {player1.setValue(player);}
 
-    public LiveData<Integer> getPlayer2Avatar() {return player2Avatar;}
+    public LiveData<Player> getPlayer2() {return player2;}
 
-    public void setPlayer2Avatar(int avatar) {player2Avatar.setValue(avatar);}
+    public void setPlayer2(Player player) {player2.setValue(player);}
 
-    public LiveData<String> getPlayer1Name() {return player1Name;}
+    public LiveData<Integer> getSelectedPlayer() {return selectedPlayer;}
 
-    public void setPlayer1Name(String name) {player1Name.setValue(name);}
-
-    public LiveData<String> getPlayer2Name() {return player2Name;}
-
-    public void setPlayer2Name(String name) {player2Name.setValue(name);}
+    public void setSelectedPlayer(int value) {selectedPlayer.setValue(value);}
 
     public LiveData<Integer> getPlayerTurn() {return playerTurn;}
 

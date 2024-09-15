@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customizeProfileFrag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.CustomizeProfileFragment"
+    android:background="@drawable/customize_profile_bg"
+    android:padding="5dp">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/CPFGrid"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/CPFGrid2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8"/>
+
+    <EditText
+        android:id="@+id/CPFNameText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autofillHints="username"
+        android:text="@string/userName"
+        android:hint="@string/userName"
+        android:inputType="text"
+        android:fontFamily="@font/bubbly_font"
+        android:textColor="@color/material_dynamic_neutral20"
+        android:gravity="center"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="5sp"
+        android:autoSizeMaxTextSize="30sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/CPFGrid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/CPFAvatar1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/avatarButton"
+        android:scaleType="centerCrop"
+        android:background="@drawable/oval_button"
+        android:src="@drawable/avatar1"
+        app:layout_constraintTop_toBottomOf="@id/CPFGrid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/CPFAvatar2"
+        app:layout_constraintBottom_toTopOf="@id/CPFAvatar4"
+        app:layout_constraintDimensionRatio="1:1"/>
+
+    <ImageButton
+        android:id="@+id/CPFAvatar2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/avatarButton"
+        android:scaleType="centerCrop"
+        android:background="@drawable/oval_button"
+        android:src="@drawable/avatar2"
+        app:layout_constraintTop_toBottomOf="@id/CPFGrid"
+        app:layout_constraintStart_toEndOf="@id/CPFAvatar1"
+        app:layout_constraintEnd_toStartOf="@id/CPFAvatar3"
+        app:layout_constraintBottom_toTopOf="@id/CPFAvatar5"
+        app:layout_constraintDimensionRatio="1:1"/>
+
+
+    <ImageButton
+        android:id="@+id/CPFAvatar3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/avatarButton"
+        android:scaleType="centerCrop"
+        android:background="@drawable/oval_button"
+        android:src="@drawable/avatar3"
+        app:layout_constraintTop_toBottomOf="@id/CPFGrid"
+        app:layout_constraintStart_toEndOf="@id/CPFAvatar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/CPFAvatar6"
+        app:layout_constraintDimensionRatio="1:1"/>
+
+    <ImageButton
+        android:id="@+id/CPFAvatar4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/avatarButton"
+        android:scaleType="centerCrop"
+        android:background="@drawable/oval_button"
+        android:src="@drawable/avatar4"
+        app:layout_constraintTop_toBottomOf="@id/CPFAvatar1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/CPFAvatar5"
+        app:layout_constraintBottom_toBottomOf="@id/CPFGrid2"
+        app:layout_constraintDimensionRatio="1:1"/>
+
+    <ImageButton
+        android:id="@+id/CPFAvatar5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/avatarButton"
+        android:scaleType="centerCrop"
+        android:background="@drawable/oval_button"
+        android:src="@drawable/avatar5"
+        app:layout_constraintTop_toBottomOf="@id/CPFAvatar2"
+        app:layout_constraintStart_toEndOf="@id/CPFAvatar4"
+        app:layout_constraintEnd_toStartOf="@id/CPFAvatar6"
+        app:layout_constraintBottom_toTopOf="@id/CPFGrid2"
+        app:layout_constraintDimensionRatio="1:1"/>
+
+    <ImageButton
+        android:id="@+id/CPFAvatar6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/avatarButton"
+        android:scaleType="centerCrop"
+        android:background="@drawable/oval_button"
+        android:src="@drawable/avatar6"
+        app:layout_constraintTop_toBottomOf="@id/CPFAvatar3"
+        app:layout_constraintStart_toEndOf="@id/CPFAvatar5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/CPFGrid2"
+        app:layout_constraintDimensionRatio="1:1"/>
+
+    <Button
+        android:id="@+id/CustomizeSaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/oval_button"
+        android:fontFamily="@font/bubbly_font"
+        android:text="@string/saveButton"
+        android:gravity="center"
+        android:padding="5dp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="5sp"
+        android:autoSizeMaxTextSize="30sp"
+        android:textColor="@color/material_dynamic_neutral20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/CPFGrid2"
+        app:layout_constraintDimensionRatio="3:1"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
