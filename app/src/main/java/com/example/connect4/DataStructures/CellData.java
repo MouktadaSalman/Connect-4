@@ -8,7 +8,8 @@ public class CellData {
     private int rowPosition;
     private int colPosition;
     private int imageId;
-    private boolean isEmpty;
+    private boolean isValid;
+    private int positionInArray;
 
     // Constructor
     public CellData(int inImageid, int rowPosition, int colPosition, String colour) {
@@ -16,8 +17,9 @@ public class CellData {
         this.rowPosition = rowPosition;
         this.colPosition = colPosition;
         this.imageId = inImageid;
-        this.isEmpty = true;
+        this.isValid = false;
         this.colour = colour;
+        this.positionInArray = 0;
     }
 
     // Accessor
@@ -31,7 +33,7 @@ public class CellData {
 //
     public void resetImage(){
         imageId = R.drawable.empty_cell;
-        isEmpty = true;
+        isValid = false;
     }
 
     // Accessor
@@ -58,15 +60,22 @@ public class CellData {
 
     public void setImageId(int imageId) { this.imageId = imageId; }
 
-    public boolean isEmpty() { return isEmpty; }
+    public boolean isEmpty() { return isValid; }
 
-    public void setEmpty(boolean empty) { isEmpty = empty; }
+    public void setIsValid(boolean empty) { isValid = empty; }
+
+    public boolean getIsValid() { return isValid; }
 
     public String getColour() {
         return colour;
     }
+
     public void setColour(String colour) {
         this.colour = colour;
     }
+
+    public int getPositionInArray(){return positionInArray;}
+
+    public void setPositionInArray(int positionInArray){this.positionInArray = positionInArray;}
 
 }
