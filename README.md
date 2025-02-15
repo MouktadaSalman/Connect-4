@@ -62,3 +62,8 @@ Modular UI Architecture: Separates different UI components (menu, settings, game
 Conclusion
 
 This project serves as an excellent demonstration of Android game development principles, showcasing a balance between user engagement, customization, and software engineering best practices. It is built with modularity in mind, allowing for future enhancements and scalability.
+
+## Built With
+- Android Studio
+- Java
+- 
